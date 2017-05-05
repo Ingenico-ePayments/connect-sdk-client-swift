@@ -1,0 +1,1257 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C0513341E799F2D00D11633 /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0513331E799F2D00D11633 /* SessionError.swift */; };
+		1C1E0BF31E93C2BA00F9DC5E /* PaymentItemsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E0BF21E93C2BA00F9DC5E /* PaymentItemsTestCase.swift */; };
+		1C1E0BF61E93E57000F9DC5E /* IINDetailsResponseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E0BF51E93E57000F9DC5E /* IINDetailsResponseTestCase.swift */; };
+		1C4B7DBB1E9268DB00AB1162 /* BasicPaymentProductGroupsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4B7DB91E92684C00AB1162 /* BasicPaymentProductGroupsTestCase.swift */; };
+		1C99FF521E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C99FF511E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift */; };
+		1C99FF541E9D15F900461C06 /* ValueMappingItemTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C99FF531E9D15F900461C06 /* ValueMappingItemTestCase.swift */; };
+		1CE7AB061E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7AB051E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift */; };
+		1CEBAC181E92725E0091A69C /* PaymentProductGroupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEBAC161E9272580091A69C /* PaymentProductGroupTestCase.swift */; };
+		5334461350E5084418D90611 /* Pods_IngenicoConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */; };
+		6D0126CB1E0422C400FCFEC7 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */; };
+		6D2256361DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */; };
+		6D2256381DF95DE9009DB416 /* AccountsOnFileTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */; };
+		6D22563A1DF961D0009DB416 /* LabelTemplateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2256391DF961D0009DB416 /* LabelTemplateTestCase.swift */; };
+		6D4443A41E30B1540007070E /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4443A31E30B1540007070E /* String+Extensions.swift */; };
+		6D4E7AA31DF55C4100BAE336 /* AccountOnFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AA21DF55C4100BAE336 /* AccountOnFile.swift */; };
+		6D4E7AA51DF5611700BAE336 /* BasicPaymentProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AA41DF5611700BAE336 /* BasicPaymentProduct.swift */; };
+		6D4E7AA71DF5656600BAE336 /* BasicPaymentProductGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AA61DF5656600BAE336 /* BasicPaymentProductGroup.swift */; };
+		6D4E7AA91DF5669500BAE336 /* BasicPaymentProductGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AA81DF5669500BAE336 /* BasicPaymentProductGroups.swift */; };
+		6D4E7AAD1DF56BBF00BAE336 /* PaymentItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AAC1DF56BBF00BAE336 /* PaymentItems.swift */; };
+		6D4E7AAF1DF5729300BAE336 /* PaymentProductGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AAE1DF5729300BAE336 /* PaymentProductGroup.swift */; };
+		6D4E7AB91DF57E2900BAE336 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AB81DF57E2900BAE336 /* PaymentRequest.swift */; };
+		6D4E7ABB1DF58F6700BAE336 /* PreparedPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7ABA1DF58F6700BAE336 /* PreparedPaymentRequest.swift */; };
+		6D7822031DF0228F00B5A9AB /* DirectoryEntries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822011DF0228F00B5A9AB /* DirectoryEntries.swift */; };
+		6D7822041DF0228F00B5A9AB /* DirectoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822021DF0228F00B5A9AB /* DirectoryEntry.swift */; };
+		6D7822061DF022A100B5A9AB /* PaymentAmountOfMoney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822051DF022A100B5A9AB /* PaymentAmountOfMoney.swift */; };
+		6D7822081DF022B700B5A9AB /* PaymentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822071DF022B700B5A9AB /* PaymentContext.swift */; };
+		6D7822271DF039E100B5A9AB /* IINDetailsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822251DF039E100B5A9AB /* IINDetailsResponse.swift */; };
+		6D7822281DF039E100B5A9AB /* IINDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822261DF039E100B5A9AB /* IINDetail.swift */; };
+		6D7822351DF039FA00B5A9AB /* ValidationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822291DF039FA00B5A9AB /* ValidationErrors.swift */; };
+		6D7822421DF03A6900B5A9AB /* PublicKeyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822411DF03A6900B5A9AB /* PublicKeyResponse.swift */; };
+		6D7822441DF03C7600B5A9AB /* PaymentProductNetworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822431DF03C7600B5A9AB /* PaymentProductNetworks.swift */; };
+		6D7822461DF03D2100B5A9AB /* FormElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822451DF03D2100B5A9AB /* FormElement.swift */; };
+		6D7822481DF0470500B5A9AB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822471DF0470500B5A9AB /* Validator.swift */; };
+		6D78224A1DF0476400B5A9AB /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822491DF0476400B5A9AB /* Validators.swift */; };
+		6D78224C1DF0520600B5A9AB /* ValidatorRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78224B1DF0520600B5A9AB /* ValidatorRange.swift */; };
+		6D78224E1DF053FE00B5A9AB /* ValidatorRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78224D1DF053FE00B5A9AB /* ValidatorRegularExpression.swift */; };
+		6D7822501DF0553F00B5A9AB /* LabelTemplateItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78224F1DF0553F00B5A9AB /* LabelTemplateItem.swift */; };
+		6D7822521DF055CF00B5A9AB /* LabelTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822511DF055CF00B5A9AB /* LabelTemplate.swift */; };
+		6D7822541DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822531DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift */; };
+		6D7822561DF0586900B5A9AB /* ValidatorEmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */; };
+		6D7822581DF05B5A00B5A9AB /* ValidatorLuhn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822571DF05B5A00B5A9AB /* ValidatorLuhn.swift */; };
+		6D78225A1DF0616100B5A9AB /* ValidatorLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822591DF0616100B5A9AB /* ValidatorLength.swift */; };
+		6D78225C1DF0620D00B5A9AB /* ValueMappingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78225B1DF0620D00B5A9AB /* ValueMappingItem.swift */; };
+		6D78225E1DF0626500B5A9AB /* ValidatorFixedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78225D1DF0626500B5A9AB /* ValidatorFixedList.swift */; };
+		6D7822601DF0635900B5A9AB /* ValidatorExpirationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78225F1DF0635900B5A9AB /* ValidatorExpirationDate.swift */; };
+		6D7822621DF064E400B5A9AB /* BasicPaymentProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822611DF064E400B5A9AB /* BasicPaymentProducts.swift */; };
+		6D7822641DF0660B00B5A9AB /* PaymentItemDisplayHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822631DF0660B00B5A9AB /* PaymentItemDisplayHints.swift */; };
+		6D7822661DF066C700B5A9AB /* DataRestrictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822651DF066C700B5A9AB /* DataRestrictions.swift */; };
+		6D7822681DF0673800B5A9AB /* PaymentProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822671DF0673800B5A9AB /* PaymentProductField.swift */; };
+		6D78226A1DF067A900B5A9AB /* ToolTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822691DF067A900B5A9AB /* ToolTip.swift */; };
+		6D78226C1DF0680500B5A9AB /* PaymentProductFieldDisplayHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78226B1DF0680500B5A9AB /* PaymentProductFieldDisplayHints.swift */; };
+		6D78226E1DF0739D00B5A9AB /* PaymentProductFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78226D1DF0739D00B5A9AB /* PaymentProductFields.swift */; };
+		6D7822701DF0754600B5A9AB /* PaymentProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D78226F1DF0754600B5A9AB /* PaymentProduct.swift */; };
+		6D7822721DF0781100B5A9AB /* AccountsOnFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7822711DF0781100B5A9AB /* AccountsOnFile.swift */; };
+		6D8BD9011DFE94270013B869 /* ValidatorLengthTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9001DFE94270013B869 /* ValidatorLengthTestCase.swift */; };
+		6D8BD9031DFE95760013B869 /* ValidatorLuhnTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9021DFE95760013B869 /* ValidatorLuhnTestCase.swift */; };
+		6D8BD9051DFE965A0013B869 /* ValidatorRangeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9041DFE965A0013B869 /* ValidatorRangeTestCase.swift */; };
+		6D8BD9071DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9061DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift */; };
+		6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */; };
+		6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */; };
+		6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */; };
+		6D8BD90F1DFEA1940013B869 /* AccountOnFileTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */; };
+		6D8BD9111DFEACBD0013B869 /* AssetManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */; };
+		6D8BD9131DFEB3080013B869 /* C2SCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9121DFEB3080013B869 /* C2SCommunicator.swift */; };
+		6DA4A88C1DF9842C007492C2 /* BasicPaymentProductTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */; };
+		6DA4A88E1DF98580007492C2 /* PaymentProductTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A88D1DF98580007492C2 /* PaymentProductTestCase.swift */; };
+		6DA4A8901DF98A6B007492C2 /* PaymentProductFieldTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A88F1DF98A6B007492C2 /* PaymentProductFieldTestCase.swift */; };
+		6DA4A8941DF99062007492C2 /* PaymentProductsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A8931DF99062007492C2 /* PaymentProductsTestCase.swift */; };
+		6DA4A8961DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A8951DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift */; };
+		6DA4A8981DF999AD007492C2 /* ValidatorFixedListTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A8971DF999AD007492C2 /* ValidatorFixedListTestCase.swift */; };
+		6DD70EAA1E029F5400A585BC /* C2SCommunicatorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */; };
+		6DED71E51DEC3DA00023EFA2 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED71E41DEC3DA00023EFA2 /* Macros.swift */; };
+		6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED71EB1DEC46090023EFA2 /* SDKConstants.swift */; };
+		73819ECD1DF95E3500B6FC0F /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73819ECC1DF95E3500B6FC0F /* Encryptor.swift */; };
+		73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */; };
+		73BDC57F1E27949300D4BDFA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BDC57E1E27949300D4BDFA /* Alamofire.framework */; };
+		73BDC5811E27949900D4BDFA /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BDC5801E27949900D4BDFA /* CryptoSwift.framework */; };
+		A2D2D15F6F25511CFA6D9DCE /* Pods_IngenicoConnectKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */; };
+		B40575E21E02BF7D0099DDBB /* StubBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40575E11E02BF7D0099DDBB /* StubBundle.swift */; };
+		B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */; };
+		B40F4B421E02CA80002A3AC8 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */; };
+		B431CA821E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift in Sources */ = {isa = PBXBuildFile; fileRef = B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */; };
+		B43C1F521DEC334B00E210DF /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F511DEC334B00E210DF /* StringFormatter.swift */; };
+		B43C1F561DEC380900E210DF /* StringFormatterTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F551DEC380900E210DF /* StringFormatterTestCase.swift */; };
+		B43C1F591DEC407900E210DF /* Base64+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F581DEC407900E210DF /* Base64+Extensions.swift */; };
+		B43C1F5B1DEC45A300E210DF /* Base64TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F5A1DEC45A300E210DF /* Base64TestCase.swift */; };
+		B43C1F5F1DEC595300E210DF /* PreferredInputType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F5E1DEC595300E210DF /* PreferredInputType.swift */; };
+		B43C1F611DEC597700E210DF /* FormElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F601DEC597700E210DF /* FormElementType.swift */; };
+		B43C1F691DEC59B200E210DF /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F681DEC59B200E210DF /* Environment.swift */; };
+		B43C1F6C1DEC59E300E210DF /* IINStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F6A1DEC59E300E210DF /* IINStatus.swift */; };
+		B43C1F6D1DEC59E300E210DF /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F6B1DEC59E300E210DF /* Region.swift */; };
+		B43C1F6F1DEC5A0300E210DF /* AccountOnFileAttributeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F6E1DEC5A0300E210DF /* AccountOnFileAttributeStatus.swift */; };
+		B4548F941E08379000603B69 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4548F931E08379000603B69 /* Session.swift */; };
+		B46190181DF56C8700A55FB1 /* UtilTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A011E11DF0866800FCB738 /* UtilTestCase.swift */; };
+		B461901A1DF5768300A55FB1 /* C2SCommunicatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46190191DF5768300A55FB1 /* C2SCommunicatorConfiguration.swift */; };
+		B461901C1DF5788700A55FB1 /* C2SCommunicatorConfigurationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B461901B1DF5788700A55FB1 /* C2SCommunicatorConfigurationTestCase.swift */; };
+		B461901E1DF57AB400A55FB1 /* StubUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B461901D1DF57AB400A55FB1 /* StubUtil.swift */; };
+		B46190271DF5989300A55FB1 /* AccountOnFileAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46190251DF5989300A55FB1 /* AccountOnFileAttribute.swift */; };
+		B46190281DF5989300A55FB1 /* AccountOnFileAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46190261DF5989300A55FB1 /* AccountOnFileAttributes.swift */; };
+		B461902B1DF5998100A55FB1 /* BasicPaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */; };
+		B461902C1DF5998100A55FB1 /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B461902A1DF5998100A55FB1 /* PaymentItem.swift */; };
+		B461902E1DF59A0F00A55FB1 /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B461902D1DF59A0F00A55FB1 /* AssetManager.swift */; };
+		B4679CDD1E0C1C4400E25DFD /* JOSEEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */; };
+		B473DF381E1A5913009AC284 /* SessionTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473DF361E1A58EF009AC284 /* SessionTestCase.swift */; };
+		B492815E1EA8F3080083EF79 /* FieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B492815D1EA8F3080083EF79 /* FieldType.swift */; };
+		B4A011DA1DF0398D00FCB738 /* AlamofireWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A011D91DF0398D00FCB738 /* AlamofireWrapper.swift */; };
+		B4A011DE1DF0562300FCB738 /* AlamofireWrapperTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A011DC1DF0561B00FCB738 /* AlamofireWrapperTestCase.swift */; };
+		B4A011E01DF0573C00FCB738 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A011DF1DF0573C00FCB738 /* Util.swift */; };
+		B4C369E71DE754C100C50450 /* certificate.pfx in Resources */ = {isa = PBXBuildFile; fileRef = B4C369C11DE754C100C50450 /* certificate.pfx */; };
+		B4C369E91DE754C100C50450 /* paymentProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C369C31DE754C100C50450 /* paymentProducts.json */; };
+		B4C369EA1DE754C100C50450 /* paymentProduct.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C369C41DE754C100C50450 /* paymentProduct.json */; };
+		B4C369EB1DE754C100C50450 /* paymentProductMissingFields.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C369C51DE754C100C50450 /* paymentProductMissingFields.json */; };
+		B4C369F71DE866FB00C50450 /* paymentProductGroup.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C369F51DE866FB00C50450 /* paymentProductGroup.json */; };
+		B4C369F81DE866FB00C50450 /* paymentProductGroups.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C369F61DE866FB00C50450 /* paymentProductGroups.json */; };
+		B4D349EF1EAA1FC000487866 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349EE1EAA1FC000487866 /* CountryCode.swift */; };
+		B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */; };
+		B4D77C6B1DE72EB900F7B1C1 /* IngenicoConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4D77C6C1DE72EB900F7B1C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4D77C581DE72EB900F7B1C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4D77C601DE72EB900F7B1C1;
+			remoteInfo = IngenicoConnectKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IngenicoConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C0513331E799F2D00D11633 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionError.swift; path = Enumerations/SessionError.swift; sourceTree = "<group>"; };
+		1C1E0BF21E93C2BA00F9DC5E /* PaymentItemsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItemsTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentItemsTestCase.swift; sourceTree = "<group>"; };
+		1C1E0BF51E93E57000F9DC5E /* IINDetailsResponseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IINDetailsResponseTestCase.swift; path = IngenicoConnectKitTests/Models/IINDetailsResponseTestCase.swift; sourceTree = "<group>"; };
+		1C4B7DB91E92684C00AB1162 /* BasicPaymentProductGroupsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProductGroupsTestCase.swift; path = IngenicoConnectKitTests/Models/BasicPaymentProductGroupsTestCase.swift; sourceTree = "<group>"; };
+		1C99FF511E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentAmountOfMoneyTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentAmountOfMoneyTestCase.swift; sourceTree = "<group>"; };
+		1C99FF531E9D15F900461C06 /* ValueMappingItemTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueMappingItemTestCase.swift; path = IngenicoConnectKitTests/Models/ValueMappingItemTestCase.swift; sourceTree = "<group>"; };
+		1CE7AB051E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreparedPaymentRequestTestCase.swift; path = IngenicoConnectKitTests/Models/PreparedPaymentRequestTestCase.swift; sourceTree = "<group>"; };
+		1CEBAC161E9272580091A69C /* PaymentProductGroupTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductGroupTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductGroupTestCase.swift; sourceTree = "<group>"; };
+		2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IngenicoConnectKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseObjectSerializable.swift; path = Protocols/ResponseObjectSerializable.swift; sourceTree = "<group>"; };
+		6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileAttributesTestCase.swift; path = IngenicoConnectKitTests/Models/AccountOnFileAttributesTestCase.swift; sourceTree = "<group>"; };
+		6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsOnFileTestCase.swift; path = IngenicoConnectKitTests/Models/AccountsOnFileTestCase.swift; sourceTree = "<group>"; };
+		6D2256391DF961D0009DB416 /* LabelTemplateTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelTemplateTestCase.swift; path = IngenicoConnectKitTests/Models/LabelTemplateTestCase.swift; sourceTree = "<group>"; };
+		6D4443A31E30B1540007070E /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Extensions/String+Extensions.swift"; sourceTree = "<group>"; };
+		6D4E7AA21DF55C4100BAE336 /* AccountOnFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFile.swift; path = Models/PaymentProducts/AccountOnFile.swift; sourceTree = "<group>"; };
+		6D4E7AA41DF5611700BAE336 /* BasicPaymentProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProduct.swift; path = Models/PaymentProducts/BasicPaymentProduct.swift; sourceTree = "<group>"; };
+		6D4E7AA61DF5656600BAE336 /* BasicPaymentProductGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProductGroup.swift; path = Models/PaymentProducts/BasicPaymentProductGroup.swift; sourceTree = "<group>"; };
+		6D4E7AA81DF5669500BAE336 /* BasicPaymentProductGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProductGroups.swift; path = Models/PaymentProducts/BasicPaymentProductGroups.swift; sourceTree = "<group>"; };
+		6D4E7AAC1DF56BBF00BAE336 /* PaymentItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItems.swift; path = Models/PaymentProducts/PaymentItems.swift; sourceTree = "<group>"; };
+		6D4E7AAE1DF5729300BAE336 /* PaymentProductGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductGroup.swift; path = Models/PaymentProducts/PaymentProductGroup.swift; sourceTree = "<group>"; };
+		6D4E7AB81DF57E2900BAE336 /* PaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentRequest.swift; path = Models/PaymentRequest/PaymentRequest.swift; sourceTree = "<group>"; };
+		6D4E7ABA1DF58F6700BAE336 /* PreparedPaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreparedPaymentRequest.swift; path = Models/PaymentRequest/PreparedPaymentRequest.swift; sourceTree = "<group>"; };
+		6D7822011DF0228F00B5A9AB /* DirectoryEntries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryEntries.swift; path = Models/DirectoryEntries/DirectoryEntries.swift; sourceTree = "<group>"; };
+		6D7822021DF0228F00B5A9AB /* DirectoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectoryEntry.swift; path = Models/DirectoryEntries/DirectoryEntry.swift; sourceTree = "<group>"; };
+		6D7822051DF022A100B5A9AB /* PaymentAmountOfMoney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentAmountOfMoney.swift; path = Models/G2SPaymentProductContext/PaymentAmountOfMoney.swift; sourceTree = "<group>"; };
+		6D7822071DF022B700B5A9AB /* PaymentContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentContext.swift; sourceTree = "<group>"; };
+		6D7822251DF039E100B5A9AB /* IINDetailsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IINDetailsResponse.swift; path = Models/IINDetails/IINDetailsResponse.swift; sourceTree = "<group>"; };
+		6D7822261DF039E100B5A9AB /* IINDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IINDetail.swift; path = Models/IINDetails/IINDetail.swift; sourceTree = "<group>"; };
+		6D7822291DF039FA00B5A9AB /* ValidationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationErrors.swift; path = Models/ValidationErrors/ValidationErrors.swift; sourceTree = "<group>"; };
+		6D7822411DF03A6900B5A9AB /* PublicKeyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PublicKeyResponse.swift; path = Models/PublicKeys/PublicKeyResponse.swift; sourceTree = "<group>"; };
+		6D7822431DF03C7600B5A9AB /* PaymentProductNetworks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductNetworks.swift; path = Models/PaymentProducts/PaymentProductNetworks.swift; sourceTree = "<group>"; };
+		6D7822451DF03D2100B5A9AB /* FormElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormElement.swift; path = Models/PaymentProducts/FormElement.swift; sourceTree = "<group>"; };
+		6D7822471DF0470500B5A9AB /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validator.swift; path = Models/PaymentProducts/Validator.swift; sourceTree = "<group>"; };
+		6D7822491DF0476400B5A9AB /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validators.swift; path = Models/PaymentProducts/Validators.swift; sourceTree = "<group>"; };
+		6D78224B1DF0520600B5A9AB /* ValidatorRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorRange.swift; path = Models/PaymentProducts/ValidatorRange.swift; sourceTree = "<group>"; };
+		6D78224D1DF053FE00B5A9AB /* ValidatorRegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorRegularExpression.swift; path = Models/PaymentProducts/ValidatorRegularExpression.swift; sourceTree = "<group>"; };
+		6D78224F1DF0553F00B5A9AB /* LabelTemplateItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelTemplateItem.swift; path = Models/PaymentProducts/LabelTemplateItem.swift; sourceTree = "<group>"; };
+		6D7822511DF055CF00B5A9AB /* LabelTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelTemplate.swift; path = Models/PaymentProducts/LabelTemplate.swift; sourceTree = "<group>"; };
+		6D7822531DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileDisplayHints.swift; path = Models/PaymentProducts/AccountOnFileDisplayHints.swift; sourceTree = "<group>"; };
+		6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorEmailAddress.swift; path = Models/PaymentProducts/ValidatorEmailAddress.swift; sourceTree = "<group>"; };
+		6D7822571DF05B5A00B5A9AB /* ValidatorLuhn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorLuhn.swift; path = Models/PaymentProducts/ValidatorLuhn.swift; sourceTree = "<group>"; };
+		6D7822591DF0616100B5A9AB /* ValidatorLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorLength.swift; path = Models/PaymentProducts/ValidatorLength.swift; sourceTree = "<group>"; };
+		6D78225B1DF0620D00B5A9AB /* ValueMappingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueMappingItem.swift; path = Models/PaymentProducts/ValueMappingItem.swift; sourceTree = "<group>"; };
+		6D78225D1DF0626500B5A9AB /* ValidatorFixedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorFixedList.swift; path = Models/PaymentProducts/ValidatorFixedList.swift; sourceTree = "<group>"; };
+		6D78225F1DF0635900B5A9AB /* ValidatorExpirationDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorExpirationDate.swift; path = Models/PaymentProducts/ValidatorExpirationDate.swift; sourceTree = "<group>"; };
+		6D7822611DF064E400B5A9AB /* BasicPaymentProducts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProducts.swift; path = Models/PaymentProducts/BasicPaymentProducts.swift; sourceTree = "<group>"; };
+		6D7822631DF0660B00B5A9AB /* PaymentItemDisplayHints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItemDisplayHints.swift; path = Models/PaymentProducts/PaymentItemDisplayHints.swift; sourceTree = "<group>"; };
+		6D7822651DF066C700B5A9AB /* DataRestrictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataRestrictions.swift; path = Models/PaymentProducts/DataRestrictions.swift; sourceTree = "<group>"; };
+		6D7822671DF0673800B5A9AB /* PaymentProductField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductField.swift; path = Models/PaymentProducts/PaymentProductField.swift; sourceTree = "<group>"; };
+		6D7822691DF067A900B5A9AB /* ToolTip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToolTip.swift; path = Models/PaymentProducts/ToolTip.swift; sourceTree = "<group>"; };
+		6D78226B1DF0680500B5A9AB /* PaymentProductFieldDisplayHints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductFieldDisplayHints.swift; path = Models/PaymentProducts/PaymentProductFieldDisplayHints.swift; sourceTree = "<group>"; };
+		6D78226D1DF0739D00B5A9AB /* PaymentProductFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductFields.swift; path = Models/PaymentProducts/PaymentProductFields.swift; sourceTree = "<group>"; };
+		6D78226F1DF0754600B5A9AB /* PaymentProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProduct.swift; path = Models/PaymentProducts/PaymentProduct.swift; sourceTree = "<group>"; };
+		6D7822711DF0781100B5A9AB /* AccountsOnFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsOnFile.swift; path = Models/PaymentProducts/AccountsOnFile.swift; sourceTree = "<group>"; };
+		6D8BD9001DFE94270013B869 /* ValidatorLengthTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorLengthTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorLengthTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9021DFE95760013B869 /* ValidatorLuhnTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorLuhnTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorLuhnTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9041DFE965A0013B869 /* ValidatorRangeTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorRangeTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorRangeTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9061DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorRegularExpressionTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorRegularExpressionTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorEmailAddressTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorEmailAddressTestCase.swift; sourceTree = "<group>"; };
+		6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductFieldsTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductFieldsTestCase.swift; sourceTree = "<group>"; };
+		6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentRequestTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentRequestTestCase.swift; sourceTree = "<group>"; };
+		6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileTestCase.swift; path = IngenicoConnectKitTests/Models/AccountOnFileTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetManagerTestCase.swift; path = IngenicoConnectKitTests/AssetManagerTestCase.swift; sourceTree = "<group>"; };
+		6D8BD9121DFEB3080013B869 /* C2SCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C2SCommunicator.swift; sourceTree = "<group>"; };
+		6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProductTestCase.swift; path = IngenicoConnectKitTests/Models/BasicPaymentProductTestCase.swift; sourceTree = "<group>"; };
+		6DA4A88D1DF98580007492C2 /* PaymentProductTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductTestCase.swift; sourceTree = "<group>"; };
+		6DA4A88F1DF98A6B007492C2 /* PaymentProductFieldTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductFieldTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductFieldTestCase.swift; sourceTree = "<group>"; };
+		6DA4A8931DF99062007492C2 /* PaymentProductsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductsTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductsTestCase.swift; sourceTree = "<group>"; };
+		6DA4A8951DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorExpirationDateTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorExpirationDateTestCase.swift; sourceTree = "<group>"; };
+		6DA4A8971DF999AD007492C2 /* ValidatorFixedListTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorFixedListTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorFixedListTestCase.swift; sourceTree = "<group>"; };
+		6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C2SCommunicatorTestCase.swift; path = IngenicoConnectKitTests/C2SCommunicatorTestCase.swift; sourceTree = "<group>"; };
+		6DED71E41DEC3DA00023EFA2 /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Macros.swift; path = Macros/Macros.swift; sourceTree = "<group>"; };
+		6DED71EB1DEC46090023EFA2 /* SDKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDKConstants.swift; path = Constants/SDKConstants.swift; sourceTree = "<group>"; };
+		73819ECC1DF95E3500B6FC0F /* Encryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encryptor.swift; path = Cryptography/Encryptor.swift; sourceTree = "<group>"; };
+		73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptorTestCase.swift; path = IngenicoConnectKitTests/Cryptography/EncryptorTestCase.swift; sourceTree = "<group>"; };
+		73BDC57E1E27949300D4BDFA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/IngenicoConnectKit-fwbjldyecbvfkeeboiuoktrqnwmw/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		73BDC5801E27949900D4BDFA /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/IngenicoConnectKit-fwbjldyecbvfkeeboiuoktrqnwmw/Build/Products/Debug-iphonesimulator/CryptoSwift/CryptoSwift.framework"; sourceTree = "<group>"; };
+		B40575E11E02BF7D0099DDBB /* StubBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubBundle.swift; path = IngenicoConnectKitTests/Stubs/StubBundle.swift; sourceTree = "<group>"; };
+		B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubFileManager.swift; path = IngenicoConnectKitTests/Stubs/StubFileManager.swift; sourceTree = "<group>"; };
+		B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorBoletoBancarioRequiredness.swift; path = Models/PaymentProducts/ValidatorBoletoBancarioRequiredness.swift; sourceTree = "<group>"; };
+		B43C1F511DEC334B00E210DF /* StringFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringFormatter.swift; path = Formatters/StringFormatter.swift; sourceTree = "<group>"; };
+		B43C1F531DEC35B200E210DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B43C1F551DEC380900E210DF /* StringFormatterTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringFormatterTestCase.swift; path = IngenicoConnectKitTests/Formatters/StringFormatterTestCase.swift; sourceTree = "<group>"; };
+		B43C1F581DEC407900E210DF /* Base64+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Base64+Extensions.swift"; path = "Base64/Base64+Extensions.swift"; sourceTree = "<group>"; };
+		B43C1F5A1DEC45A300E210DF /* Base64TestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Base64TestCase.swift; path = IngenicoConnectKitTests/Base64/Base64TestCase.swift; sourceTree = "<group>"; };
+		B43C1F5E1DEC595300E210DF /* PreferredInputType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreferredInputType.swift; path = Enumerations/PreferredInputType.swift; sourceTree = "<group>"; };
+		B43C1F601DEC597700E210DF /* FormElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormElementType.swift; path = Enumerations/FormElementType.swift; sourceTree = "<group>"; };
+		B43C1F681DEC59B200E210DF /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = Enumerations/Environment.swift; sourceTree = "<group>"; };
+		B43C1F6A1DEC59E300E210DF /* IINStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IINStatus.swift; path = Enumerations/IINStatus.swift; sourceTree = "<group>"; };
+		B43C1F6B1DEC59E300E210DF /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Region.swift; path = Enumerations/Region.swift; sourceTree = "<group>"; };
+		B43C1F6E1DEC5A0300E210DF /* AccountOnFileAttributeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileAttributeStatus.swift; path = Enumerations/AccountOnFileAttributeStatus.swift; sourceTree = "<group>"; };
+		B4548F931E08379000603B69 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		B46190191DF5768300A55FB1 /* C2SCommunicatorConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C2SCommunicatorConfiguration.swift; sourceTree = "<group>"; };
+		B461901B1DF5788700A55FB1 /* C2SCommunicatorConfigurationTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C2SCommunicatorConfigurationTestCase.swift; path = IngenicoConnectKitTests/C2SCommunicatorConfigurationTestCase.swift; sourceTree = "<group>"; };
+		B461901D1DF57AB400A55FB1 /* StubUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubUtil.swift; path = IngenicoConnectKitTests/Stubs/StubUtil.swift; sourceTree = "<group>"; };
+		B46190251DF5989300A55FB1 /* AccountOnFileAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileAttribute.swift; path = Models/PaymentProducts/AccountOnFileAttribute.swift; sourceTree = "<group>"; };
+		B46190261DF5989300A55FB1 /* AccountOnFileAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileAttributes.swift; path = Models/PaymentProducts/AccountOnFileAttributes.swift; sourceTree = "<group>"; };
+		B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentItem.swift; path = Protocols/BasicPaymentItem.swift; sourceTree = "<group>"; };
+		B461902A1DF5998100A55FB1 /* PaymentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItem.swift; path = Protocols/PaymentItem.swift; sourceTree = "<group>"; };
+		B461902D1DF59A0F00A55FB1 /* AssetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetManager.swift; sourceTree = "<group>"; };
+		B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JOSEEncryptor.swift; path = Cryptography/JOSEEncryptor.swift; sourceTree = "<group>"; };
+		B473DF361E1A58EF009AC284 /* SessionTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionTestCase.swift; path = IngenicoConnectKitTests/SessionTestCase.swift; sourceTree = "<group>"; };
+		B492815D1EA8F3080083EF79 /* FieldType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FieldType.swift; path = Enumerations/FieldType.swift; sourceTree = "<group>"; };
+		B4A011D91DF0398D00FCB738 /* AlamofireWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireWrapper.swift; path = Wrappers/AlamofireWrapper.swift; sourceTree = "<group>"; };
+		B4A011DC1DF0561B00FCB738 /* AlamofireWrapperTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlamofireWrapperTestCase.swift; path = IngenicoConnectKitTests/Wrappers/AlamofireWrapperTestCase.swift; sourceTree = "<group>"; };
+		B4A011DF1DF0573C00FCB738 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		B4A011E11DF0866800FCB738 /* UtilTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UtilTestCase.swift; path = IngenicoConnectKitTests/UtilTestCase.swift; sourceTree = "<group>"; };
+		B4C369C11DE754C100C50450 /* certificate.pfx */ = {isa = PBXFileReference; lastKnownFileType = file; name = certificate.pfx; path = IngenicoConnectKitTests/certificate.pfx; sourceTree = "<group>"; };
+		B4C369C21DE754C100C50450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = IngenicoConnectKitTests/Info.plist; sourceTree = "<group>"; };
+		B4C369C31DE754C100C50450 /* paymentProducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paymentProducts.json; path = IngenicoConnectKitTests/paymentProducts.json; sourceTree = "<group>"; };
+		B4C369C41DE754C100C50450 /* paymentProduct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paymentProduct.json; path = IngenicoConnectKitTests/paymentProduct.json; sourceTree = "<group>"; };
+		B4C369C51DE754C100C50450 /* paymentProductMissingFields.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paymentProductMissingFields.json; path = IngenicoConnectKitTests/paymentProductMissingFields.json; sourceTree = "<group>"; };
+		B4C369F51DE866FB00C50450 /* paymentProductGroup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paymentProductGroup.json; path = IngenicoConnectKitTests/paymentProductGroup.json; sourceTree = "<group>"; };
+		B4C369F61DE866FB00C50450 /* paymentProductGroups.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = paymentProductGroups.json; path = IngenicoConnectKitTests/paymentProductGroups.json; sourceTree = "<group>"; };
+		B4D349EE1EAA1FC000487866 /* CountryCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountryCode.swift; path = Enumerations/CountryCode.swift; sourceTree = "<group>"; };
+		B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrencyCode.swift; path = Enumerations/CurrencyCode.swift; sourceTree = "<group>"; };
+		B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IngenicoConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D77C651DE72EB900F7B1C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IngenicoConnectKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKit/Pods-IngenicoConnectKit.debug.xcconfig"; sourceTree = "<group>"; };
+		EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKit/Pods-IngenicoConnectKit.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4D77C5D1DE72EB900F7B1C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73BDC5811E27949900D4BDFA /* CryptoSwift.framework in Frameworks */,
+				73BDC57F1E27949300D4BDFA /* Alamofire.framework in Frameworks */,
+				5334461350E5084418D90611 /* Pods_IngenicoConnectKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4D77C671DE72EB900F7B1C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4D77C6B1DE72EB900F7B1C1 /* IngenicoConnectKit.framework in Frameworks */,
+				A2D2D15F6F25511CFA6D9DCE /* Pods_IngenicoConnectKitTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C1E0BEF1E93C26400F9DC5E /* AccountOnFile */ = {
+			isa = PBXGroup;
+			children = (
+				6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */,
+				6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */,
+				6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */,
+			);
+			name = AccountOnFile;
+			sourceTree = "<group>";
+		};
+		1C1E0BF01E93C27200F9DC5E /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */,
+				6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */,
+				6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */,
+				6DA4A88D1DF98580007492C2 /* PaymentProductTestCase.swift */,
+				6DA4A88F1DF98A6B007492C2 /* PaymentProductFieldTestCase.swift */,
+				6DA4A8931DF99062007492C2 /* PaymentProductsTestCase.swift */,
+				1C4B7DB91E92684C00AB1162 /* BasicPaymentProductGroupsTestCase.swift */,
+				1CEBAC161E9272580091A69C /* PaymentProductGroupTestCase.swift */,
+				1C1E0BF21E93C2BA00F9DC5E /* PaymentItemsTestCase.swift */,
+				1CE7AB051E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift */,
+				1C99FF511E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift */,
+			);
+			name = Payment;
+			sourceTree = "<group>";
+		};
+		1C1E0BF11E93C28100F9DC5E /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				6DA4A8951DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift */,
+				6DA4A8971DF999AD007492C2 /* ValidatorFixedListTestCase.swift */,
+				6D8BD9001DFE94270013B869 /* ValidatorLengthTestCase.swift */,
+				6D8BD9021DFE95760013B869 /* ValidatorLuhnTestCase.swift */,
+				6D8BD9041DFE965A0013B869 /* ValidatorRangeTestCase.swift */,
+				6D8BD9061DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift */,
+				6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */,
+			);
+			name = Validator;
+			sourceTree = "<group>";
+		};
+		1C1E0BF41E93E55900F9DC5E /* IINDetails */ = {
+			isa = PBXGroup;
+			children = (
+				1C1E0BF51E93E57000F9DC5E /* IINDetailsResponseTestCase.swift */,
+			);
+			name = IINDetails;
+			sourceTree = "<group>";
+		};
+		1CD959171E8D126C007103CB /* AccountOnFile */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E7AA21DF55C4100BAE336 /* AccountOnFile.swift */,
+				6D7822711DF0781100B5A9AB /* AccountsOnFile.swift */,
+				B46190251DF5989300A55FB1 /* AccountOnFileAttribute.swift */,
+				B46190261DF5989300A55FB1 /* AccountOnFileAttributes.swift */,
+				6D7822531DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift */,
+			);
+			name = AccountOnFile;
+			sourceTree = "<group>";
+		};
+		1CD959181E8D191A007103CB /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822491DF0476400B5A9AB /* Validators.swift */,
+				6D7822471DF0470500B5A9AB /* Validator.swift */,
+				6D78225F1DF0635900B5A9AB /* ValidatorExpirationDate.swift */,
+				6D78225D1DF0626500B5A9AB /* ValidatorFixedList.swift */,
+				6D7822591DF0616100B5A9AB /* ValidatorLength.swift */,
+				6D7822571DF05B5A00B5A9AB /* ValidatorLuhn.swift */,
+				6D78224B1DF0520600B5A9AB /* ValidatorRange.swift */,
+				6D78224D1DF053FE00B5A9AB /* ValidatorRegularExpression.swift */,
+				6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */,
+				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
+			);
+			name = Validators;
+			sourceTree = "<group>";
+		};
+		1CD959191E8D1F7C007103CB /* Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				6DED71E41DEC3DA00023EFA2 /* Macros.swift */,
+				B461902D1DF59A0F00A55FB1 /* AssetManager.swift */,
+				B4548F931E08379000603B69 /* Session.swift */,
+				B4A011DF1DF0573C00FCB738 /* Util.swift */,
+				B4D77C651DE72EB900F7B1C1 /* Info.plist */,
+				B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */,
+			);
+			name = Essentials;
+			sourceTree = "<group>";
+		};
+		2CFCD8E6B1C49F254FC830C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */,
+				EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */,
+				4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */,
+				11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6D4443A21E30B1310007070E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6D4443A31E30B1540007070E /* String+Extensions.swift */,
+				B43C1F581DEC407900E210DF /* Base64+Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		841814CF4293B6C8D8E19417 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73BDC5801E27949900D4BDFA /* CryptoSwift.framework */,
+				73BDC57E1E27949300D4BDFA /* Alamofire.framework */,
+				B43C1F531DEC35B200E210DF /* XCTest.framework */,
+				08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */,
+				2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4C3699B1DE754C100C50450 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				B4A011DC1DF0561B00FCB738 /* AlamofireWrapperTestCase.swift */,
+			);
+			name = Wrappers;
+			sourceTree = "<group>";
+		};
+		B4C3699E1DE754C100C50450 /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				B461901D1DF57AB400A55FB1 /* StubUtil.swift */,
+				B40575E11E02BF7D0099DDBB /* StubBundle.swift */,
+				B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */,
+			);
+			name = Stubs;
+			sourceTree = "<group>";
+		};
+		B4C369A11DE754C100C50450 /* Cryptography */ = {
+			isa = PBXGroup;
+			children = (
+				73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */,
+			);
+			name = Cryptography;
+			sourceTree = "<group>";
+		};
+		B4C369A51DE754C100C50450 /* Base64 */ = {
+			isa = PBXGroup;
+			children = (
+				B43C1F5A1DEC45A300E210DF /* Base64TestCase.swift */,
+			);
+			name = Base64;
+			sourceTree = "<group>";
+		};
+		B4C369A71DE754C100C50450 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				B43C1F551DEC380900E210DF /* StringFormatterTestCase.swift */,
+			);
+			name = Formatters;
+			sourceTree = "<group>";
+		};
+		B4C369C01DE754C100C50450 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C1E0BF41E93E55900F9DC5E /* IINDetails */,
+				1C1E0BF11E93C28100F9DC5E /* Validator */,
+				1C1E0BF01E93C27200F9DC5E /* Payment */,
+				1C1E0BEF1E93C26400F9DC5E /* AccountOnFile */,
+				6D2256391DF961D0009DB416 /* LabelTemplateTestCase.swift */,
+				1C99FF531E9D15F900461C06 /* ValueMappingItemTestCase.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B4C369C81DE754C100C50450 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4C369C11DE754C100C50450 /* certificate.pfx */,
+				B4C369C31DE754C100C50450 /* paymentProducts.json */,
+				B4C369C41DE754C100C50450 /* paymentProduct.json */,
+				B4C369C51DE754C100C50450 /* paymentProductMissingFields.json */,
+				B4C369F51DE866FB00C50450 /* paymentProductGroup.json */,
+				B4C369F61DE866FB00C50450 /* paymentProductGroups.json */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4D77C571DE72EB900F7B1C1 = {
+			isa = PBXGroup;
+			children = (
+				B4D77C631DE72EB900F7B1C1 /* IngenicoConnectKit */,
+				B4D77C6E1DE72EB900F7B1C1 /* IngenicoConnectKitTests */,
+				B4D77C621DE72EB900F7B1C1 /* Products */,
+				841814CF4293B6C8D8E19417 /* Frameworks */,
+				2CFCD8E6B1C49F254FC830C6 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		B4D77C621DE72EB900F7B1C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */,
+				B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4D77C631DE72EB900F7B1C1 /* IngenicoConnectKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4D77E401DE730EC00F7B1C1 /* Models */,
+				B4D77DDD1DE72FF300F7B1C1 /* Protocols */,
+				B4D77DDC1DE72FEE00F7B1C1 /* Constants */,
+				B4D77DD91DE72FD700F7B1C1 /* Enumerations */,
+				B4D77DD71DE72FC600F7B1C1 /* Formatters */,
+				B4D77DD61DE72FBE00F7B1C1 /* Cryptography */,
+				6D4443A21E30B1310007070E /* Extensions */,
+				B4D77DD31DE72F9E00F7B1C1 /* Wrappers */,
+				6D8BD9121DFEB3080013B869 /* C2SCommunicator.swift */,
+				B46190191DF5768300A55FB1 /* C2SCommunicatorConfiguration.swift */,
+				1CD959191E8D1F7C007103CB /* Essentials */,
+			);
+			path = IngenicoConnectKit;
+			sourceTree = "<group>";
+		};
+		B4D77C6E1DE72EB900F7B1C1 /* IngenicoConnectKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4C3699B1DE754C100C50450 /* Wrappers */,
+				B4C3699E1DE754C100C50450 /* Stubs */,
+				B4C369A11DE754C100C50450 /* Cryptography */,
+				B4C369A51DE754C100C50450 /* Base64 */,
+				B4C369A71DE754C100C50450 /* Formatters */,
+				B4C369C01DE754C100C50450 /* Models */,
+				B4C369C81DE754C100C50450 /* Supporting Files */,
+				B461901B1DF5788700A55FB1 /* C2SCommunicatorConfigurationTestCase.swift */,
+				B4C369C21DE754C100C50450 /* Info.plist */,
+				B4A011E11DF0866800FCB738 /* UtilTestCase.swift */,
+				6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */,
+				6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */,
+				B473DF361E1A58EF009AC284 /* SessionTestCase.swift */,
+			);
+			name = IngenicoConnectKitTests;
+			sourceTree = "<group>";
+		};
+		B4D77DD31DE72F9E00F7B1C1 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				B4A011D91DF0398D00FCB738 /* AlamofireWrapper.swift */,
+			);
+			name = Wrappers;
+			sourceTree = "<group>";
+		};
+		B4D77DD61DE72FBE00F7B1C1 /* Cryptography */ = {
+			isa = PBXGroup;
+			children = (
+				73819ECC1DF95E3500B6FC0F /* Encryptor.swift */,
+				B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */,
+			);
+			name = Cryptography;
+			sourceTree = "<group>";
+		};
+		B4D77DD71DE72FC600F7B1C1 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				B43C1F511DEC334B00E210DF /* StringFormatter.swift */,
+			);
+			name = Formatters;
+			sourceTree = "<group>";
+		};
+		B4D77DD91DE72FD700F7B1C1 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				B43C1F601DEC597700E210DF /* FormElementType.swift */,
+				B43C1F5E1DEC595300E210DF /* PreferredInputType.swift */,
+				B43C1F6A1DEC59E300E210DF /* IINStatus.swift */,
+				B492815D1EA8F3080083EF79 /* FieldType.swift */,
+				B43C1F6B1DEC59E300E210DF /* Region.swift */,
+				B43C1F681DEC59B200E210DF /* Environment.swift */,
+				B43C1F6E1DEC5A0300E210DF /* AccountOnFileAttributeStatus.swift */,
+				1C0513331E799F2D00D11633 /* SessionError.swift */,
+				B4D349EE1EAA1FC000487866 /* CountryCode.swift */,
+				B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */,
+			);
+			name = Enumerations;
+			sourceTree = "<group>";
+		};
+		B4D77DDC1DE72FEE00F7B1C1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6DED71EB1DEC46090023EFA2 /* SDKConstants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		B4D77DDD1DE72FF300F7B1C1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */,
+				B461902A1DF5998100A55FB1 /* PaymentItem.swift */,
+				6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		B4D77E401DE730EC00F7B1C1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B4D77E411DE730F300F7B1C1 /* DirectoryEntries */,
+				B4D77E421DE730FE00F7B1C1 /* C2SPaymentProductContext */,
+				B4D77E431DE7310900F7B1C1 /* PaymentRequests */,
+				B4D77E451DE7311E00F7B1C1 /* ValidationErrors */,
+				B4D77E461DE7314D00F7B1C1 /* PublicKeys */,
+				B4D77E471DE7315600F7B1C1 /* IINDetails */,
+				1CD959181E8D191A007103CB /* Validators */,
+				1CD959171E8D126C007103CB /* AccountOnFile */,
+				B4D77E481DE7317E00F7B1C1 /* PaymentProducts */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B4D77E411DE730F300F7B1C1 /* DirectoryEntries */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822011DF0228F00B5A9AB /* DirectoryEntries.swift */,
+				6D7822021DF0228F00B5A9AB /* DirectoryEntry.swift */,
+			);
+			name = DirectoryEntries;
+			sourceTree = "<group>";
+		};
+		B4D77E421DE730FE00F7B1C1 /* C2SPaymentProductContext */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822051DF022A100B5A9AB /* PaymentAmountOfMoney.swift */,
+				6D7822071DF022B700B5A9AB /* PaymentContext.swift */,
+			);
+			name = C2SPaymentProductContext;
+			sourceTree = "<group>";
+		};
+		B4D77E431DE7310900F7B1C1 /* PaymentRequests */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E7AB81DF57E2900BAE336 /* PaymentRequest.swift */,
+				6D4E7ABA1DF58F6700BAE336 /* PreparedPaymentRequest.swift */,
+			);
+			name = PaymentRequests;
+			sourceTree = "<group>";
+		};
+		B4D77E451DE7311E00F7B1C1 /* ValidationErrors */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822291DF039FA00B5A9AB /* ValidationErrors.swift */,
+			);
+			name = ValidationErrors;
+			sourceTree = "<group>";
+		};
+		B4D77E461DE7314D00F7B1C1 /* PublicKeys */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822411DF03A6900B5A9AB /* PublicKeyResponse.swift */,
+			);
+			name = PublicKeys;
+			sourceTree = "<group>";
+		};
+		B4D77E471DE7315600F7B1C1 /* IINDetails */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822251DF039E100B5A9AB /* IINDetailsResponse.swift */,
+				6D7822261DF039E100B5A9AB /* IINDetail.swift */,
+			);
+			name = IINDetails;
+			sourceTree = "<group>";
+		};
+		B4D77E481DE7317E00F7B1C1 /* PaymentProducts */ = {
+			isa = PBXGroup;
+			children = (
+				6D7822651DF066C700B5A9AB /* DataRestrictions.swift */,
+				6D7822691DF067A900B5A9AB /* ToolTip.swift */,
+				6D4E7AA41DF5611700BAE336 /* BasicPaymentProduct.swift */,
+				6D7822611DF064E400B5A9AB /* BasicPaymentProducts.swift */,
+				6D78226B1DF0680500B5A9AB /* PaymentProductFieldDisplayHints.swift */,
+				6D78226F1DF0754600B5A9AB /* PaymentProduct.swift */,
+				6D7822631DF0660B00B5A9AB /* PaymentItemDisplayHints.swift */,
+				6D7822671DF0673800B5A9AB /* PaymentProductField.swift */,
+				6D78226D1DF0739D00B5A9AB /* PaymentProductFields.swift */,
+				6D7822511DF055CF00B5A9AB /* LabelTemplate.swift */,
+				6D78224F1DF0553F00B5A9AB /* LabelTemplateItem.swift */,
+				6D7822451DF03D2100B5A9AB /* FormElement.swift */,
+				6D78225B1DF0620D00B5A9AB /* ValueMappingItem.swift */,
+				6D4E7AAE1DF5729300BAE336 /* PaymentProductGroup.swift */,
+				6D4E7AA61DF5656600BAE336 /* BasicPaymentProductGroup.swift */,
+				6D4E7AA81DF5669500BAE336 /* BasicPaymentProductGroups.swift */,
+				6D4E7AAC1DF56BBF00BAE336 /* PaymentItems.swift */,
+				6D7822431DF03C7600B5A9AB /* PaymentProductNetworks.swift */,
+			);
+			name = PaymentProducts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B4D77C5E1DE72EB900F7B1C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4D77C751DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKit" */;
+			buildPhases = (
+				B53E6E836E45965843E94046 /* [CP] Check Pods Manifest.lock */,
+				B4D77C5C1DE72EB900F7B1C1 /* Sources */,
+				B4D77C5D1DE72EB900F7B1C1 /* Frameworks */,
+				B4D77C5E1DE72EB900F7B1C1 /* Headers */,
+				B4D77C5F1DE72EB900F7B1C1 /* Resources */,
+				25C894049284C61D35EF7ACC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IngenicoConnectKit;
+			productName = IngenicoConnectKit;
+			productReference = B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B4D77C691DE72EB900F7B1C1 /* IngenicoConnectKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4D77C781DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKitTests" */;
+			buildPhases = (
+				6F22F4984CD783007E3EB982 /* [CP] Check Pods Manifest.lock */,
+				B4D77C661DE72EB900F7B1C1 /* Sources */,
+				B4D77C671DE72EB900F7B1C1 /* Frameworks */,
+				B4D77C681DE72EB900F7B1C1 /* Resources */,
+				67613A759294B5B501FFEBA6 /* [CP] Embed Pods Frameworks */,
+				CAE4233AD7920D70283F2289 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4D77C6D1DE72EB900F7B1C1 /* PBXTargetDependency */,
+			);
+			name = IngenicoConnectKitTests;
+			productName = IngenicoConnectKitTests;
+			productReference = B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4D77C581DE72EB900F7B1C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Global Collect Services";
+				TargetAttributes = {
+					B4D77C601DE72EB900F7B1C1 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 4YQLWNXNNS;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+					};
+					B4D77C691DE72EB900F7B1C1 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 4YQLWNXNNS;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B4D77C5B1DE72EB900F7B1C1 /* Build configuration list for PBXProject "IngenicoConnectKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B4D77C571DE72EB900F7B1C1;
+			productRefGroup = B4D77C621DE72EB900F7B1C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */,
+				B4D77C691DE72EB900F7B1C1 /* IngenicoConnectKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4D77C5F1DE72EB900F7B1C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4D77C681DE72EB900F7B1C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4C369F71DE866FB00C50450 /* paymentProductGroup.json in Resources */,
+				B4C369EB1DE754C100C50450 /* paymentProductMissingFields.json in Resources */,
+				B4C369E71DE754C100C50450 /* certificate.pfx in Resources */,
+				B4C369EA1DE754C100C50450 /* paymentProduct.json in Resources */,
+				B4C369F81DE866FB00C50450 /* paymentProductGroups.json in Resources */,
+				B4C369E91DE754C100C50450 /* paymentProducts.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25C894049284C61D35EF7ACC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IngenicoConnectKit/Pods-IngenicoConnectKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67613A759294B5B501FFEBA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F22F4984CD783007E3EB982 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B53E6E836E45965843E94046 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CAE4233AD7920D70283F2289 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4D77C5C1DE72EB900F7B1C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B46190281DF5989300A55FB1 /* AccountOnFileAttributes.swift in Sources */,
+				B4A011E01DF0573C00FCB738 /* Util.swift in Sources */,
+				6D7822661DF066C700B5A9AB /* DataRestrictions.swift in Sources */,
+				B43C1F5F1DEC595300E210DF /* PreferredInputType.swift in Sources */,
+				B461902E1DF59A0F00A55FB1 /* AssetManager.swift in Sources */,
+				6D7822521DF055CF00B5A9AB /* LabelTemplate.swift in Sources */,
+				6D78226C1DF0680500B5A9AB /* PaymentProductFieldDisplayHints.swift in Sources */,
+				6D78225A1DF0616100B5A9AB /* ValidatorLength.swift in Sources */,
+				6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */,
+				6D7822581DF05B5A00B5A9AB /* ValidatorLuhn.swift in Sources */,
+				6D4E7AAD1DF56BBF00BAE336 /* PaymentItems.swift in Sources */,
+				B43C1F611DEC597700E210DF /* FormElementType.swift in Sources */,
+				6D7822561DF0586900B5A9AB /* ValidatorEmailAddress.swift in Sources */,
+				B4A011DA1DF0398D00FCB738 /* AlamofireWrapper.swift in Sources */,
+				6D78224A1DF0476400B5A9AB /* Validators.swift in Sources */,
+				B43C1F521DEC334B00E210DF /* StringFormatter.swift in Sources */,
+				6D7822541DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift in Sources */,
+				1C0513341E799F2D00D11633 /* SessionError.swift in Sources */,
+				6D78225C1DF0620D00B5A9AB /* ValueMappingItem.swift in Sources */,
+				B461902B1DF5998100A55FB1 /* BasicPaymentItem.swift in Sources */,
+				B461902C1DF5998100A55FB1 /* PaymentItem.swift in Sources */,
+				6D7822421DF03A6900B5A9AB /* PublicKeyResponse.swift in Sources */,
+				B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */,
+				6D7822701DF0754600B5A9AB /* PaymentProduct.swift in Sources */,
+				6D78226E1DF0739D00B5A9AB /* PaymentProductFields.swift in Sources */,
+				B4679CDD1E0C1C4400E25DFD /* JOSEEncryptor.swift in Sources */,
+				B43C1F591DEC407900E210DF /* Base64+Extensions.swift in Sources */,
+				6D4E7AA91DF5669500BAE336 /* BasicPaymentProductGroups.swift in Sources */,
+				6D4E7ABB1DF58F6700BAE336 /* PreparedPaymentRequest.swift in Sources */,
+				6D7822271DF039E100B5A9AB /* IINDetailsResponse.swift in Sources */,
+				6D7822601DF0635900B5A9AB /* ValidatorExpirationDate.swift in Sources */,
+				6D4E7AA31DF55C4100BAE336 /* AccountOnFile.swift in Sources */,
+				B43C1F6F1DEC5A0300E210DF /* AccountOnFileAttributeStatus.swift in Sources */,
+				6D7822501DF0553F00B5A9AB /* LabelTemplateItem.swift in Sources */,
+				B461901A1DF5768300A55FB1 /* C2SCommunicatorConfiguration.swift in Sources */,
+				6D7822081DF022B700B5A9AB /* PaymentContext.swift in Sources */,
+				6D7822031DF0228F00B5A9AB /* DirectoryEntries.swift in Sources */,
+				6D7822351DF039FA00B5A9AB /* ValidationErrors.swift in Sources */,
+				6D4E7AA71DF5656600BAE336 /* BasicPaymentProductGroup.swift in Sources */,
+				6D7822641DF0660B00B5A9AB /* PaymentItemDisplayHints.swift in Sources */,
+				6D7822461DF03D2100B5A9AB /* FormElement.swift in Sources */,
+				B43C1F6D1DEC59E300E210DF /* Region.swift in Sources */,
+				6D78225E1DF0626500B5A9AB /* ValidatorFixedList.swift in Sources */,
+				73819ECD1DF95E3500B6FC0F /* Encryptor.swift in Sources */,
+				6D0126CB1E0422C400FCFEC7 /* ResponseObjectSerializable.swift in Sources */,
+				6D78224E1DF053FE00B5A9AB /* ValidatorRegularExpression.swift in Sources */,
+				6D8BD9131DFEB3080013B869 /* C2SCommunicator.swift in Sources */,
+				6D7822621DF064E400B5A9AB /* BasicPaymentProducts.swift in Sources */,
+				6DED71E51DEC3DA00023EFA2 /* Macros.swift in Sources */,
+				B4D349EF1EAA1FC000487866 /* CountryCode.swift in Sources */,
+				6D4E7AAF1DF5729300BAE336 /* PaymentProductGroup.swift in Sources */,
+				6D7822281DF039E100B5A9AB /* IINDetail.swift in Sources */,
+				B431CA821E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift in Sources */,
+				6D7822681DF0673800B5A9AB /* PaymentProductField.swift in Sources */,
+				6D7822061DF022A100B5A9AB /* PaymentAmountOfMoney.swift in Sources */,
+				B43C1F6C1DEC59E300E210DF /* IINStatus.swift in Sources */,
+				6D4E7AB91DF57E2900BAE336 /* PaymentRequest.swift in Sources */,
+				6D4443A41E30B1540007070E /* String+Extensions.swift in Sources */,
+				6D78224C1DF0520600B5A9AB /* ValidatorRange.swift in Sources */,
+				6D7822041DF0228F00B5A9AB /* DirectoryEntry.swift in Sources */,
+				B4548F941E08379000603B69 /* Session.swift in Sources */,
+				B492815E1EA8F3080083EF79 /* FieldType.swift in Sources */,
+				B43C1F691DEC59B200E210DF /* Environment.swift in Sources */,
+				6D78226A1DF067A900B5A9AB /* ToolTip.swift in Sources */,
+				B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */,
+				6D7822481DF0470500B5A9AB /* Validator.swift in Sources */,
+				6D4E7AA51DF5611700BAE336 /* BasicPaymentProduct.swift in Sources */,
+				6D7822721DF0781100B5A9AB /* AccountsOnFile.swift in Sources */,
+				B46190271DF5989300A55FB1 /* AccountOnFileAttribute.swift in Sources */,
+				6D7822441DF03C7600B5A9AB /* PaymentProductNetworks.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4D77C661DE72EB900F7B1C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D8BD9051DFE965A0013B869 /* ValidatorRangeTestCase.swift in Sources */,
+				6DA4A88E1DF98580007492C2 /* PaymentProductTestCase.swift in Sources */,
+				6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */,
+				6D8BD90F1DFEA1940013B869 /* AccountOnFileTestCase.swift in Sources */,
+				1C99FF521E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift in Sources */,
+				6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */,
+				6D2256381DF95DE9009DB416 /* AccountsOnFileTestCase.swift in Sources */,
+				6DA4A88C1DF9842C007492C2 /* BasicPaymentProductTestCase.swift in Sources */,
+				B461901E1DF57AB400A55FB1 /* StubUtil.swift in Sources */,
+				B473DF381E1A5913009AC284 /* SessionTestCase.swift in Sources */,
+				6DD70EAA1E029F5400A585BC /* C2SCommunicatorTestCase.swift in Sources */,
+				B461901C1DF5788700A55FB1 /* C2SCommunicatorConfigurationTestCase.swift in Sources */,
+				6D8BD9071DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift in Sources */,
+				1C99FF541E9D15F900461C06 /* ValueMappingItemTestCase.swift in Sources */,
+				6D8BD9111DFEACBD0013B869 /* AssetManagerTestCase.swift in Sources */,
+				B40F4B421E02CA80002A3AC8 /* StubFileManager.swift in Sources */,
+				6DA4A8941DF99062007492C2 /* PaymentProductsTestCase.swift in Sources */,
+				B43C1F561DEC380900E210DF /* StringFormatterTestCase.swift in Sources */,
+				6D22563A1DF961D0009DB416 /* LabelTemplateTestCase.swift in Sources */,
+				1C1E0BF31E93C2BA00F9DC5E /* PaymentItemsTestCase.swift in Sources */,
+				B43C1F5B1DEC45A300E210DF /* Base64TestCase.swift in Sources */,
+				B40575E21E02BF7D0099DDBB /* StubBundle.swift in Sources */,
+				1CEBAC181E92725E0091A69C /* PaymentProductGroupTestCase.swift in Sources */,
+				1C1E0BF61E93E57000F9DC5E /* IINDetailsResponseTestCase.swift in Sources */,
+				1C4B7DBB1E9268DB00AB1162 /* BasicPaymentProductGroupsTestCase.swift in Sources */,
+				1CE7AB061E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift in Sources */,
+				B46190181DF56C8700A55FB1 /* UtilTestCase.swift in Sources */,
+				73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */,
+				6DA4A8981DF999AD007492C2 /* ValidatorFixedListTestCase.swift in Sources */,
+				6DA4A8961DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift in Sources */,
+				6D8BD9031DFE95760013B869 /* ValidatorLuhnTestCase.swift in Sources */,
+				6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */,
+				6DA4A8901DF98A6B007492C2 /* PaymentProductFieldTestCase.swift in Sources */,
+				B4A011DE1DF0562300FCB738 /* AlamofireWrapperTestCase.swift in Sources */,
+				6D8BD9011DFE94270013B869 /* ValidatorLengthTestCase.swift in Sources */,
+				6D2256361DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4D77C6D1DE72EB900F7B1C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */;
+			targetProxy = B4D77C6C1DE72EB900F7B1C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B4D77C731DE72EB900F7B1C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				C_C_LANGUAGE_STANDARD = gnu99;
+				C_DYNAMIC_NO_PIC = NO;
+				C_NO_COMMON_BLOCKS = YES;
+				C_OPTIMIZATION_LEVEL = 0;
+				C_PREPROCESSOR_DEFINITIONS = "DEBUG=1 $(inherited)";
+				C_WARN_64_TO_32_BIT_CONVERSION = YES;
+				C_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				C_WARN_UNDECLARED_SELECTOR = YES;
+				C_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				C_WARN_UNUSED_FUNCTION = YES;
+				C_WARN_UNUSED_VARIABLE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B4D77C741DE72EB900F7B1C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				C_C_LANGUAGE_STANDARD = gnu99;
+				C_NO_COMMON_BLOCKS = YES;
+				C_WARN_64_TO_32_BIT_CONVERSION = YES;
+				C_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				C_WARN_UNDECLARED_SELECTOR = YES;
+				C_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				C_WARN_UNUSED_FUNCTION = YES;
+				C_WARN_UNUSED_VARIABLE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B4D77C761DE72EB900F7B1C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = IngenicoConnectKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "-D DEBUG";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B4D77C771DE72EB900F7B1C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = IngenicoConnectKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B4D77C791DE72EB900F7B1C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B4D77C7A1DE72EB900F7B1C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4D77C5B1DE72EB900F7B1C1 /* Build configuration list for PBXProject "IngenicoConnectKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4D77C731DE72EB900F7B1C1 /* Debug */,
+				B4D77C741DE72EB900F7B1C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4D77C751DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4D77C761DE72EB900F7B1C1 /* Debug */,
+				B4D77C771DE72EB900F7B1C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4D77C781DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4D77C791DE72EB900F7B1C1 /* Debug */,
+				B4D77C7A1DE72EB900F7B1C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B4D77C581DE72EB900F7B1C1 /* Project object */;
+}
