@@ -38,7 +38,7 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v1.0.0",
+            "sdkIdentifier": "SwiftClientSDK/v1.1.0",
             "sdkCreator": "Ingenico",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
@@ -87,21 +87,41 @@ public class Util {
         case .EU:
             switch environment {
             case .production:
-                return "https://api-eu.globalcollect.com/client/v1"
+                return "https://ams1.api-ingenico.com/client/v1"
             case .preProduction:
-                return "https://api-eu-preprod.globalcollect.com/client/v1"
+                return "https://ams1.preprod.api-ingenico.com/client/v1"
             case .sandbox:
-                return "https://api-eu-sandbox.globalcollect.com/client/v1"
+                return "https://ams1.sandbox.api-ingenico.com/client/v1"
             }
             
         case .US:
             switch environment {
             case .production:
-                return "https://api-us.globalcollect.com/client/v1"
+                return "https://us.api-ingenico.com/client/v1"
             case .preProduction:
-                return "https://api-us-preprod.globalcollect.com/client/v1"
+                return "https://us.preprod.api-ingenico.com/client/v1"
             case .sandbox:
-                return "https://api-us-sandbox.globalcollect.com/client/v1"
+                return "https://us.sandbox.api-ingenico.com/client/v1"
+            }
+            
+        case .AMS:
+            switch environment {
+            case .production:
+                return "https://ams2.api-ingenico.com/client/v1"
+            case .preProduction:
+                return "https://ams2.preprod.api-ingenico.com/client/v1"
+            case .sandbox:
+                return "https://ams2.sandbox.api-ingenico.com/client/v1"
+            }
+            
+        case .PAR:
+            switch environment {
+            case .production:
+                return "https://par.api-ingenico.com/client/v1"
+            case .preProduction:
+                return "https://par-preprod.api-ingenico.com/client/v1"
+            case .sandbox:
+                return "https://par.sandbox.api-ingenico.com/client/v1"
             }
         }
         
@@ -112,21 +132,41 @@ public class Util {
         case .EU:
             switch environment {
             case .production:
-                return "https://assets.pay1.poweredbyglobalcollect.com"
+                return "https://assets.pay1.secured-by-ingenico.com"
             case .preProduction:
-                return "https://assets.pay1.preprod.poweredbyglobalcollect.com"
+                return "https://assets.pay1.preprod.secured-by-ingenico.com"
             case .sandbox:
-                return "https://assets.pay1.sandbox.poweredbyglobalcollect.com"
+                return "https://assets.pay1.sandbox.secured-by-ingenico.com"
             }
             
         case .US:
             switch environment {
             case .production:
-                return "https://assets.pay2.poweredbyglobalcollect.com"
+                return "https://assets.pay2.secured-by-ingenico.com"
             case .preProduction:
-                return "https://assets.pay2.preprod.poweredbyglobalcollect.com"
+                return "https://assets.pay2.preprod.secured-by-ingenico.com"
             case .sandbox:
-                return "https://assets.pay2.sandbox.poweredbyglobalcollect.com"
+                return "https://assets.pay2.sandbox.secured-by-ingenico.com"
+            }
+            
+        case .AMS:
+            switch environment {
+            case .production:
+                return "https://assets.pay3.secured-by-ingenico.com"
+            case .preProduction:
+                return "https://assets.pay3.preprod.secured-by-ingenico.com"
+            case .sandbox:
+                return "https://assets.pay3.sandbox.secured-by-ingenico.com"
+            }
+            
+        case .PAR:
+            switch environment {
+            case .production:
+                return "https://assets.pay4.secured-by-ingenico.com"
+            case .preProduction:
+                return "https://assets.pay4.preprod.secured-by-ingenico.com"
+            case .sandbox:
+                return "https://assets.pay4.sandbox.secured-by-ingenico.com"
             }
         }
         

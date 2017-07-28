@@ -9,4 +9,6 @@
 public enum Region {
     case EU
     case US
+    case AMS
+    case PAR
 }
