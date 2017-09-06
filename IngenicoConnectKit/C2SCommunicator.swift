@@ -45,7 +45,21 @@ public class C2SCommunicator {
     public init(configuration: C2SCommunicatorConfiguration) {
         self.configuration = configuration
     }
-    
+    public func thirdPartyStatus(forProduct paymentProductId: String, success: @escaping (_ directoryEntries: ThirdPartyStatusResponse) -> Void, failure: @escaping (_ error: Error) -> Void) {
+        let URL = "\(baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/"
+        
+        getResponse(forURL: URL, withParameters: [:], success: { (responseObject) in
+            guard let responseDic = responseObject as? [String : Any], let thirdPartyStatusResponse = ThirdPartyStatusResponse(json: responseDic) else {
+                failure(SessionError.RuntimeError("Response was not a dictionary. Raw response: \(responseObject)"))
+                return
+            }
+            
+            success(thirdPartyStatusResponse)
+        }) { error in
+            failure(error)
+        }
+    }
+
     public func paymentProducts(forContext context: PaymentContext, success: @escaping (_ paymentProducts: BasicPaymentProducts) -> Void, failure: @escaping (_ error: Error) -> Void) {
         let isRecurring = context.isRecurring ? "true" : "false"
         let URL = "\(baseURL)/\(configuration.customerId)/products"
