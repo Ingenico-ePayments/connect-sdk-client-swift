@@ -2,7 +2,7 @@
 //  ThirdPartyStatusResponse.swift
 //  Pods
 //
-//  Created by PharmIT on 15/06/2017.
+//  Created for Ingenico ePayments on 15/06/2017.
 //
 //
 
