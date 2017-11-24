@@ -12,9 +12,14 @@ public class ThirdPartyStatusResponse: ResponseObjectSerializable {
     public var thirdPartyStatus: ThirdPartyStatus
     
     public required init?(json: [String : Any]) {
-        if let input = json["thirdPartyStatus"] as? ThirdPartyStatus {
-            thirdPartyStatus = input
-        } else {
+        if let urlStr = json["thirdPartyStatus"] as? String {
+            if let input = ThirdPartyStatus(rawValue: urlStr) {
+                thirdPartyStatus = input
+            } else {
+                return nil
+            }
+        }
+        else{
             return nil
         }
     }

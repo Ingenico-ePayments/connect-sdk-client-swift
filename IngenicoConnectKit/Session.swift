@@ -52,9 +52,10 @@ public class Session {
             self.paymentProducts = paymentProducts
             self.paymentProducts.stringFormatter = self.stringFormatter
             self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
-            self.assetManager.updateImagesAsync(for: paymentProducts.paymentProducts, baseURL: self.communicator.assetsBaseURL)
+            self.assetManager.updateImagesAsync(for: paymentProducts.paymentProducts, baseURL: self.communicator.assetsBaseURL) {
+                success(paymentProducts)
+            }
             
-            success(paymentProducts)
         }, failure: { error in
             failure(error)
         })
@@ -85,24 +86,29 @@ public class Session {
         communicator.paymentProducts(forContext: context, success: { paymentProducts in
             self.paymentProducts = paymentProducts
             self.paymentProducts.stringFormatter = self.stringFormatter
-            self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
-            self.assetManager.updateImagesAsync(for: paymentProducts.paymentProducts, baseURL: self.communicator.assetsBaseURL)
-            
-            if groupPaymentProducts {
-                self.communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
-                    self.paymentProductGroups = paymentProductGroups
-                    self.paymentProductGroups.stringFormatter = self.stringFormatter
-                    self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
-                    self.assetManager.updateImagesAsync(for: paymentProductGroups.paymentProductGroups, baseURL: self.communicator.assetsBaseURL)
-                    let items = PaymentItems(products: paymentProducts, groups: paymentProductGroups)
-                    
+            //self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
+            self.assetManager.updateImagesAsync(for: paymentProducts.paymentProducts, baseURL: self.communicator.assetsBaseURL) {
+                self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
+                if groupPaymentProducts {
+                    self.communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
+                        self.paymentProductGroups = paymentProductGroups
+                        self.paymentProductGroups.stringFormatter = self.stringFormatter
+                        //self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
+                        self.assetManager.updateImagesAsync(for: paymentProductGroups.paymentProductGroups, baseURL: self.communicator.assetsBaseURL) {
+                            self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
+                            let items = PaymentItems(products: paymentProducts, groups: paymentProductGroups)
+                            success(items)
+                        }
+                        
+                    }, failure: failure)
+                }
+                else {
+                    let items = PaymentItems(products: paymentProducts, groups: nil)
                     success(items)
-                }, failure: failure)
+                }
+
             }
-            else {
-                let items = PaymentItems(products: paymentProducts, groups: nil)
-                success(items)
-            }
+            
         }, failure: failure)
     }
     

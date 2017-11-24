@@ -9,11 +9,11 @@
 import Foundation
 
 public class PaymentContext {
-    public var amountOfMoney: PaymentAmountOfMoney
-    public var isRecurring: Bool
     public var countryCode: CountryCode
     public var locale: String?
-    
+    public var forceBasicFlow: Bool?
+    public var amountOfMoney: PaymentAmountOfMoney
+    public var isRecurring: Bool
     public init(amountOfMoney: PaymentAmountOfMoney, isRecurring: Bool, countryCode: CountryCode) {      
         self.amountOfMoney = amountOfMoney
         self.isRecurring = isRecurring

@@ -45,8 +45,8 @@ public class C2SCommunicator {
     public init(configuration: C2SCommunicatorConfiguration) {
         self.configuration = configuration
     }
-    public func thirdPartyStatus(forProduct paymentProductId: String, success: @escaping (_ directoryEntries: ThirdPartyStatusResponse) -> Void, failure: @escaping (_ error: Error) -> Void) {
-        let URL = "\(baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/"
+    public func thirdPartyStatus(forPayment paymentId: String, success: @escaping (_ thirdPartyStatusResponse: ThirdPartyStatusResponse) -> Void, failure: @escaping (_ error: Error) -> Void) {
+        let URL = "\(baseURL)/\(self.configuration.customerId)/payments/\(paymentId)/thirdpartystatus"
         
         getResponse(forURL: URL, withParameters: [:], success: { (responseObject) in
             guard let responseDic = responseObject as? [String : Any], let thirdPartyStatusResponse = ThirdPartyStatusResponse(json: responseDic) else {
@@ -185,11 +185,13 @@ public class C2SCommunicator {
             
             let URL = "\(self.baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/"
             var params:[String:Any] = ["countryCode":context.countryCode.rawValue, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "isRecurring":isRecurring]
-            
+            if let forceBasicFlow = context.forceBasicFlow {
+                params["forceBasicFlow"] = forceBasicFlow ? "true" : "false"
+            }
             if let locale = context.locale {
                 params["locale"] = locale
             }
-            
+
             self.getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
                 guard let responseDic = responseObject as? [String : Any], let paymentProduct = PaymentProduct(json: responseDic) else {
                     failure(SessionError.RuntimeError("Response was not a dictionary. Raw response: \(responseObject)"))

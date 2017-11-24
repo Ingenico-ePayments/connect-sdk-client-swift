@@ -98,7 +98,9 @@ public class AssetManager {
             self.updateImages(for: paymentItems, baseURL: baseURL)
             
             if let callback = callback {
-                callback()
+                DispatchQueue.main.async {
+                    callback()
+                }
             }
         }
     }
@@ -108,7 +110,9 @@ public class AssetManager {
             self.updateImages(for: paymentItem, baseURL: baseURL)
             
             if let callback = callback {
-                callback()
+                DispatchQueue.main.async {
+                    callback()
+                }
             }
         }
     }
@@ -199,6 +203,8 @@ public class AssetManager {
             return image
         }
         
-        fatalError("Could not find image!")
+        // Could not find image so return an empty image
+        return UIImage()
+        
     }
 }
