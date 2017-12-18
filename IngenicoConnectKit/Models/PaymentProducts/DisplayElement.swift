@@ -2,41 +2,34 @@
 //  DisplayElement.swift
 //  Pods
 //
-//  Created for Ingenico ePayments on 22/06/2017.
+//  Created for Ingenico ePayments on 07/07/2017.
 //
 //
 
-import UIKit
+import Foundation
 
 public class DisplayElement: ResponseObjectSerializable {
-    let id: String
-    let type: DisplayElementType
-    let value: String
+    public required init?(json: [String : Any]) {
+        guard let id = json["id"]  as? String else {
+            return nil
+        }
+        guard let value = json["value"] as? String else {
+            return nil
+        }
+        guard let type = DisplayElementType(rawValue: json["type"] as? String ?? "") else {
+            return nil
+        }
+        self.id = id
+        self.value = value
+        self.type = type
+    }
+    
+    public var id: String
+    public var type: DisplayElementType
+    public var value: String
     init(id: String, type: DisplayElementType, value: String) {
         self.id = id
         self.type = type
         self.value = value
     }
-    required public init?(json: [String: Any]) {
-        if let id = json["id"] as? String {
-            self.id = id
-        }
-        else {
-            return nil
-        }
-        
-        if let typeString = json["type"] as? String, let type = DisplayElementType(rawValue: typeString) {
-            self.type = type
-        }
-        else {
-            return nil
-        }
-        if let value = json["value"] as? String {
-            self.value = value
-        }
-        else {
-            return nil
-        }
-    }
-
 }

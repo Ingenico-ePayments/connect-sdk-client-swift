@@ -11,5 +11,6 @@ public enum PreferredInputType {
     case integerKeyboard
     case emailAddressKeyboard
     case phoneNumberKeyboard
+    case dateKeyboard
     case noKeyboard
 }

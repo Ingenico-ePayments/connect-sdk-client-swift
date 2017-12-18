@@ -10,4 +10,6 @@ public enum FormElementType {
     case textType
     case listType
     case currencyType
+    case boolType
+    case dateType
 }

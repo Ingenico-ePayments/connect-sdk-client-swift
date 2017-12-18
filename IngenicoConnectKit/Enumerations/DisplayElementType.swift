@@ -12,5 +12,5 @@ public enum DisplayElementType: String {
     case integer = "INTEGER"
     case currency = "CURRENCY"
     case percentage = "PERCENTAGE"
-    case url = "URL"
+    case uri = "URI"
 }

@@ -35,7 +35,6 @@ public class PaymentItems {
         paymentItems = createPaymentItemsFromProducts(products: products, groups: groups)
 
         allPaymentItems = products.paymentProducts
-
         if let groups = groups {
             for group in groups.paymentProductGroups {
                 allPaymentItems.append(group)

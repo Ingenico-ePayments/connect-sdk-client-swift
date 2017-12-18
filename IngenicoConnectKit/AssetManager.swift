@@ -205,6 +205,5 @@ public class AssetManager {
         
         // Could not find image so return an empty image
         return UIImage()
-        
     }
 }

@@ -68,7 +68,9 @@ public class Session {
             failure(error)
         })
     }
-    
+    public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: CountryCode, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
+        communicator.customerDetails(forProductId: productId, withLookupValues: lookupValues, countryCode: countryCode, success: success, failure: failure)
+    }
     public func paymentProductGroups(for context: PaymentContext, success: @escaping (_ paymentProductGroups: BasicPaymentProductGroups) -> Void, failure: @escaping (_ error: Error) -> Void) {
         communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
             self.paymentProductGroups = paymentProductGroups

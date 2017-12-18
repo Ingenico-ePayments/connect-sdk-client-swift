@@ -11,6 +11,7 @@ import Foundation
 public class PaymentProductField: ResponseObjectSerializable {
     
     public var identifier: String
+    public var usedForLookup: Bool
     public var dataRestrictions = DataRestrictions()
     public var displayHints: PaymentProductFieldDisplayHints
     public var type: FieldType
@@ -39,7 +40,12 @@ public class PaymentProductField: ResponseObjectSerializable {
         if let input = json["dataRestrictions"] as? [String: Any] {
             dataRestrictions = DataRestrictions(json: input)
         }
-
+        if let usedForLookup = json["usedForLookup"] as? Bool {
+            self.usedForLookup = usedForLookup
+        }
+        else {
+            self.usedForLookup = false
+        }
         switch json["type"] as? String {
             case "string"?:
                 type = .string
@@ -49,6 +55,10 @@ public class PaymentProductField: ResponseObjectSerializable {
                 type = .expirationDate
             case "numericstring"?:
                 type = .numericString
+            case "boolean"?:
+                type = .boolString
+            case "date"?:
+                type = .dateString
             default:
                 Macros.DLog(message: "Type \(json["type"]!) in JSON fragment \(json) is invalid")
                 return nil
@@ -75,7 +85,6 @@ public class PaymentProductField: ResponseObjectSerializable {
                 case .numericString where numericStringCheck.numberOfMatches(in: value , range: NSMakeRange(0, value.length)) != 1:
                     let error = ValidationErrorNumericString()
                     errors.append(error)
-
                 default:
                     break
             }

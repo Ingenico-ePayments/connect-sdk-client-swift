@@ -59,7 +59,29 @@ public class C2SCommunicator {
             failure(error)
         }
     }
+    
+    public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: CountryCode, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
+        let URL = "\(baseURL)/\(configuration.customerId)/products/\(productId)/customerDetails"
+        let params = ["values": lookupValues, "countryCode": countryCode.rawValue] as [String : Any]
+        
+        postResponse(forURL: URL, withParameters: params, additionalAcceptableStatusCodes: IndexSet([404, 400]), success: { (responseObject) in
+            guard let responseDic = responseObject as? [String : Any], let customerDetails = CustomerDetails(json: responseDic), responseDic["errors"] == nil else {
+                let errors = (responseObject as? [String: Any])?["errors"]
+                if let errors = errors as? [[String: Any]] {
+                    let customerDetailsError = CustomerDetailsError(responseValues: errors)
+                    failure(customerDetailsError)
+                    return
+                }
+                failure(SessionError.RuntimeError("Response was not a dictionary. Raw response: \(responseObject)"))
+                return
+            }
+            success(customerDetails)
+        }, failure: { error in
+            failure(error)
+        })
 
+    }
+    
     public func paymentProducts(forContext context: PaymentContext, success: @escaping (_ paymentProducts: BasicPaymentProducts) -> Void, failure: @escaping (_ error: Error) -> Void) {
         let isRecurring = context.isRecurring ? "true" : "false"
         let URL = "\(baseURL)/\(configuration.customerId)/products"
@@ -180,6 +202,7 @@ public class C2SCommunicator {
                                context: PaymentContext,
                                success: @escaping (_ paymentProduct: PaymentProduct) -> Void,
                                failure: @escaping (_ error: Error) -> Void) {
+
         checkAvailability(forProduct: paymentProductId, context: context, success: {() -> Void in
             let isRecurring = context.isRecurring ? "true" : "false"
             

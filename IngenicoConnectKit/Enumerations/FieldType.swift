@@ -11,4 +11,6 @@ public enum FieldType {
     case integer
     case expirationDate
     case numericString
+    case boolString
+    case dateString
 }

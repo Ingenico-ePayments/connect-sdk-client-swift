@@ -20,6 +20,10 @@ public class FormElement: ResponseObjectSerializable {
                 type = .currencyType
             case "list"?:
                 type = .listType
+            case "date"?:
+                type = .dateType
+            case "boolean"?:
+                type = .boolType
             default:
                 return nil
         }

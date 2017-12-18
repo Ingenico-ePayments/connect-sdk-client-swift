@@ -16,6 +16,8 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
     public var mask: String?
     public var obfuscate = false
     public var tooltip: ToolTip?
+    public var label: String?
+    public var link: URL?
     public var preferredInputType: PreferredInputType = .noKeyboard
     
     required public init?(json: [String : Any]) {
@@ -41,7 +43,12 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
         if let input = json["obfuscate"] as? Bool {
             obfuscate = input
         }
-
+        if let input = json["label"] as? String {
+            label = input
+        }
+        if let input = json["link"]  as? String {
+            link = URL(string: input)
+        }
         if let input = json["preferredInputType"] as? String {
             switch input {
             case "StringKeyboard":
@@ -52,6 +59,8 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
                 preferredInputType = .emailAddressKeyboard
             case "PhoneNumberKeyboard":
                 preferredInputType = .phoneNumberKeyboard
+            case "DateKeyboard":
+                preferredInputType = .dateKeyboard
             default:
                 break
             }
