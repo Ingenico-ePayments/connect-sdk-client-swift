@@ -14,33 +14,33 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (4.4.0)
-  - CryptoSwift (0.6.8)
-  - Mockingjay (2.0.0):
-    - Mockingjay/Core (= 2.0.0)
-    - Mockingjay/XCTest (= 2.0.0)
-  - Mockingjay/Core (2.0.0):
+  - Alamofire (4.6.0)
+  - CryptoSwift (0.7.0)
+  - Mockingjay (2.0.1):
+    - Mockingjay/Core (= 2.0.1)
+    - Mockingjay/XCTest (= 2.0.1)
+  - Mockingjay/Core (2.0.1):
     - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.0):
+  - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - SVProgressHUD (2.1.2)
-  - URITemplate (2.0.0)
+  - SVProgressHUD (2.2.2)
+  - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking
   - Alamofire (~> 4.2)
-  - CryptoSwift (~> 0.6.7)
+  - CryptoSwift (= 0.7.0)
   - Mockingjay
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  CryptoSwift: f21ea03ed3a94e79d241648ce26652cd4810508a
-  Mockingjay: 7122a3fc0597aa63438e4cd9b71b7bc8aac05b87
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
-  URITemplate: a5acb3f76c6a2338116fde88b658d83f91bbac45
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  CryptoSwift: e197577cc40d551110480a64c73f31dbff1d8e74
+  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 6eebb78b4709708aac58db143c237aca4388f299
+PODFILE CHECKSUM: c8f010464ff5982ac1d625fbe64ef532b58b96f8
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

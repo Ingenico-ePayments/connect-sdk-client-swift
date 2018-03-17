@@ -49,6 +49,10 @@ public class DataRestrictions: ResponseObjectSerializable {
                 let validator = ValidatorRegularExpression(json: regularExpression) {
                 validators.validators.append(validator)
             }
+            if ((input["termsAndConditions"] as? [String : Any]) != nil) {
+                let validator = ValidatorTermsAndConditions()
+                validators.validators.append(validator)
+            }
             if let boletoBancarioRequiredness = input["boletoBancarioRequiredness"] as? [String : Any], let validator = ValidatorBoletoBancarioRequiredness(json: boletoBancarioRequiredness) {
                 validators.variableRequiredness = true
                 validators.validators.append(validator)

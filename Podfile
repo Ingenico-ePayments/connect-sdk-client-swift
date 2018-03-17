@@ -10,7 +10,7 @@ target 'IngenicoConnectKit' do
   pod 'Alamofire', '~> 4.2'
   pod 'AFNetworking'
   pod 'SVProgressHUD'
-  pod 'CryptoSwift', '~> 0.6.7'
+  pod 'CryptoSwift', '0.7.0'
 
   target 'IngenicoConnectKitTests' do
     inherit! :search_paths

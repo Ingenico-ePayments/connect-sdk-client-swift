@@ -19,6 +19,7 @@ public class ValidationErrorIsRequired: ValidationError {}
 public class ValidationErrorLuhn: ValidationError {}
 public class ValidationErrorNumericString: ValidationError {}
 public class ValidationErrorRegularExpression: ValidationError {}
+public class ValidationErrorTermsAndConditions: ValidationError {}
 
 public class ValidationErrorLength: ValidationError {
     public var minLength = 0

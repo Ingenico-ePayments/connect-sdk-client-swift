@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "IngenicoConnectKit"
-  s.version       = "1.6.0"
+  s.version       = "2.0.0"
   s.summary       = "Ingenico Connect Swift SDK"
   s.description   = <<-DESC
                     This native iOS SDK facilitates handling payments in your apps
@@ -17,6 +17,6 @@ Pod::Spec.new do |s|
   s.resource      = "IngenicoConnectKit/IngenicoConnectKit.bundle"
   
   s.dependency 'Alamofire', '~> 4.2'
-  s.dependency 'CryptoSwift', '~> 0.6.7'
+  s.dependency 'CryptoSwift', '0.7.0'
 
 end

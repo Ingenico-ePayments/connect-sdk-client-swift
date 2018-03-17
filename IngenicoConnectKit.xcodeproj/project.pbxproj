@@ -80,6 +80,7 @@
 		6DD70EAA1E029F5400A585BC /* C2SCommunicatorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */; };
 		6DED71E51DEC3DA00023EFA2 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED71E41DEC3DA00023EFA2 /* Macros.swift */; };
 		6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DED71EB1DEC46090023EFA2 /* SDKConstants.swift */; };
+		732F8665200522BA00A7DE68 /* ValidatorTermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */; };
 		73819ECD1DF95E3500B6FC0F /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73819ECC1DF95E3500B6FC0F /* Encryptor.swift */; };
 		73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */; };
 		73AABACC1F1F804200B76782 /* ThirdPartyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACA1F1F804200B76782 /* ThirdPartyStatus.swift */; };
@@ -219,6 +220,7 @@
 		6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C2SCommunicatorTestCase.swift; path = IngenicoConnectKitTests/C2SCommunicatorTestCase.swift; sourceTree = "<group>"; };
 		6DED71E41DEC3DA00023EFA2 /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Macros.swift; path = Macros/Macros.swift; sourceTree = "<group>"; };
 		6DED71EB1DEC46090023EFA2 /* SDKConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDKConstants.swift; path = Constants/SDKConstants.swift; sourceTree = "<group>"; };
+		732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorTermsAndConditions.swift; path = Models/PaymentProducts/ValidatorTermsAndConditions.swift; sourceTree = "<group>"; };
 		73819ECC1DF95E3500B6FC0F /* Encryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encryptor.swift; path = Cryptography/Encryptor.swift; sourceTree = "<group>"; };
 		73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptorTestCase.swift; path = IngenicoConnectKitTests/Cryptography/EncryptorTestCase.swift; sourceTree = "<group>"; };
 		73AABACA1F1F804200B76782 /* ThirdPartyStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThirdPartyStatus.swift; path = Models/ThirdPartyStatus/ThirdPartyStatus.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				6D78224D1DF053FE00B5A9AB /* ValidatorRegularExpression.swift */,
 				6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */,
 				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
+				732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -857,9 +860,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -872,13 +888,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IngenicoConnectKitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B53E6E836E45965843E94046 /* [CP] Check Pods Manifest.lock */ = {
@@ -887,13 +906,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IngenicoConnectKit-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CAE4233AD7920D70283F2289 /* [CP] Copy Pods Resources */ = {
@@ -989,6 +1011,7 @@
 				B43C1F691DEC59B200E210DF /* Environment.swift in Sources */,
 				6D78226A1DF067A900B5A9AB /* ToolTip.swift in Sources */,
 				B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */,
+				732F8665200522BA00A7DE68 /* ValidatorTermsAndConditions.swift in Sources */,
 				6D7822481DF0470500B5A9AB /* Validator.swift in Sources */,
 				6D4E7AA51DF5611700BAE336 /* BasicPaymentProduct.swift in Sources */,
 				6D7822721DF0781100B5A9AB /* AccountsOnFile.swift in Sources */,
@@ -1186,7 +1209,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "-D DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
