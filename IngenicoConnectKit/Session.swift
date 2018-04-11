@@ -22,6 +22,28 @@ public class Session {
     public var paymentProductGroupMapping = [AnyHashable: Any]()
     public var directoryEntriesMapping = [AnyHashable: Any]()
     
+    public var baseURL: String? {
+        get {
+            return communicator.configuration.baseURL
+        }
+        set {
+            if let newValue = newValue {
+                communicator.configuration.baseURL = newValue
+
+            }
+        }
+    }
+    public var assetsBaseURL: String? {
+        get {
+            return communicator.configuration.assetsBaseURL
+        }
+        set {
+            if let newValue = newValue {
+                communicator.configuration.assetsBaseURL = newValue
+            }
+        }
+    }
+    
     public var iinLookupPending = false
     
     public init(communicator: C2SCommunicator, assetManager: AssetManager, encryptor: Encryptor, JOSEEncryptor: JOSEEncryptor, stringFormatter: StringFormatter) {
@@ -31,8 +53,28 @@ public class Session {
         self.joseEncryptor = JOSEEncryptor
         self.stringFormatter = stringFormatter
     }
+    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String) {
+        let assetManager = AssetManager()
+        let stringFormatter = StringFormatter()
+        let encryptor = Encryptor()
+        let configuration = C2SCommunicatorConfiguration(clientSessionId: clientSessionId,
+                                                         customerId: customerId,
+                                                         baseURL: baseURL,
+                                                         assetBaseURL: assetBaseURL,
+                                                         appIdentifier: appIdentifier)
+        let communicator = C2SCommunicator(configuration: configuration)
+        let jsonEncryptor = JOSEEncryptor(encryptor: encryptor)
+        
+        self.communicator = communicator
+        self.assetManager = assetManager
+        self.encryptor = encryptor
+        self.joseEncryptor = jsonEncryptor
+        self.stringFormatter = stringFormatter
+
+    }
     
-    public convenience init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String) {
+    @available(*, deprecated, message: "use method init(clientSessionId:customerId:baseURL:assetsURL:appIdentifierØ:) instead")
+    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String) {
         let assetManager = AssetManager()
         let stringFormatter = StringFormatter()
         let encryptor = Encryptor()
@@ -44,7 +86,11 @@ public class Session {
         let communicator = C2SCommunicator(configuration: configuration)
         let jsonEncryptor = JOSEEncryptor(encryptor: encryptor)
         
-        self.init(communicator: communicator, assetManager: assetManager, encryptor: encryptor, JOSEEncryptor: jsonEncryptor, stringFormatter: stringFormatter)
+        self.communicator = communicator
+        self.assetManager = assetManager
+        self.encryptor = encryptor
+        self.joseEncryptor = jsonEncryptor
+        self.stringFormatter = stringFormatter
     }
     
     public func paymentProducts(for context: PaymentContext, success: @escaping (_ paymentProducts: BasicPaymentProducts) -> Void, failure: @escaping (_ error: Error) -> Void) {

@@ -19,6 +19,7 @@ public class SDKConstants {
     public static let kAndroidPayIdentifier = "320"
     public static let kApplePayIdentifier = "302"
     
+    public static let kApiVersion = "client/v1"
     public static let kSDKBundleIdentifier = "org.cocoapods.IngenicoConnectKit"
     public static var kSDKBundlePath = Bundle(identifier: SDKConstants.kSDKBundleIdentifier)?.path(forResource: "IngenicoConnectKit", ofType: "bundle")
     
