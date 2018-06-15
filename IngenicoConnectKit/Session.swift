@@ -317,9 +317,19 @@ public class Session {
     public var isEnvironmentTypeProduction: Bool {
         return communicator.isEnvironmentTypeProduction
     }
+    public func keyValuePairs(from dictionary:[String:String]) -> [[String:String]]
+    {
+        var keyValuePairs = [[String:String]]()
+        for (key, value) in  dictionary{
+            let pair = ["key": key, "value": value]
+            keyValuePairs.append(pair)
+        }
+        return keyValuePairs
+    }
 
     public func keyValueJSONFromDictionary(dictionary: [String:String]) -> String? {
-        guard let JSONAsData = try? JSONSerialization.data(withJSONObject: dictionary) else {
+        let keyValuePairs = self.keyValuePairs(from: dictionary)
+        guard let JSONAsData = try? JSONSerialization.data(withJSONObject: keyValuePairs) else {
             Macros.DLog(message: "Unable to create JSON data from dictionary")
             return nil
         }

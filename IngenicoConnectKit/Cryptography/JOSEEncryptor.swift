@@ -113,7 +113,8 @@ public class JOSEEncryptor {
     
     public func computeAL(forData data: Data) -> Data {
         var lengthInBits = data.count * 8
-        let AL = Data(bytes: &lengthInBits, count: MemoryLayout<Int>.size)
+        var AL = Data(bytes: &lengthInBits, count: MemoryLayout<Int>.size)
+        AL.reverse()
         return AL
     }
 }

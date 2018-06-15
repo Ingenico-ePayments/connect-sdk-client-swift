@@ -25,11 +25,12 @@ public class AccountOnFile: ResponseObjectSerializable {
         }
         self.identifier = "\(identifier)"
         self.paymentProductIdentifier = "\(paymentProductId)"
-        
-        if let input = json["displayHints"] as? [[String: Any]] {
-            for labelInput in input {
-                if let label = LabelTemplateItem(json: labelInput) {
-                    displayHints.labelTemplate.labelTemplateItems.append(label)
+        if let input = json["displayHints"] as? [String: Any] {
+            if let labelInputs = input["labelTemplate"] as? [[String:Any]] {
+                for labelInput in labelInputs {
+                    if let label = LabelTemplateItem(json: labelInput) {
+                        displayHints.labelTemplate.labelTemplateItems.append(label)
+                    }
                 }
             }
         }

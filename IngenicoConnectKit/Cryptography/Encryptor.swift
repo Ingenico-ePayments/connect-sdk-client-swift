@@ -276,7 +276,7 @@ public class Encryptor {
     }
     
     public func generateHMAC(input: [UInt8], key: [UInt8]) -> ([UInt8]?) {
-        guard let hmac = try? HMAC(key: key, variant: .sha256).authenticate(input) else {
+        guard let hmac = try? HMAC(key: key, variant: .sha512).authenticate(input) else {
             return nil
         }
 
