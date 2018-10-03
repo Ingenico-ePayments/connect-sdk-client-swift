@@ -31,7 +31,7 @@ extension String {
                                             upper: min(length, max(0, r.upperBound))))
         let start = index(startIndex, offsetBy: range.lowerBound)
         let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return self[Range(start ..< end)]
+        return self[start ..< end]
     }
     
     public func base64URLDecode() -> Data {
