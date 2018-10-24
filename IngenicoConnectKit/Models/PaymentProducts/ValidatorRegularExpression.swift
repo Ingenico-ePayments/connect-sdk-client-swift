@@ -30,7 +30,7 @@ public class ValidatorRegularExpression: Validator, ResponseObjectSerializable {
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
         
-        let numberOfMatches = regularExpression.numberOfMatches(in: value , range: NSMakeRange(0, value.length))
+        let numberOfMatches = regularExpression.numberOfMatches(in: value , range: NSMakeRange(0, value.count))
         if numberOfMatches != 1 {
             let error = ValidationErrorRegularExpression()
             errors.append(error)

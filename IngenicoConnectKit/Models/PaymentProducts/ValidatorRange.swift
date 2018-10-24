@@ -39,9 +39,9 @@ public class ValidatorRange: Validator, ResponseObjectSerializable {
             return
         }
 
-        if Int(number) < minValue {
+        if Int(truncating: number) < minValue {
             errors.append(error)
-        } else if Int(number) > maxValue {
+        } else if Int(truncating: number) > maxValue {
             errors.append(error)
         }
     }

@@ -20,10 +20,11 @@ public class ValidatorIBAN: Validator {
         }
         return nil
     }
-    private func modulo(numericString: String, modulo: Int) ->  Int{
+    private func modulo(numericString: String, modulo: Int) ->  Int {
         var remainder = numericString
         repeat {
-            let currentChunk = remainder[remainder.startIndex..<remainder.index(remainder.startIndex, offsetBy: min(9, remainder.length), limitedBy: remainder.endIndex)]
+            let endIndex = remainder.index(remainder.startIndex, offsetBy: min(9, remainder.count), limitedBy: remainder.endIndex)!
+            let currentChunk = remainder[remainder.startIndex ..< endIndex]
             let currentInt = Int(currentChunk)
             let currentResult = currentInt! % modulo
             remainder = String(currentResult) + remainder.dropFirst(9)
@@ -37,7 +38,8 @@ public class ValidatorIBAN: Validator {
             let formatRegex = try NSRegularExpression(pattern: "^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}$")
             let numberOfMatches = formatRegex.numberOfMatches(in: strippedText, range: NSMakeRange(0, strippedText.count))
             if numberOfMatches == 1 {
-                let prefix = strippedText[strippedText.startIndex..<strippedText.index(strippedText.startIndex, offsetBy: min(4, strippedText.length), limitedBy: strippedText.endIndex)]
+                let endIndex = strippedText.index(strippedText.startIndex, offsetBy: min(4, strippedText.count), limitedBy: strippedText.endIndex)!
+                let prefix = strippedText[strippedText.startIndex ..< endIndex]
                 let numericString = (strippedText.dropFirst(4) + prefix).map { (c: Character) in
                     return  String(charToIndex(mychar: c)!)
                     }.joined()

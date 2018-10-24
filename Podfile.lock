@@ -1,21 +1,21 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - Alamofire (4.6.0)
-  - CryptoSwift (0.7.0)
+  - Alamofire (4.7.3)
+  - CryptoSwift (0.12.0)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -23,13 +23,13 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - SVProgressHUD (2.2.2)
+  - SVProgressHUD (2.2.5)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking
-  - Alamofire (~> 4.2)
-  - CryptoSwift (= 0.7.0)
+  - Alamofire (~> 4.7.3)
+  - CryptoSwift (= 0.12.0)
   - Mockingjay
   - SVProgressHUD
 
@@ -43,13 +43,13 @@ SPEC REPOS:
     - URITemplate
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  CryptoSwift: e197577cc40d551110480a64c73f31dbff1d8e74
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: c8f010464ff5982ac1d625fbe64ef532b58b96f8
+PODFILE CHECKSUM: f8ac87fd85bc2320af6659cc4fef036332217d3e
 
 COCOAPODS: 1.5.3

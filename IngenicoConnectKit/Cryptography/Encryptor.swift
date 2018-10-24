@@ -225,17 +225,17 @@ public class Encryptor {
     
     public func encryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let plaintext = convertDataToByteArray(data: data)
-        let keyBytes = convertDataToByteArray(data: key)
-        let IVBytes = convertDataToByteArray(data: IV)
+        let key = String(data: key, encoding: String.Encoding.utf8)!
+        let IV = String(data: IV, encoding: String.Encoding.utf8)!
         
-        if let result = encryptAES(plaintext: plaintext, key: keyBytes, IV: IVBytes) {
+        if let result = encryptAES(plaintext: plaintext, key: key, IV: IV) {
             return Data(bytes: result)
         }
         return nil
     }
     
-    public func encryptAES(plaintext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
-        guard let aes = try? AES(key: key, iv: IV, padding: PKCS7()),
+    public func encryptAES(plaintext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
+        guard let aes = try? AES(key: key, iv: IV, padding: .pkcs7),
               let ciphertext = try? aes.encrypt(plaintext) else
         {
             return nil
@@ -246,17 +246,17 @@ public class Encryptor {
     
     public func decryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let ciphertext = convertDataToByteArray(data: data)
-        let keyBytes = convertDataToByteArray(data: key)
-        let IVBytes = convertDataToByteArray(data: IV)
+        let key = String(data: key, encoding: String.Encoding.utf8)!
+        let IV = String(data: IV, encoding: String.Encoding.utf8)!
         
-        if let result = decryptAES(ciphertext: ciphertext, key: keyBytes, IV: IVBytes) {
+        if let result = decryptAES(ciphertext: ciphertext, key: key, IV: IV) {
             return Data(bytes: result)
         }
         return nil
     }
     
-    public func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
-        guard let aes = try? AES(key: key, iv: IV, padding: PKCS7()),
+    public func decryptAES(ciphertext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
+        guard let aes = try? AES(key: key, iv: IV, padding: .pkcs7),
               let plaintext = try? aes.decrypt(ciphertext) else
         {
             return nil

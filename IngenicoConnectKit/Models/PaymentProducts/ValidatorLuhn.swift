@@ -17,8 +17,8 @@ public class ValidatorLuhn: Validator {
         var oddSum = 0
         var digit = 0
         
-        for i in 1 ... value.length {
-            let j = value.length - i
+        for i in 1 ... value.count {
+            let j = value.count - i
             digit = Int(value[j])!
             
             if i % 2 == 1 {

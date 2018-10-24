@@ -204,7 +204,7 @@ public class Session {
                            context: PaymentContext?,
                            success: @escaping (_ iinDetailsResponse: IINDetailsResponse) -> Void,
                            failure: @escaping (_ error: Error) -> Void) {
-        if partialCreditCardNumber.length < 6 {
+        if partialCreditCardNumber.count < 6 {
             let response = IINDetailsResponse(status: .notEnoughDigits)
             success(response)
         }

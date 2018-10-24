@@ -12,7 +12,7 @@ import Mockingjay
 @testable import IngenicoConnectKit
 
 class SessionTestCase: XCTestCase {
-    var session = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .sandbox)
+    var session = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .sandbox, appIdentifier: "")
     let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR), isRecurring: true, countryCode: .NL)
 
     override func setUp() {
@@ -372,7 +372,7 @@ class SessionTestCase: XCTestCase {
             XCTAssertEqual(amount, 138, "Received convertedAmount not as expected")
             
         }) { (error) in
-            XCTFail("Unexpected failure while testing convertAmount: \(String(describing: error?.localizedDescription))")
+            XCTFail("Unexpected failure while testing convertAmount: \(String(describing: error.localizedDescription))")
         }
 
         waitForExpectations(timeout: 3) { error in
@@ -401,7 +401,7 @@ class SessionTestCase: XCTestCase {
 
         let expectation = self.expectation(description: "Response provided")
 
-        session.directory(forPaymentProductId: "product-id", countryCode: .NL, currencyCode: .EUR, success: { directoryEntries in
+        session.directory(forProductId: "product-id", countryCode: .NL, currencyCode: .EUR, success: { directoryEntries in
             XCTAssertEqual(directoryEntries.directoryEntries.count, 2, "Received amount of directoryEntries not as expected")
             let entries = directoryEntries.directoryEntries
 
@@ -440,7 +440,7 @@ class SessionTestCase: XCTestCase {
     
     func testIsEnvironmentTypeProduction(){
         XCTAssertEqual(session.isEnvironmentTypeProduction, false)
-        let productionSession = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .production)
+        let productionSession = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .production, appIdentifier: "")
         XCTAssertEqual(productionSession.isEnvironmentTypeProduction, true)
     }
     

@@ -15,7 +15,8 @@ class IINDetailsResponseTestCase: XCTestCase {
     var session = Session(clientSessionId: "client-session-id",
                           customerId: "customer-id",
                           region: .EU,
-                          environment: .sandbox)
+                          environment: .sandbox,
+                          appIdentifier: "")
     let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR),
                                       isRecurring: true,
                                       countryCode: .NL)

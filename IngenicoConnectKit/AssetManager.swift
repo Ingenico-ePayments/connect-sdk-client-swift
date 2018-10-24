@@ -63,7 +63,7 @@ public class AssetManager {
         fileName = fileName.replacingOccurrences(of: ".png", with: "")
         
         if let range = fileName.range(of: "_", options: .backwards) {
-            fileName = fileName.substring(to: range.lowerBound)
+            fileName = String(fileName[..<range.lowerBound])
         }
         
         return fileName

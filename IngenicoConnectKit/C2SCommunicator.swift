@@ -307,8 +307,8 @@ public class C2SCommunicator {
                                  success: @escaping (_ iinDetailsResponse: IINDetailsResponse) -> Void,
                                  failure: @escaping (_ error: Error) -> Void) {
         let URL = "\(baseURL)/\(configuration.customerId)/services/getIINdetails"
-        let max = min(partialCreditCardNumber.length, 6)
-        let trimmedPartialCreditCardNumber = partialCreditCardNumber.substring(to: partialCreditCardNumber.index(partialCreditCardNumber.startIndex, offsetBy: max))
+        let max = min(partialCreditCardNumber.count, 6)
+        let trimmedPartialCreditCardNumber = String(partialCreditCardNumber[..<partialCreditCardNumber.index(partialCreditCardNumber.startIndex, offsetBy: max)])
         
         var parameters: [String: Any] = [:]
         parameters["bin"] = trimmedPartialCreditCardNumber

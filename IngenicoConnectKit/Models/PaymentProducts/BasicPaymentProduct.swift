@@ -21,6 +21,10 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
     public var paymentMethod: String
     public var paymentProductGroup: String?
     
+    public var paymentProduct302SpecificData: PaymentProduct302SpecificData?
+    public var paymentProduct320SpecificData: PaymentProduct320SpecificData?
+    public var paymentProduct863SpecificData: PaymentProduct863SpecificData?
+
     public var stringFormatter: StringFormatter? {
         get { return accountsOnFile.accountsOnFile.first?.stringFormatter }
         set {
@@ -39,6 +43,18 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
               let displayHints = PaymentItemDisplayHints(json: hints)
         else {
             return nil
+        }
+        if let paymentProduct302SpecificDataDictionary = json["paymentProduct302SpecificData"] as? [String:Any],
+            let paymentProduct302SpecificData = PaymentProduct302SpecificData(json:paymentProduct302SpecificDataDictionary) {
+            self.paymentProduct302SpecificData = paymentProduct302SpecificData
+        }
+        if let paymentProduct320SpecificDataDictionary = json["paymentProduct320SpecificData"] as? [String:Any],
+            let paymentProduct320SpecificData = PaymentProduct320SpecificData(json:paymentProduct320SpecificDataDictionary){
+            self.paymentProduct320SpecificData = paymentProduct320SpecificData
+        }
+        if let paymentProduct863SpecificDataDictionary = json["paymentProduct863SpecificData"] as? [String:Any],
+            let paymentProduct863SpecificData = PaymentProduct863SpecificData(json:paymentProduct863SpecificDataDictionary){
+            self.paymentProduct863SpecificData = paymentProduct863SpecificData
         }
 
         self.identifier = "\(identifier)"

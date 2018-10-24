@@ -33,7 +33,7 @@ public class ValidatorLength: Validator, ResponseObjectSerializable {
         error.minLength = minLength
         error.maxLength = maxLength
         
-        if value.length < minLength || value.length > maxLength {
+        if value.count < minLength || value.count > maxLength {
             errors.append(error)
         }
     }

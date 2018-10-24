@@ -20,7 +20,7 @@ public class ValidatorBoletoBancarioRequiredness: Validator {
         super.validate(value: value, for: request)
 
         if let fiscalNumber = request.unmaskedValue(forField: "fiscalNumber"),
-           fiscalNumber.characters.count == fiscalNumberLength && value.isEmpty {
+           fiscalNumber.count == fiscalNumberLength && value.isEmpty {
             let error = ValidationErrorIsRequired()
             errors.append(error)
         }

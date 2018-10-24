@@ -28,7 +28,8 @@ class PaymentRequestTestCase: XCTestCase {
     var session = Session(clientSessionId: "client-session-id",
                           customerId: "customer-id",
                           region: .EU,
-                          environment: .sandbox)
+                          environment: .sandbox,
+                          appIdentifier: "")
     
     override func setUp() {
         super.setUp()

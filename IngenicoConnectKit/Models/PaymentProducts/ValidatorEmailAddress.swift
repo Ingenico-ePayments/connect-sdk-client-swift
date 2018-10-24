@@ -20,7 +20,7 @@ public class ValidatorEmailAddress: Validator {
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
         
-        let numberOfMatches = expression.numberOfMatches(in: value , range: NSMakeRange(0, value.length))
+        let numberOfMatches = expression.numberOfMatches(in: value , range: NSMakeRange(0, value.count))
         if numberOfMatches != 1 {
             let error = ValidationErrorEmailAddress()
             errors.append(error)

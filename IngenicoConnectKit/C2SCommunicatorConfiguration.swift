@@ -18,30 +18,30 @@ public class C2SCommunicatorConfiguration {
     let ipAddress: String?
     
     @available(*, deprecated, message: "use method init(clientSessionId:baseURL:assetBaseURL:environment:appIdentifier:ipAddress:util:) instead")
-    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, util: Util = Util.shared) {
+    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.region = region
         self.environment = environment
-        self.util = util
+        self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = nil
     }
     
     @available(*, deprecated, message: "use method init(clientSessionId:baseURL:assetBaseURL:environment:appIdentifier:ipAddress:util:) instead")
-    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, ipAddress: String?, util: Util = Util.shared) {
+    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, ipAddress: String?, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.region = region
         self.environment = environment
-        self.util = util
+        self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = ipAddress
     }
-    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, util: Util = Util.shared) {
+    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
-        self.util = util
+        self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = nil
         self.environment = Environment.production
@@ -50,10 +50,10 @@ public class C2SCommunicatorConfiguration {
         self.baseURL = baseURL
         self.assetsBaseURL = assetBaseURL
     }
-    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, ipAddress: String?, util: Util = Util.shared) {
+    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, ipAddress: String?, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
-        self.util = util
+        self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = ipAddress
         self.environment = Environment.production

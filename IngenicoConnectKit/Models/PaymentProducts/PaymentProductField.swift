@@ -82,7 +82,7 @@ public class PaymentProductField: ResponseObjectSerializable {
                     let error = ValidationErrorInteger()
                     errors.append(error)
 
-                case .numericString where numericStringCheck.numberOfMatches(in: value , range: NSMakeRange(0, value.length)) != 1:
+                case .numericString where numericStringCheck.numberOfMatches(in: value , range: NSMakeRange(0, value.count)) != 1:
                     let error = ValidationErrorNumericString()
                     errors.append(error)
                 default:

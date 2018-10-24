@@ -16,7 +16,7 @@ class C2SCommunicatorConfigurationTestCase: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    configuration = C2SCommunicatorConfiguration(clientSessionId: "", customerId: "", region: .EU, environment: .sandbox, util: util)
+    configuration = C2SCommunicatorConfiguration(clientSessionId: "", customerId: "", region: .EU, environment: .sandbox, appIdentifier: "", util: util)
   }
 
   override func tearDown() {

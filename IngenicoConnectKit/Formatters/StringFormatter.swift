@@ -52,8 +52,8 @@ public class StringFormatter {
             } else if match == "}}" {
                 skip = true
             } else {
-                let maxLength = maskedString.characters.count - index
-                let length = min(maxLength, match.characters.count)
+                let maxLength = maskedString.count - index
+                let length = min(maxLength, match.count)
                 if !skip {
                     let endIndex = index + length
                     let maskedStringFragment = maskedString[index..<endIndex]
@@ -76,7 +76,7 @@ public class StringFormatter {
         } else {
             var maskIndex = 0
             
-            while stringIndex < string.length && maskIndex < match.length {
+            while stringIndex < string.count && maskIndex < match.count {
                 let stringChar = string[stringIndex..<(stringIndex + 1)]
                 let maskChar = match[maskIndex..<(maskIndex + 1)]
                 if copyFromMask {
@@ -110,9 +110,9 @@ public class StringFormatter {
             }
             
             if appendRestOfMask {
-                if maskIndex < match.length {
+                if maskIndex < match.count {
                     if copyFromMask {
-                        let remainingLength = match.length - maskIndex
+                        let remainingLength = match.count - maskIndex
                         let endIndex = maskIndex+remainingLength
                         result = result.appending(match[maskIndex..<endIndex])
                         
@@ -131,7 +131,7 @@ public class StringFormatter {
     
     func parts(ofMask mask: String) -> [String] {
         let regex = try! NSRegularExpression(pattern: "\\{\\{|\\}\\}|([^\\{\\}]|\\{(?!\\{)|\\}(?!\\}))*")
-        let results = regex.matches(in: mask, range: NSRange(location: 0, length: mask.characters.count))
+        let results = regex.matches(in: mask, range: NSRange(location: 0, length: mask.count))
 
         return results.map { (mask as NSString).substring(with: $0.range) }
     }
@@ -150,7 +150,7 @@ public class StringFormatter {
                 replaceCharacters = false
                 maskIndex = maskIndex + 2
             } else {
-                var length = match.length
+                var length = match.count
                 while length > 0 {
                     if replaceCharacters {
                         let startIndex = relaxedMask.index(relaxedMask.startIndex, offsetBy: maskIndex)
