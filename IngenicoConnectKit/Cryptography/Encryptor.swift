@@ -225,17 +225,20 @@ public class Encryptor {
     
     public func encryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let plaintext = convertDataToByteArray(data: data)
-        let key = String(data: key, encoding: String.Encoding.utf8)!
-        let IV = String(data: IV, encoding: String.Encoding.utf8)!
         
-        if let result = encryptAES(plaintext: plaintext, key: key, IV: IV) {
+        if let result = encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes) {
             return Data(bytes: result)
         }
         return nil
     }
     
+    @available(*, deprecated, message: "Depricated in favor of encryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
     public func encryptAES(plaintext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
-        guard let aes = try? AES(key: key, iv: IV, padding: .pkcs7),
+        return self.encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes)
+    }
+    
+    private func encryptAES(plaintext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
+        guard let aes = try? AES(key: key, blockMode: CBC(iv: IV), padding: .pkcs7),
               let ciphertext = try? aes.encrypt(plaintext) else
         {
             return nil
@@ -246,17 +249,21 @@ public class Encryptor {
     
     public func decryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let ciphertext = convertDataToByteArray(data: data)
-        let key = String(data: key, encoding: String.Encoding.utf8)!
-        let IV = String(data: IV, encoding: String.Encoding.utf8)!
+        //let key = String(data: key, encoding: String.Encoding.utf8)!
+        //let IV = String(data: IV, encoding: String.Encoding.utf8)!
         
-        if let result = decryptAES(ciphertext: ciphertext, key: key, IV: IV) {
+        if let result = decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes) {
             return Data(bytes: result)
         }
         return nil
     }
     
+    @available(*, deprecated, message: "Depricated in favor of decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
     public func decryptAES(ciphertext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
-        guard let aes = try? AES(key: key, iv: IV, padding: .pkcs7),
+        return self.decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes)
+    }
+    func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
+        guard let aes = try? AES(key: key, blockMode: CBC(iv: IV), padding: .pkcs7),
               let plaintext = try? aes.decrypt(ciphertext) else
         {
             return nil
