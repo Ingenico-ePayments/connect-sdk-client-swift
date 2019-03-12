@@ -18,9 +18,11 @@ public class ValidatorExpirationDate: Validator {
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
         
-        if let submittedDate = dateFormatter.date(from: value) {
+        if let submittedDate = dateFormatter.date(from: value),
+                // Increase the value of submitted date by one month, to ensure that the current month is also allowed
+                let submittedDatePlusOneMonth = Calendar.current.date(byAdding: .month, value: 1, to: submittedDate) {
             let today = Date()
-            let result = today.compare(submittedDate)
+            let result = today.compare(submittedDatePlusOneMonth)
             if result == ComparisonResult.orderedDescending {
                 let error = ValidationErrorExpirationDate()
                 errors.append(error)
