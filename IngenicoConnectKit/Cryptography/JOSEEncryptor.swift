@@ -31,7 +31,7 @@ public class JOSEEncryptor {
         }
         let encodedProtectedHeader = protectedheader.base64URLEncode()
         
-        var key = Data(bytes: [UInt8](HMACKey))
+        var key = Data([UInt8](HMACKey))
         key.append([UInt8](AESKey), count: AESKey.count)
         let encryptedKey = encryptor.encryptRSA(data: key, publicKey: publicKey)
         let encodedKey = encryptedKey.base64URLEncode()

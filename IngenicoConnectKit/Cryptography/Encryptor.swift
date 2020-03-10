@@ -74,7 +74,7 @@ public class Encryptor {
     
     public func encryptRSA(data: Data, publicKey: SecKey) -> Data {
         let buffer = convertDataToByteArray(data: data)
-        return Data(bytes: encryptRSA(plaintext: buffer, publicKey: publicKey))
+        return Data(encryptRSA(plaintext: buffer, publicKey: publicKey))
     }
     
     public func encryptRSA(plaintext: [UInt8], publicKey: SecKey) -> [UInt8] {
@@ -94,7 +94,7 @@ public class Encryptor {
     
     public func decryptRSA(data: Data, privateKey: SecKey) -> Data {
         let buffer = convertDataToByteArray(data: data)
-        return Data(bytes: decryptRSA(ciphertext: buffer, privateKey: privateKey))
+        return Data(decryptRSA(ciphertext: buffer, privateKey: privateKey))
     }
     
     public func decryptRSA(ciphertext: [UInt8], privateKey: SecKey) -> [UInt8] {
@@ -205,7 +205,7 @@ public class Encryptor {
     public func stripPublicKey(data: Data) -> (Data?) {
         let publicKey = convertDataToByteArray(data: data)
         if let result = stripPublicKey(publicKey: publicKey) {
-            return Data(bytes: result)
+            return Data(result)
         } else {
             return nil
         }
@@ -227,7 +227,7 @@ public class Encryptor {
         let plaintext = convertDataToByteArray(data: data)
         
         if let result = encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes) {
-            return Data(bytes: result)
+            return Data(result)
         }
         return nil
     }
@@ -253,7 +253,7 @@ public class Encryptor {
         //let IV = String(data: IV, encoding: String.Encoding.utf8)!
         
         if let result = decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes) {
-            return Data(bytes: result)
+            return Data(result)
         }
         return nil
     }
@@ -276,7 +276,7 @@ public class Encryptor {
         let input = convertDataToByteArray(data: data)
         let keyBytes = convertDataToByteArray(data: key)
         if let hmac = generateHMAC(input: input, key: keyBytes) {
-            return Data(bytes: hmac)
+            return Data(hmac)
         } else {
             return nil
         }
@@ -291,7 +291,7 @@ public class Encryptor {
     }
     
     public func generateRandomBytes(length: Int) -> (Data?) {
-        return Data(bytes: AES.randomIV(length))
+        return Data(AES.randomIV(length))
     }
     
     public func generateUUID() -> (String) {

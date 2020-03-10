@@ -111,7 +111,7 @@ public class C2SCommunicator {
     
     public func filterAndroidPayFromProducts(paymentProducts: BasicPaymentProducts) -> BasicPaymentProducts {
         if let androidPayPaymentProduct = paymentProducts.paymentProduct(withIdentifier: SDKConstants.kAndroidPayIdentifier),
-            let product = paymentProducts.paymentProducts.index(of: androidPayPaymentProduct) {
+            let product = paymentProducts.paymentProducts.firstIndex(of: androidPayPaymentProduct) {
             paymentProducts.paymentProducts.remove(at: product)
         }
         
@@ -126,7 +126,7 @@ public class C2SCommunicator {
             if SDKConstants.SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: "8.0") && PKPaymentAuthorizationViewController.canMakePayments() {
                 
                 paymentProductNetworks(forProduct: SDKConstants.kApplePayIdentifier, context: context, success: {(_ paymentProductNetworks: PaymentProductNetworks) -> Void in
-                    if let product = paymentProducts.paymentProducts.index(of: applePayPaymentProduct),
+                    if let product = paymentProducts.paymentProducts.firstIndex(of: applePayPaymentProduct),
                         !PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: paymentProductNetworks.paymentProductNetworks) {
                         paymentProducts.paymentProducts.remove(at: product)
                     }
@@ -135,7 +135,7 @@ public class C2SCommunicator {
                     failure(error)
                 })
             } else {
-                if let product = paymentProducts.paymentProducts.index(of: applePayPaymentProduct) {
+                if let product = paymentProducts.paymentProducts.firstIndex(of: applePayPaymentProduct) {
                     paymentProducts.paymentProducts.remove(at: product)
                 }
                 

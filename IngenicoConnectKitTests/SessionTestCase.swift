@@ -7,11 +7,13 @@
 //
 
 import XCTest
-import Mockingjay
+import OHHTTPStubs
 
 @testable import IngenicoConnectKit
 
 class SessionTestCase: XCTestCase {
+    let host = "ams1.sandbox.api-ingenico.com"
+
     var session = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .sandbox, appIdentifier: "")
     let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR), isRecurring: true, countryCode: .NL)
 
@@ -27,8 +29,8 @@ class SessionTestCase: XCTestCase {
     }
 
     func testPaymentProductsForContext(){
-        stub(uri("/client/v1/customer-id/products"),
-             json([
+        stub(condition: isHost(host) && isPath("/client/v1/customer-id/products") && isMethodGET()) { _ in
+            let response = [
                 "paymentProducts": [
                     [
                         "allowsRecurring": true,
@@ -73,8 +75,10 @@ class SessionTestCase: XCTestCase {
                         "paymentProductGroup": "cards"
                     ]
                 ]
-                ])
-        )
+            ]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
         let expectation = self.expectation(description: "Response provided")
         session.paymentProducts(for: context, success: { paymentProducts in
             print("Success")
@@ -90,46 +94,76 @@ class SessionTestCase: XCTestCase {
         }
     }
 
-    func testPaymentProductNetworksForProductId(){
-//        stub(everything,
-//             json(
-//                [
-//                    "paymentProductGroups": [
-//                        [
-//                            "displayHints": [
-//                                "displayOrder": 20,
-//                                "label": "Cards",
-//                                "logo": "/templates/master/global/css/img/ppimages/group-card.png"
-//                            ],
-//                            "id": "cards"
-//                        ]
-//                    ]
-//                ]
-//        ))
-//        session.paymentProductGroup(withId: SDKConstants.kApplePayIdentifier, context: context, success: { (group) in
-//            XCTAssertTrue(group != nil, "Retrieving Product group by ID successful.")
-//        }) { (error) in
-//            XCTFail("Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)")
-//        }
-    }
-
     func testPaymentProductGroupsForContext(){
+        stub(condition: isHost(host) && isPath("/client/v1/customer-id/productgroups/cards") && isMethodGET()) { _ in
+            let response = [
+                "displayHints": [
+                    "displayOrder": 20,
+                    "label": "Cards",
+                    "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                ],
+                "fields": [
+                    [
+                        "dataRestrictions": [
+                            "isRequired": true,
+                            "validators": [
+                                "length": [
+                                    "maxLength": 19,
+                                    "minLength": 12
+                                ],
+                                "luhn": [
 
+                                ],"expirationDate": [
+
+                                ],
+                                  "regularExpression": [
+                                    "regularExpression": "(?:0[1-9]|1[0-2])[0-9]{2}"
+                                ]
+                            ]
+                        ],
+                        "displayHints": [
+                            "displayOrder": 10,
+                            "formElement": [
+                                "type": "currency"
+                            ],
+                            "label": "Card number:",
+                            "mask": "{{9999}} {{9999}} {{9999}} {{9999}} {{999}}",
+                            "obfuscate": false,
+                            "placeholderLabel": "**** **** **** ****",
+                            "preferredInputType": "IntegerKeyboard"
+                        ],
+                        "id": "cardNumber",
+                        "type": "numericstring"
+                    ]
+                ],
+                "id": "cards"
+            ] as [String : Any]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
+        let expectation = self.expectation(description: "Response provided")
+        session.paymentProductGroup(withId: "cards", context: context, success: { group in
+            print("Success")
+            expectation.fulfill()
+        }) { (error) in
+            XCTFail("Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)")
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                print("Timeout error: \(error.localizedDescription)")
+            }
+        }
     }
 
-    func testPaymentItemsForContext(){
-//        session.paymentItems(for: context, groupPaymentProducts: true, success: {
-//            paymentItems in
-//
-//        }, failure: { error in
-//            XCTFail("Method failed, with error: \(error.localizedDescription)")
-//        })
+    func testPaymentProductNetworksForProductId(){
+        // TODO: Test needs to be made
     }
 
     func testPaymentProductWithId(){
         // TODO: Merges two response stubs, need to find a way to make stubs specific for a url. (Does not work with get variables)
-        stub(everything,
-             json([
+        stub(condition: isHost(host)) { _ in
+            let response = [
                 "paymentProductGroups": [
                     [
                         "displayHints": [
@@ -186,8 +220,9 @@ class SessionTestCase: XCTestCase {
                 "mobileIntegrationLevel": "OPTIMISED_SUPPORT",
                 "paymentMethod": "card",
                 "paymentProductGroup": "cards"
-                ])
-        )
+            ] as [String : Any]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
 
         let expectation = self.expectation(description: "Response provided")
 
@@ -255,15 +290,16 @@ class SessionTestCase: XCTestCase {
 
     func testPaymentProductNetworks(){
         let productID = "1"
-        stub(uri("/client/v1/customer-id/products/\(productID)/networks"),
-             json([
+        stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/products/\(productID)/networks") && isMethodGET()) { _ in
+            let response = [
                 "networks" : [ "amex", "discover", "masterCard", "visa" ]
-                ])
-        )
+            ]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductNetworks(forProductId: productID, context: context, success: { (networks) in
             XCTAssertTrue(networks.paymentProductNetworks.count == 4, "Expected four networks.")
-            
+
             expectation.fulfill()
         }) { (error) in
             XCTFail("Retrieving networks failed; Exception: \(error).")
@@ -275,18 +311,16 @@ class SessionTestCase: XCTestCase {
             }
         }
     }
-    
+
     func testPaymentProductFailNetworks(){
         let productID = "1"
-        stub(uri("/client/v1/customer-id/products/\(productID)/networks"),
-             json([
-                
-                ])
-        )
+        stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/products/\(productID)/networks") && isMethodGET()) { _ in
+            return OHHTTPStubsResponse(jsonObject: [], statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductNetworks(forProductId: productID, context: context, success: { (networks) in
             XCTFail("Should have jumped to the error block.")
-            
+
             expectation.fulfill()
         }) { (error) in
             expectation.fulfill()
@@ -301,13 +335,14 @@ class SessionTestCase: XCTestCase {
     func testIinDetailsForPartialCreditCardNumber(){
         _ = PaymentAmountOfMoney(totalAmount: 0, currencyCode: .EUR)
 
-        stub(everything,
-             json([
+        stub(condition: isHost(host)) { _ in
+            let response = [
                 "countryCode": "RU",
                 "paymentProductId": 3,
                 "isAllowedInContext": true
-                ])
-        )
+                ] as [String : Any]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
 
         // Test too short partial credit card number
         var expectation = self.expectation(description: "Response provided")
@@ -359,18 +394,19 @@ class SessionTestCase: XCTestCase {
     }
 
     func testConvertAmount(){
-        stub(everything,
-             json([
+        stub(condition: isHost(host)) { _ in
+            let response = [
                 "convertedAmount": 138
-                ])
-        )
+            ]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
 
         let expectation = self.expectation(description: "Response provided")
 
         session.convert(amountInCents: 3, source: .EUR, target: .USD, success: { (amount) in
             expectation.fulfill()
             XCTAssertEqual(amount, 138, "Received convertedAmount not as expected")
-            
+
         }) { (error) in
             XCTFail("Unexpected failure while testing convertAmount: \(String(describing: error.localizedDescription))")
         }
@@ -383,8 +419,8 @@ class SessionTestCase: XCTestCase {
     }
 
     func testDirectoryForPaymentProductId(){
-        stub(everything,
-             json([
+        stub(condition: isHost(host)) { _ in
+            let response = [
                 "entries" : [ [
                     "countryNames" : [ "Nederland" ],
                     "issuerId" : "ABNANL2A",
@@ -396,8 +432,9 @@ class SessionTestCase: XCTestCase {
                         "issuerList" : "long",
                         "issuerName" : "ASN Bank"
                     ] ]
-                ])
-        )
+                ]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
 
         let expectation = self.expectation(description: "Response provided")
 
@@ -433,20 +470,20 @@ class SessionTestCase: XCTestCase {
             }
         }
     }
-    
+
     func testClientSessionId(){
         XCTAssertEqual(session.clientSessionId, "client-session-id")
     }
-    
+
     func testIsEnvironmentTypeProduction(){
         XCTAssertEqual(session.isEnvironmentTypeProduction, false)
         let productionSession = Session(clientSessionId: "client-session-id", customerId: "customer-id", region: .EU, environment: .production, appIdentifier: "")
         XCTAssertEqual(productionSession.isEnvironmentTypeProduction, true)
     }
-    
+
     func testPaymentProductGroups() {
-        stub(uri("/client/v1/customer-id/productgroups"),
-             json([
+        stub(condition: isHost(host) && isPath("/client/v1/customer-id/productgroups") && isMethodGET()) { _ in
+            let response = [
                 "paymentProductGroups": [
                     [
                         "displayHints": [
@@ -457,8 +494,10 @@ class SessionTestCase: XCTestCase {
                         "id": "cards"
                     ]
                 ]
-                ])
-        )
+            ]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductGroups(for: context, success: { (groups) in
             XCTAssertTrue(groups.paymentProductGroups.count == 1, "Expected one group.")
@@ -473,11 +512,10 @@ class SessionTestCase: XCTestCase {
             }
         }
     }
-    
+
     func testPaymentProductGroup() {
-        stub(uri("/client/v1/customer-id/productgroups/1"),
-             json(
-                 [
+        stub(condition: isHost(host) && isPath("/client/v1/customer-id/productgroups/1") && isMethodGET()) { _ in
+            let response = [
                     "displayHints": [
                         "displayOrder": 20,
                         "label": "Cards",
@@ -492,7 +530,7 @@ class SessionTestCase: XCTestCase {
                                     "minLength": 12
                                 ],
                                 "luhn": [
-                                    
+
                                 ]
                             ]
                         ],
@@ -514,7 +552,7 @@ class SessionTestCase: XCTestCase {
                                 "isRequired": true,
                                 "validators": [
                                     "expirationDate": [
-                                        
+
                                     ],
                                     "length": [
                                         "maxLength": 4,
@@ -570,9 +608,10 @@ class SessionTestCase: XCTestCase {
                             "type": "numericstring"
                         ]],
                     "id": "cards"
-                ]
-                )
-        )
+                ] as [String : Any]
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductGroup(withId: "1", context: context, success: { (group) in
             expectation.fulfill()

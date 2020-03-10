@@ -15,7 +15,6 @@
 		1C99FF541E9D15F900461C06 /* ValueMappingItemTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C99FF531E9D15F900461C06 /* ValueMappingItemTestCase.swift */; };
 		1CE7AB061E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7AB051E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift */; };
 		1CEBAC181E92725E0091A69C /* PaymentProductGroupTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEBAC161E9272580091A69C /* PaymentProductGroupTestCase.swift */; };
-		5334461350E5084418D90611 /* Pods_IngenicoConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */; };
 		6D0126CB1E0422C400FCFEC7 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */; };
 		6D2256361DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */; };
 		6D2256381DF95DE9009DB416 /* AccountsOnFileTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */; };
@@ -92,10 +91,7 @@
 		73AABAD01F1F806B00B76782 /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACE1F1F806B00B76782 /* CustomerDetails.swift */; };
 		73AABAD11F1F806B00B76782 /* DisplayElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACF1F1F806B00B76782 /* DisplayElement.swift */; };
 		73AABAD31F1F80A000B76782 /* DisplayElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABAD21F1F80A000B76782 /* DisplayElementType.swift */; };
-		73BDC57F1E27949300D4BDFA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BDC57E1E27949300D4BDFA /* Alamofire.framework */; };
-		73BDC5811E27949900D4BDFA /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73BDC5801E27949900D4BDFA /* CryptoSwift.framework */; };
 		73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */; };
-		A2D2D15F6F25511CFA6D9DCE /* Pods_IngenicoConnectKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */; };
 		B40575E21E02BF7D0099DDBB /* StubBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40575E11E02BF7D0099DDBB /* StubBundle.swift */; };
 		B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */; };
 		B40F4B421E02CA80002A3AC8 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */; };
@@ -135,6 +131,9 @@
 		B4D349EF1EAA1FC000487866 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349EE1EAA1FC000487866 /* CountryCode.swift */; };
 		B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */; };
 		B4D77C6B1DE72EB900F7B1C1 /* IngenicoConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */; };
+		B91971F3232F7DF50059BDE6 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91971F1232F7DF50059BDE6 /* Alamofire.framework */; };
+		B91971F4232F7DF50059BDE6 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91971F2232F7DF50059BDE6 /* CryptoSwift.framework */; };
+		B99BCC6D23C6177900B79D30 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99BCC6B23C6176700B79D30 /* OHHTTPStubs.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,8 +147,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IngenicoConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C0513331E799F2D00D11633 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionError.swift; path = Enumerations/SessionError.swift; sourceTree = "<group>"; };
 		1C1E0BF21E93C2BA00F9DC5E /* PaymentItemsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItemsTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentItemsTestCase.swift; sourceTree = "<group>"; };
 		1C1E0BF51E93E57000F9DC5E /* IINDetailsResponseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IINDetailsResponseTestCase.swift; path = IngenicoConnectKitTests/Models/IINDetailsResponseTestCase.swift; sourceTree = "<group>"; };
@@ -158,8 +155,6 @@
 		1C99FF531E9D15F900461C06 /* ValueMappingItemTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueMappingItemTestCase.swift; path = IngenicoConnectKitTests/Models/ValueMappingItemTestCase.swift; sourceTree = "<group>"; };
 		1CE7AB051E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreparedPaymentRequestTestCase.swift; path = IngenicoConnectKitTests/Models/PreparedPaymentRequestTestCase.swift; sourceTree = "<group>"; };
 		1CEBAC161E9272580091A69C /* PaymentProductGroupTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductGroupTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductGroupTestCase.swift; sourceTree = "<group>"; };
-		2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IngenicoConnectKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseObjectSerializable.swift; path = Protocols/ResponseObjectSerializable.swift; sourceTree = "<group>"; };
 		6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileAttributesTestCase.swift; path = IngenicoConnectKitTests/Models/AccountOnFileAttributesTestCase.swift; sourceTree = "<group>"; };
 		6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountsOnFileTestCase.swift; path = IngenicoConnectKitTests/Models/AccountsOnFileTestCase.swift; sourceTree = "<group>"; };
@@ -236,8 +231,6 @@
 		73AABACE1F1F806B00B76782 /* CustomerDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetails.swift; path = Models/PaymentProducts/CustomerDetails.swift; sourceTree = "<group>"; };
 		73AABACF1F1F806B00B76782 /* DisplayElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElement.swift; path = Models/PaymentProducts/DisplayElement.swift; sourceTree = "<group>"; };
 		73AABAD21F1F80A000B76782 /* DisplayElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElementType.swift; path = Enumerations/DisplayElementType.swift; sourceTree = "<group>"; };
-		73BDC57E1E27949300D4BDFA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/IngenicoConnectKit-fwbjldyecbvfkeeboiuoktrqnwmw/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
-		73BDC5801E27949900D4BDFA /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/IngenicoConnectKit-fwbjldyecbvfkeeboiuoktrqnwmw/Build/Products/Debug-iphonesimulator/CryptoSwift/CryptoSwift.framework"; sourceTree = "<group>"; };
 		73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsError.swift; path = Models/PaymentProducts/CustomerDetailsError.swift; sourceTree = "<group>"; };
 		B40575E11E02BF7D0099DDBB /* StubBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubBundle.swift; path = IngenicoConnectKitTests/Stubs/StubBundle.swift; sourceTree = "<group>"; };
 		B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
@@ -282,8 +275,9 @@
 		B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IngenicoConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D77C651DE72EB900F7B1C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IngenicoConnectKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKit/Pods-IngenicoConnectKit.debug.xcconfig"; sourceTree = "<group>"; };
-		EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IngenicoConnectKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-IngenicoConnectKit/Pods-IngenicoConnectKit.release.xcconfig"; sourceTree = "<group>"; };
+		B91971F1232F7DF50059BDE6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		B91971F2232F7DF50059BDE6 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		B99BCC6B23C6176700B79D30 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,9 +285,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73BDC5811E27949900D4BDFA /* CryptoSwift.framework in Frameworks */,
-				73BDC57F1E27949300D4BDFA /* Alamofire.framework in Frameworks */,
-				5334461350E5084418D90611 /* Pods_IngenicoConnectKit.framework in Frameworks */,
+				B91971F3232F7DF50059BDE6 /* Alamofire.framework in Frameworks */,
+				B91971F4232F7DF50059BDE6 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4D77C6B1DE72EB900F7B1C1 /* IngenicoConnectKit.framework in Frameworks */,
-				A2D2D15F6F25511CFA6D9DCE /* Pods_IngenicoConnectKitTests.framework in Frameworks */,
+				B99BCC6D23C6177900B79D30 /* OHHTTPStubs.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,17 +396,6 @@
 			name = Essentials;
 			sourceTree = "<group>";
 		};
-		2CFCD8E6B1C49F254FC830C6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */,
-				EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */,
-				4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */,
-				11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6D4443A21E30B1310007070E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,11 +417,10 @@
 		841814CF4293B6C8D8E19417 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				73BDC5801E27949900D4BDFA /* CryptoSwift.framework */,
-				73BDC57E1E27949300D4BDFA /* Alamofire.framework */,
+				B99BCC6B23C6176700B79D30 /* OHHTTPStubs.framework */,
+				B91971F1232F7DF50059BDE6 /* Alamofire.framework */,
+				B91971F2232F7DF50059BDE6 /* CryptoSwift.framework */,
 				B43C1F531DEC35B200E210DF /* XCTest.framework */,
-				08AC5DABA35599F067C3ABF2 /* Pods_IngenicoConnectKit.framework */,
-				2B8DF2526D5471AB980F00FE /* Pods_IngenicoConnectKitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -519,7 +500,6 @@
 				B4D77C6E1DE72EB900F7B1C1 /* IngenicoConnectKitTests */,
 				B4D77C621DE72EB900F7B1C1 /* Products */,
 				841814CF4293B6C8D8E19417 /* Frameworks */,
-				2CFCD8E6B1C49F254FC830C6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -748,11 +728,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4D77C751DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKit" */;
 			buildPhases = (
-				B53E6E836E45965843E94046 /* [CP] Check Pods Manifest.lock */,
 				B4D77C5C1DE72EB900F7B1C1 /* Sources */,
 				B4D77C5D1DE72EB900F7B1C1 /* Frameworks */,
 				B4D77C5E1DE72EB900F7B1C1 /* Headers */,
 				B4D77C5F1DE72EB900F7B1C1 /* Resources */,
+				B91971F5232F7DFE0059BDE6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -767,11 +747,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4D77C781DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKitTests" */;
 			buildPhases = (
-				6F22F4984CD783007E3EB982 /* [CP] Check Pods Manifest.lock */,
 				B4D77C661DE72EB900F7B1C1 /* Sources */,
 				B4D77C671DE72EB900F7B1C1 /* Frameworks */,
 				B4D77C681DE72EB900F7B1C1 /* Resources */,
-				67613A759294B5B501FFEBA6 /* [CP] Embed Pods Frameworks */,
+				B99BCC6E23C61CDB00B79D30 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -795,13 +774,13 @@
 				TargetAttributes = {
 					B4D77C601DE72EB900F7B1C1 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 4YQLWNXNNS;
+						DevelopmentTeam = S453L3NXGS;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 					B4D77C691DE72EB900F7B1C1 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 4YQLWNXNNS;
+						DevelopmentTeam = UTWYEN5FS2;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
@@ -809,10 +788,12 @@
 			};
 			buildConfigurationList = B4D77C5B1DE72EB900F7B1C1 /* Build configuration list for PBXProject "IngenicoConnectKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
+				Base,
 			);
 			mainGroup = B4D77C571DE72EB900F7B1C1;
 			productRefGroup = B4D77C621DE72EB900F7B1C1 /* Products */;
@@ -849,61 +830,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67613A759294B5B501FFEBA6 /* [CP] Embed Pods Frameworks */ = {
+		B91971F5232F7DFE0059BDE6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
-				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+			);
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IngenicoConnectKitTests/Pods-IngenicoConnectKitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
 		};
-		6F22F4984CD783007E3EB982 /* [CP] Check Pods Manifest.lock */ = {
+		B99BCC6E23C61CDB00B79D30 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+			inputFileListPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
+			);
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IngenicoConnectKitTests-checkManifestLockResult.txt",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B53E6E836E45965843E94046 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-IngenicoConnectKit-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1104,13 +1069,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1168,11 +1134,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1182,17 +1149,20 @@
 		};
 		B4D77C761DE72EB900F7B1C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C326D757810FBD8BDE7895E5 /* Pods-IngenicoConnectKit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DEVELOPMENT_TEAM = S453L3NXGS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1206,22 +1176,25 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		B4D77C771DE72EB900F7B1C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDABF543E42C3C1BBFD2598F /* Pods-IngenicoConnectKit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DEVELOPMENT_TEAM = S453L3NXGS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1233,40 +1206,46 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		B4D77C791DE72EB900F7B1C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D05E5D2DCA3407C2E0FBE7B /* Pods-IngenicoConnectKitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DEVELOPMENT_TEAM = UTWYEN5FS2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		B4D77C7A1DE72EB900F7B1C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 11C51F9C702D439B19AC834E /* Pods-IngenicoConnectKitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4YQLWNXNNS;
+				DEVELOPMENT_TEAM = UTWYEN5FS2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

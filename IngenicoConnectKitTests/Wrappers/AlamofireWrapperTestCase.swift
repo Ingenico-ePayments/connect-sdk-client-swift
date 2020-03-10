@@ -8,7 +8,8 @@
 
 import UIKit
 import XCTest
-import Mockingjay
+import OHHTTPStubs
+
 @testable import IngenicoConnectKit
 
 class AlamofireWrapperTestCase: XCTestCase {
@@ -16,42 +17,46 @@ class AlamofireWrapperTestCase: XCTestCase {
   let environment = Environment.sandbox
   var baseURL : String? = nil
 
+  let host = "ams1.sandbox.api-ingenico.com"
+  let merchantId = 1234
+
   override func setUp() {
     super.setUp()
 
     baseURL = Util.shared.C2SBaseURL(by: region, environment: environment)
 
     // Stub GET request
-    stub(http(.get, uri: "\(baseURL!)/{customerId}/crypto/publickey"),
-      json([
+    stub(condition: isHost("\(host)") && isPath("/client/v1/\(merchantId)/crypto/publickey") && isMethodGET()) { _ in
+      let response = [
         "errors": [[
           "code": 9002,
           "message": "MISSING_OR_INVALID_AUTHORIZATION"
         ]]
-      ])
-    )
+      ]
+      return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+    }
 
     // Stub POST request
-    stub(http(.post, uri: "\(baseURL!)/{merchantId}/sessions"),
-      json([
+    stub(condition: isHost("\(host)") && isPath("/client/v1/\(merchantId)/sessions") && isMethodPOST()) { _ in
+      let response = [
         "errors": [[
           "code": 9002,
           "message": "MISSING_OR_INVALID_AUTHORIZATION"
           ]]
-        ])
-    )
+        ]
+      return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+    }
 
-    stub(http(.get, uri: "\(baseURL!)/noerror"),
-         json([], status: 401)
-    )
+    stub(condition: isHost("\(host)") && isPath("/client/v1/noerror") && isMethodGET()) { _ in
+      return OHHTTPStubsResponse(jsonObject: [], statusCode: 401, headers: ["Content-Type":"application/json"])
+    }
 
-    stub(http(.get, uri: "\(baseURL!)/error"),
-         http(500)
-    )
+    stub(condition: isHost("\(host)") && isPath("/client/v1/error") && isMethodGET()) { _ in
+      return OHHTTPStubsResponse(jsonObject: [], statusCode: 500, headers: ["Content-Type":"application/json"])
+    }
   }
 
   func testPost() {
-    let merchantId = "1234"
     let sessionsURL = "\(baseURL!)/\(merchantId)/sessions"
     let expectation = self.expectation(description: "Response provided")
 
@@ -69,8 +74,7 @@ class AlamofireWrapperTestCase: XCTestCase {
   }
 
   func testGet() {
-    let customerId = "1234"
-    let publicKeyURL = "\(baseURL!)/\(customerId)/crypto/publickey"
+    let publicKeyURL = "\(baseURL!)/\(merchantId)/crypto/publickey"
     let expectation = self.expectation(description: "Response provided")
 
     AlamofireWrapper.shared.getResponse(forURL: publicKeyURL, headers: nil, additionalAcceptableStatusCodes: nil, success: { responseObject in
@@ -110,7 +114,7 @@ class AlamofireWrapperTestCase: XCTestCase {
     let expectation = self.expectation(description: "Response provided")
 
     AlamofireWrapper.shared.getResponse(forURL: publicKeyURL, headers: nil, additionalAcceptableStatusCodes: nil, success: { responseObject in
-      XCTFail("Failure should havn been called")
+      XCTFail("Failure should have been called")
     }, failure: { error in
       expectation.fulfill()
     })

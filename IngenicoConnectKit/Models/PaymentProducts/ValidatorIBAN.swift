@@ -11,7 +11,7 @@ import Foundation
 public class ValidatorIBAN: Validator {
     private func charToIndex(mychar: Character) -> Int? {
         let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        if let index = alphabet.index(of: mychar) {
+        if let index = alphabet.firstIndex(of: mychar) {
             let numericValue = alphabet.distance(from:alphabet.startIndex, to: index) + 10
             return numericValue
         }

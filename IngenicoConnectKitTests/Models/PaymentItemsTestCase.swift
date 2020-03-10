@@ -7,11 +7,14 @@
 //
 
 import XCTest
-import Mockingjay
+import OHHTTPStubs
+
 @testable import IngenicoConnectKit
 
 class PaymentItemsTestCase: XCTestCase {
-    
+
+    let host = "ams1.sandbox.api-ingenico.com"
+
     var session = Session(clientSessionId: "client-session-id",
                           customerId: "customer-id",
                           region: .EU,
@@ -20,23 +23,22 @@ class PaymentItemsTestCase: XCTestCase {
     let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR),
                                  isRecurring: true,
                                  countryCode: .NL)
-    
+
     override func setUp() {
         super.setUp()
         session.assetManager.fileManager = StubFileManager()
         session.assetManager.sdkBundle = StubBundle()
-        
+
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+
     func testPaymentItems() {
-        stub(http(.get, uri:"/client/v1/customer-id/products"),
-             json(
-                [
+        stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/products") && isMethodGET()) { _ in
+        let response = [
                     "paymentProducts": [
                         [
                             "allowsRecurring": true,
@@ -110,10 +112,11 @@ class PaymentItemsTestCase: XCTestCase {
                         ]
                     ]
                 ]
-        ))
-        stub(http(.get, uri:"/client/v1/customer-id/productgroups"),
-             json(
-                [
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
+        stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/productgroups") && isMethodGET()) { _ in
+            let response = [
                     "paymentProductGroups": [
                         [
                             "displayHints": [
@@ -135,37 +138,38 @@ class PaymentItemsTestCase: XCTestCase {
                         ]
                     ]
                 ]
-        ))
-        
+            return OHHTTPStubsResponse(jsonObject: response, statusCode: 200, headers: ["Content-Type":"application/json"])
+        }
+
         let expectation = self.expectation(description: "Response provided")
         session.paymentItems(for: context, groupPaymentProducts: true, success: { (items) in
-            
+
             items.sort()
-            
+
             XCTAssertTrue(items.hasAccountsOnFile, "Accounts on file are missing.")
-            
+
             self.paymentItems(paymentItems: items)
             self.allPaymentItems(basicItems: items.allPaymentItems)
-            
+
             XCTAssertTrue(items.paymentItem(withIdentifier: "3") != nil, "Payment item was not found.")
             XCTAssertTrue(items.paymentItem(withIdentifier: "999") == nil, "Payment item should not have been found.")
-            
+
             XCTAssertTrue(items.logoPath(forItem: "3") != nil, "Logo path not found.")
             XCTAssertTrue(items.logoPath(forItem: "0000") == nil, "Logo path should been nil: \(String(describing: items.logoPath(forItem: "0000"))).")
-            
+
             let sortedItems = items.paymentItems.sorted {
                 guard let displayOrder0 = $0.displayHints.displayOrder, let displayOrder1 = $1.displayHints.displayOrder else {
                     return false
                 }
                 return displayOrder0 < displayOrder1
             }
-            
+
             items.sort()
             for index in 0..<sortedItems.count
                 where sortedItems[index].identifier != items.paymentItems[index].identifier {
                 XCTFail("Sorted order is not the same: \(items.paymentItems[index].identifier) should have been: \(sortedItems[index].identifier)")
             }
-            
+
             expectation.fulfill()
         }) { (error) in
             XCTFail("Unexpected failure while loading Payment groups: \(error.localizedDescription)")
@@ -176,15 +180,15 @@ class PaymentItemsTestCase: XCTestCase {
                 print("Timeout error: \(error.localizedDescription)")
             }
         }
-        
+
         XCTAssertTrue(AccountOnFile(json: ["":""]) == nil, "Init of the account on file should have failed.")
         XCTAssertTrue(AccountOnFile(json: ["id":"string id"]) == nil, "Init of the account on file should have failed.")
-        
+
         XCTAssertTrue(AccountOnFile(json: ["id":1, "paymentProductId":""]) == nil, "Init of the account on file should have failed. Based on the payment product ID.")
         XCTAssertTrue(AccountOnFile(json: ["id":1, "paymentProductId":"string id"]) == nil, "Init of the account on file should have failed. Based on the payment product ID.")
-        
+
     }
-    
+
     func paymentItems(paymentItems:PaymentItems) {
         guard let items = paymentItems.paymentItems as? [BasicPaymentProductGroup] else {
             XCTFail("Basic items was not of type BasicPaymentProductGroup.")
@@ -195,16 +199,16 @@ class PaymentItemsTestCase: XCTestCase {
             XCTAssertTrue(item.displayHints.displayOrder != nil, "Display order was nil (\(String(describing: item.displayHints.displayOrder))).")
             XCTAssertTrue(item.displayHints.logoPath == "/templates/master/global/css/img/ppimages/group-card.png", "Logo path was incorrect.")
             XCTAssertTrue(item.displayHints.logoImage != nil, "Logo image was nil.")
-            
+
             let file = AccountOnFile(json: ["id": 222, "paymentProductId": 1])!
             file.identifier = "222"
             item.accountsOnFile.accountsOnFile.append(file)
             XCTAssertTrue(item.accountOnFile(withIdentifier: "1") != nil, "Account on file was not found.")
             XCTAssertTrue(item.accountOnFile(withIdentifier: "1")!.paymentProductIdentifier == "3", "Payment product identifier incorrect.")
-            
+
             XCTAssertTrue(item.accountOnFile(withIdentifier: "222") != nil, "Account on file was not found.")
             XCTAssertTrue(item.accountOnFile(withIdentifier: "9999") == nil, "Account on file should not have been found, identifier: \(String(describing: item.accountOnFile(withIdentifier: "9999")?.identifier)).")
-            
+
             let formatter = StringFormatter()
             formatter.decimalRegex = try! NSRegularExpression(pattern: "[4-5]")
             item.stringFormatter = formatter
@@ -213,11 +217,11 @@ class PaymentItemsTestCase: XCTestCase {
                 XCTAssertTrue(file.stringFormatter.decimalRegex.pattern != "[0-0]", "Decumal regex should have not been: \(file.stringFormatter.decimalRegex.pattern)")
             }
         }
-        
-        
+
+
         XCTAssertTrue(paymentItems.accountsOnFile.first != nil, "Accounts on file should have been added in the for-loop above.")
     }
-    
+
     func allPaymentItems(basicItems:[BasicPaymentItem]) {
         var index = 1
         for item in basicItems {
@@ -226,9 +230,9 @@ class PaymentItemsTestCase: XCTestCase {
                     XCTAssertTrue(labelTemp.attributeKey == "17", "Attribute key incorrect.")
                     XCTAssertTrue(labelTemp.mask == "12345", "Mask incorrect.")
                     XCTAssertTrue(!file.label.isEmpty, "Label should not have been empty.")
-                    
+
                     XCTAssertTrue(file.attributes.attributes.count > 0, "No attributes found.")
-                    
+
                 } else {
                     XCTAssertTrue(file.label.isEmpty, "Label should have been empty.")
                 }
@@ -244,9 +248,9 @@ class PaymentItemsTestCase: XCTestCase {
             index += 1
         }
     }
-    
-    
-    
+
+
+
 }
 
 

@@ -36,11 +36,6 @@ class ValidatorEmailAddressTestCase: XCTestCase {
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
     
-    func testValidateCorrect2() {
-        validator.validate(value: "\"Abc\\@def\"@example.com", for: request)
-        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
-    }
-    
     func testValidateCorrect3() {
         validator.validate(value: "\"Fred Bloggs\"@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
@@ -48,11 +43,6 @@ class ValidatorEmailAddressTestCase: XCTestCase {
     
     func testValidateCorrect4() {
         validator.validate(value: "\"Joe\\Blow\"@example.com", for: request)
-        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
-    }
-    
-    func testValidateCorrect5() {
-        validator.validate(value: "\"Abc@def\"@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
     
@@ -75,7 +65,27 @@ class ValidatorEmailAddressTestCase: XCTestCase {
         validator.validate(value: "_somename@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
+    func testValidateCorrect10() {
+        validator.validate(value: "\"b(c)d,e:f;g<h>i[j\\k]l@example.com", for: request)
+        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
+    }
+
+    func testValidateCorrect11() {
+        validator.validate(value: "just\"not\"right@example.com", for: request)
+        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
+    }
+
+    func testValidateCorrect12() {
+        validator.validate(value: "this is\"not\"allowed@example.com", for: request)
+        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
+    }
+
+    func testValidateCorrect13() {
+        validator.validate(value: "this\\ still\"not\\allowed@example.com", for: request)
+        XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
+    }
+
     func testValidateIncorrect1() {
         validator.validate(value: "Abc.example.com", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
@@ -85,25 +95,9 @@ class ValidatorEmailAddressTestCase: XCTestCase {
         validator.validate(value: "A@b@c@example.com", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
     }
-    
-    func testValidateIncorrect3() {
-        validator.validate(value: "\"b(c)d,e:f;g<h>i[j\\k]l@example.com", for: request)
-        XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
-    }
-    
-    func testValidateIncorrect4() {
-        validator.validate(value: "just\"not\"right@example.com", for: request)
-        XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
-    }
-    
-    func testValidateIncorrect5() {
-        validator.validate(value: "this is\"not\"allowed@example.com", for: request)
-        XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
-    }
-    
-    func testValidateIncorrect6() {
-        validator.validate(value: "this\\ still\"not\\allowed@example.com", for: request)
-        XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
-    }
 
+    func testValidateIncorrect7() {
+        validator.validate(value: "\"Abc@def\"@example.com", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
+    }
 }
