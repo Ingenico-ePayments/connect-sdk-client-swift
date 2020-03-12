@@ -31,7 +31,7 @@ $ pod install
 You can add the Swift SDK with Carthage, by adding the following to your `Cartfile`:
 
 ```
-$ github 'Ingenico-ePayments/connect-sdk-client-swift'
+$ github "Ingenico-ePayments/connect-sdk-client-swift"
 ```
 
 Afterwards, run the following command:
