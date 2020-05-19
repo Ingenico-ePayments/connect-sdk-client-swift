@@ -538,4 +538,30 @@ class C2SCommunicatorTestCase: XCTestCase {
             }
         }
     }
+
+    func testIINPartialCreditCardNumberLogic() {
+        // Test that a partial CC of length 6 returns 6 IIN digits
+        let result1 = communicator.getIINDigitsFrom(partialCreditCardNumber: "123456")
+        XCTAssertEqual(result1, "123456", "Expected: '123456', actual: \(result1)")
+
+        // Test that a partial CC of length 7 returns 6 IIN digits
+        let result2 = communicator.getIINDigitsFrom(partialCreditCardNumber: "1234567")
+        XCTAssertEqual(result2, "123456", "Expected: '123456', actual: \(result2)")
+
+        // Test that a partial CC of length 8 returns 8 IIN digits
+        let result3 = communicator.getIINDigitsFrom(partialCreditCardNumber: "12345678")
+        XCTAssertEqual(result3, "12345678", "Expected: '12345678', actual: \(result3)")
+
+        // Test that a partial CC of length less than 6 returns the provided digits
+        let result4 = communicator.getIINDigitsFrom(partialCreditCardNumber: "123")
+        XCTAssertEqual(result4, "123", "Expected: '123', actual: \(result4)")
+
+        // Test that an empty string does not crash
+        let result5 = communicator.getIINDigitsFrom(partialCreditCardNumber: "")
+        XCTAssertEqual(result5, "", "Expected: '', actual: \(result5)")
+
+        // Test that a partial CC longer than 8 returns 8 IIN digits
+        let result6 = communicator.getIINDigitsFrom(partialCreditCardNumber: "12345678112")
+        XCTAssertEqual(result6, "12345678", "Expected: '123456', actual: \(result6)")
+    }
 }
