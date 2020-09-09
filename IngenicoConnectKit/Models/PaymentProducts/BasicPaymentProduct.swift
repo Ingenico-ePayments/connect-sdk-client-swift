@@ -17,6 +17,7 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
     public var allowsTokenization = false
     public var allowsRecurring = false
     public var autoTokenized = false
+    public var allowsInstallments = false
     
     public var paymentMethod: String
     public var paymentProductGroup: String?
@@ -61,7 +62,11 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
         self.paymentMethod = paymentMethod
         self.displayHints = displayHints
 
+        allowsTokenization = json["allowsTokenization"] as? Bool ?? false
         allowsRecurring = json["allowsRecurring"] as? Bool ?? false
+        autoTokenized = json["autoTokenized"] as? Bool ?? false
+        allowsInstallments = json["allowsInstallments"] as? Bool ?? false
+
         paymentProductGroup = json["paymentProductGroup"] as? String
 
         if let input = json["accountsOnFile"] as? [[String: Any]] {
@@ -71,8 +76,7 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
                 }
             }
         }
-        
-        allowsTokenization = json["allowsTokenization"] as? Bool ?? false
+
     }
     
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
