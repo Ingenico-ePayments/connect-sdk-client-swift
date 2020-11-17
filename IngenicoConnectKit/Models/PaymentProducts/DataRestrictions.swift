@@ -45,6 +45,10 @@ public class DataRestrictions: ResponseObjectSerializable {
                 let validator = ValidatorEmailAddress()
                 validators.validators.append(validator)
             }
+            if let _ = input.index(forKey: "residentIdNumber") {
+                let validator = ValidatorResidentIdNumber()
+                validators.validators.append(validator)
+            }
             if let regularExpression = input["regularExpression"] as? [String : Any],
                 let validator = ValidatorRegularExpression(json: regularExpression) {
                 validators.validators.append(validator)

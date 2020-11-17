@@ -21,13 +21,16 @@ public class ValidationErrorNumericString: ValidationError {}
 public class ValidationErrorRegularExpression: ValidationError {}
 public class ValidationErrorTermsAndConditions: ValidationError {}
 public class ValidationErrorIBAN: ValidationError {}
+public class ValidationErrorResidentId: ValidationError {}
 
 public class ValidationErrorLength: ValidationError {
+
     public var minLength = 0
     public var maxLength = 0
 }
 
 public class ValidationErrorRange: ValidationError {
+
     public var minValue = 0
     public var maxValue = 0
 }

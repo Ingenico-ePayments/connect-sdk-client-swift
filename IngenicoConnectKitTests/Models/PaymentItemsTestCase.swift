@@ -52,7 +52,8 @@ class PaymentItemsTestCase: XCTestCase {
                             "maxAmount": 1000000,
                             "mobileIntegrationLevel": "OPTIMISED_SUPPORT",
                             "paymentMethod": "card",
-                            "paymentProductGroup": "cards"
+                            "paymentProductGroup": "cards",
+                            "acquirerCountry": "NL"
                         ],
                         [
                             "allowsRecurring": true,
@@ -125,6 +126,7 @@ class PaymentItemsTestCase: XCTestCase {
                                 "logo": "/templates/master/global/css/img/ppimages/group-card.png"
                             ],
                             "id": "cards",
+                            "acquirerCountry": "NL",
                             "accountsOnFile": [
                                 [
                                     "id":1,

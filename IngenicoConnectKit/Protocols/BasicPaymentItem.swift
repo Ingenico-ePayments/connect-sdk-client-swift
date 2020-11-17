@@ -12,4 +12,5 @@ public protocol BasicPaymentItem {
     var identifier: String { get set }
     var displayHints: PaymentItemDisplayHints { get set }
     var accountsOnFile: AccountsOnFile { get set }
+    var acquirerCountry: String? { get set }
 }

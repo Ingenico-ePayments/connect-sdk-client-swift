@@ -13,6 +13,7 @@ public class BasicPaymentProductGroup: ResponseObjectSerializable, BasicPaymentI
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
     public var accountsOnFile = AccountsOnFile()
+    public var acquirerCountry: String?
 
     public var stringFormatter: StringFormatter? {
         get { return accountsOnFile.accountsOnFile.first?.stringFormatter }
@@ -34,6 +35,7 @@ public class BasicPaymentProductGroup: ResponseObjectSerializable, BasicPaymentI
         }
         self.identifier = identifier
         self.displayHints = displayHints
+                self.acquirerCountry = json["acquirerCountry"] as? String ?? ""
 
         if let input = json["accountsOnFile"] as? [[String: Any]] {
             for accountInput in input {

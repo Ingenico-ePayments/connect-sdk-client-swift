@@ -92,6 +92,8 @@
 		73AABAD11F1F806B00B76782 /* DisplayElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACF1F1F806B00B76782 /* DisplayElement.swift */; };
 		73AABAD31F1F80A000B76782 /* DisplayElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABAD21F1F80A000B76782 /* DisplayElementType.swift */; };
 		73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */; };
+		74D565B12519D27000546820 /* ValidatorResidentIdNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */; };
+		74D565B52519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */; };
 		B40575E21E02BF7D0099DDBB /* StubBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40575E11E02BF7D0099DDBB /* StubBundle.swift */; };
 		B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */; };
 		B40F4B421E02CA80002A3AC8 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */; };
@@ -232,6 +234,8 @@
 		73AABACF1F1F806B00B76782 /* DisplayElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElement.swift; path = Models/PaymentProducts/DisplayElement.swift; sourceTree = "<group>"; };
 		73AABAD21F1F80A000B76782 /* DisplayElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElementType.swift; path = Enumerations/DisplayElementType.swift; sourceTree = "<group>"; };
 		73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsError.swift; path = Models/PaymentProducts/CustomerDetailsError.swift; sourceTree = "<group>"; };
+		74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorResidentIdNumber.swift; sourceTree = "<group>"; };
+		74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorResidentIdNumberTestCase.swift; sourceTree = "<group>"; };
 		B40575E11E02BF7D0099DDBB /* StubBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubBundle.swift; path = IngenicoConnectKitTests/Stubs/StubBundle.swift; sourceTree = "<group>"; };
 		B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubFileManager.swift; path = IngenicoConnectKitTests/Stubs/StubFileManager.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 				6D8BD9041DFE965A0013B869 /* ValidatorRangeTestCase.swift */,
 				6D8BD9061DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift */,
 				6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */,
+				74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */,
 			);
 			name = Validator;
 			sourceTree = "<group>";
@@ -379,6 +384,7 @@
 				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
 				732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */,
 				7307A966202C65E9002124B8 /* ValidatorIBAN.swift */,
+				74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -887,6 +893,7 @@
 				6D78225A1DF0616100B5A9AB /* ValidatorLength.swift in Sources */,
 				6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */,
 				6D7822581DF05B5A00B5A9AB /* ValidatorLuhn.swift in Sources */,
+				74D565B12519D27000546820 /* ValidatorResidentIdNumber.swift in Sources */,
 				6D4E7AAD1DF56BBF00BAE336 /* PaymentItems.swift in Sources */,
 				B43C1F611DEC597700E210DF /* FormElementType.swift in Sources */,
 				6D7822561DF0586900B5A9AB /* ValidatorEmailAddress.swift in Sources */,
@@ -995,6 +1002,7 @@
 				73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */,
 				6DA4A8981DF999AD007492C2 /* ValidatorFixedListTestCase.swift in Sources */,
 				6DA4A8961DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift in Sources */,
+				74D565B52519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift in Sources */,
 				6D8BD9031DFE95760013B869 /* ValidatorLuhnTestCase.swift in Sources */,
 				6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */,
 				6DA4A8901DF98A6B007492C2 /* PaymentProductFieldTestCase.swift in Sources */,

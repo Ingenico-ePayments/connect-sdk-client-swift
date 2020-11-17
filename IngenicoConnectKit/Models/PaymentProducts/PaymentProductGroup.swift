@@ -13,6 +13,7 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
     public var accountsOnFile = AccountsOnFile()
+    public var acquirerCountry: String?
     public var allowsTokenization = false
     public var allowsRecurring = false
     public var autoTokenized = false
@@ -40,6 +41,8 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
         }
         self.identifier = identifier
         self.displayHints = displayHints
+
+        self.acquirerCountry = json["acquirerCountry"] as? String ?? ""
 
         if let input = json["accountsOnFile"] as? [[String : Any]] {
             for accountInput in input {
