@@ -38,7 +38,7 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v4.4.1",
+            "sdkIdentifier": "SwiftClientSDK/v4.4.2",
             "sdkCreator": "Ingenico",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
