@@ -73,7 +73,7 @@ public class Session {
 
     }
     
-    @available(*, deprecated, message: "use initializer init(clientSessionId:customerId:baseURL:assetsURL:appIdentifier:) instead")
+    @available(*, deprecated, message: "Use initializer init(clientSessionId:customerId:baseURL:assetsURL:appIdentifier:) instead")
     public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String) {
         let assetManager = AssetManager()
         let stringFormatter = StringFormatter()
@@ -313,7 +313,8 @@ public class Session {
     public var clientSessionId: String {
         return communicator.clientSessionId
     }
-    
+
+    @available(*, deprecated, message: "This function is dependant on Environment, and will therefore be removed.")
     public var isEnvironmentTypeProduction: Bool {
         return communicator.isEnvironmentTypeProduction
     }

@@ -11,13 +11,17 @@ import Foundation
 public class C2SCommunicatorConfiguration {
     let clientSessionId: String
     let customerId: String
-    let region: Region
-    let environment: Environment
     let util: Util
     let appIdentifier: String
     let ipAddress: String?
-    
-    @available(*, deprecated, message: "use method init(clientSessionId:baseURL:assetBaseURL:environment:appIdentifier:ipAddress:util:) instead")
+
+    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
+    let region: Region
+    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
+    let environment: Environment
+
+
+    @available(*, deprecated, message: "Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:util:) instead")
     public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
@@ -28,7 +32,7 @@ public class C2SCommunicatorConfiguration {
         self.ipAddress = nil
     }
     
-    @available(*, deprecated, message: "use method init(clientSessionId:baseURL:assetBaseURL:environment:appIdentifier:ipAddress:util:) instead")
+    @available(*, deprecated, message: "Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:ipAddress:util:) instead")
     public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, ipAddress: String?, util: Util? = nil) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId

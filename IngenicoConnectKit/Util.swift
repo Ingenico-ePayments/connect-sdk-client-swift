@@ -38,7 +38,7 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v4.5.0",
+            "sdkIdentifier": "SwiftClientSDK/v4.6.0",
             "sdkCreator": "Ingenico",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
@@ -81,7 +81,8 @@ public class Util {
         
         return base64EncodedString(fromDictionary: metaInfo!)
     }
-    
+
+    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
     public func C2SBaseURL(by region: Region, environment: Environment) -> String {
         switch region {
         case .EU:
@@ -126,7 +127,8 @@ public class Util {
         }
         
     }
-    
+
+    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
     public func assetsBaseURL(by region: Region, environment: Environment) -> String {
         switch region {
         case .EU:

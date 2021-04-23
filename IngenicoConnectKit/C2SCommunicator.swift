@@ -36,7 +36,8 @@ public class C2SCommunicator {
             "X-GCS-ClientMetaInfo" : base64EncodedClientMetaInfo
         ]
     }
-    
+
+    @available(*, deprecated, message: "This function is dependant on Environment, and will therefore be removed.")
     public var isEnvironmentTypeProduction: Bool {
         return configuration.environment == .production ? true : false
     }
