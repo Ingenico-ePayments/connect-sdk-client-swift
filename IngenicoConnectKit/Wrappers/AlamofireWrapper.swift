@@ -15,10 +15,17 @@ public class AlamofireWrapper {
 
     public var headers: HTTPHeaders? {
         get {
-            return URLSessionConfiguration.default.httpAdditionalHeaders as? HTTPHeaders
+            let headers = URLSessionConfiguration.default.httpAdditionalHeaders
+            var httpHeaders: [HTTPHeader] = []
+            headers?.forEach{
+                if let key = $0.key as? String, let value = $0.value as? String {
+                    httpHeaders.append(HTTPHeader(name: key, value: value))
+                }
+            }
+            return HTTPHeaders(httpHeaders)
         }
         set {
-            URLSessionConfiguration.default.httpAdditionalHeaders = newValue
+            URLSessionConfiguration.default.httpAdditionalHeaders = newValue?.dictionary
         }
     }
 
@@ -34,16 +41,16 @@ public class AlamofireWrapper {
             acceptableStatusCodes.add(additionalAcceptableStatusCodes)
         }
 
-        Alamofire
-            .request(URL, method: .get, parameters: parameters, headers: headers)
+        AF.request(URL, method: .get, parameters: parameters, headers: headers)
             .validate(statusCode: acceptableStatusCodes)
             .responseJSON { response in
-                if let error = response.result.error {
+                switch response.result {
+                case .success(let value):
+                    success(value as? [String: Any])
+                case .failure(let error):
                     Macros.DLog(message: "Error while retrieving response for URL \(URL): \(error.localizedDescription)")
                     failure(error)
-                } else {
-                    success(response.result.value as? [String: Any])
-                }
+            }
         }
     }
     
@@ -59,16 +66,16 @@ public class AlamofireWrapper {
             acceptableStatusCodes.add(additionalAcceptableStatusCodes)
         }
         
-        Alamofire
-            .request(URL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        AF.request(URL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate(statusCode: acceptableStatusCodes)
             .responseJSON { response in
-                if let error = response.result.error {
+                switch response.result {
+                case .success(let value):
+                    success(value as? [String: Any])
+                case .failure(let error):
                     Macros.DLog(message: "Error while retrieving response for URL \(URL): \(error.localizedDescription)")
                     failure(error)
-                } else {
-                    success(response.result.value as? [String: Any])
-                }
+            }
         }
     }
 }
