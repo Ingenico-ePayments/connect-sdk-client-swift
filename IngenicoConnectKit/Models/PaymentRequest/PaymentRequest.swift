@@ -17,17 +17,7 @@ public class PaymentRequest {
     public var fieldValues = [String:String]()
     public var formatter = StringFormatter()
 
-    public var accountOnFile: AccountOnFile? {
-        didSet {
-            if let accountOnFile = accountOnFile {
-                self.accountOnFile = accountOnFile
-
-                for attribute in accountOnFile.attributes.attributes {
-                    fieldValues[attribute.key] = attribute.value
-                }
-            }
-        }
-    }
+    public var accountOnFile: AccountOnFile?
 
     public init(paymentProduct: PaymentProduct, accountOnFile: AccountOnFile? = nil, tokenize: Bool? = false) {
         self.paymentProduct = paymentProduct
