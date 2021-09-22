@@ -385,11 +385,27 @@ public class C2SCommunicator {
     }
     
     public func getResponse(forURL URL: String, withParameters parameters:Parameters? = nil, success: @escaping (_ responseObject: Any) -> Void, failure: @escaping (_ error: Error) -> Void) {
-        networkingWrapper.getResponse(forURL: URL, withParameters: parameters, headers: headers as? HTTPHeaders, additionalAcceptableStatusCodes: nil, success: success, failure: failure)
+        
+        var httpHeaders: [HTTPHeader] = []
+        headers.forEach{
+            if let key = $0.key as? String, let value = $0.value as? String {
+                httpHeaders.append(HTTPHeader(name: key, value: value))
+            }
+        }
+        
+        networkingWrapper.getResponse(forURL: URL, withParameters: parameters, headers: HTTPHeaders(httpHeaders), additionalAcceptableStatusCodes: nil, success: success, failure: failure)
     }
     
     public func postResponse(forURL URL: String, withParameters parameters: [AnyHashable: Any], additionalAcceptableStatusCodes: IndexSet, success: @escaping (_ responseObject: Any) -> Void, failure: @escaping (_ error: Error) -> Void) {
-        networkingWrapper.postResponse(forURL: URL, headers: headers as? HTTPHeaders, withParameters: parameters as? Parameters, additionalAcceptableStatusCodes: additionalAcceptableStatusCodes, success: success, failure: failure)
+        
+        var httpHeaders: [HTTPHeader] = []
+        headers.forEach{
+            if let key = $0.key as? String, let value = $0.value as? String {
+                httpHeaders.append(HTTPHeader(name: key, value: value))
+            }
+        }
+        
+        networkingWrapper.postResponse(forURL: URL, headers: HTTPHeaders(httpHeaders), withParameters: parameters as? Parameters, additionalAcceptableStatusCodes: additionalAcceptableStatusCodes, success: success, failure: failure)
     }
     
 }
