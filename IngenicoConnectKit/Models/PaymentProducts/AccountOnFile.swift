@@ -33,6 +33,7 @@ public class AccountOnFile: ResponseObjectSerializable {
                     }
                 }
             }
+            displayHints.logo = input["logo"] as? String
         }
         if let input = json["attributes"] as? [[String: Any]] {
             for attributeInput in input {

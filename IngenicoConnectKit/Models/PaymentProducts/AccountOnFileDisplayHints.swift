@@ -11,5 +11,6 @@ import Foundation
 public class AccountOnFileDisplayHints {
     
     public var labelTemplate: LabelTemplate = LabelTemplate()
+    public var logo: String?
     
 }
