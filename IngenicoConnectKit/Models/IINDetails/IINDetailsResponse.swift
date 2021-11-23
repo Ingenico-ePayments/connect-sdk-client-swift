@@ -13,7 +13,9 @@ public class IINDetailsResponse: ResponseObjectSerializable {
     public var paymentProductId: String?
     public var status: IINStatus = .supported
     public var coBrands = [IINDetail]()
+    @available(*, deprecated, message: "In the next major release, the type of countryCode will change to String.")
     public var countryCode: CountryCode?
+    public var countryCodeString: String?
     public var allowedInContext = false
     
     private init() {
@@ -33,6 +35,7 @@ public class IINDetailsResponse: ResponseObjectSerializable {
         }
         if let input = json["countryCode"] as? String {
             countryCode = CountryCode(rawValue: input)
+            countryCodeString = input
         }
         
         if let input = json["coBrands"] as? [[String: Any]] {
@@ -50,13 +53,18 @@ public class IINDetailsResponse: ResponseObjectSerializable {
         self.status = status
     }
     
+    
+    @available(*, deprecated, message: "Use init(String, IINStatus, [IINDEtail], String) instead")
     convenience public init(paymentProductId: String, status: IINStatus, coBrands: [IINDetail], countryCode: CountryCode, allowedInContext: Bool) {
+        self.init(paymentProductId: paymentProductId, status: status, coBrands: coBrands, countryCode: countryCode.rawValue, allowedInContext: allowedInContext)
+    }
+    
+    convenience public init(paymentProductId: String, status: IINStatus, coBrands: [IINDetail], countryCode: String, allowedInContext: Bool) {
         self.init()
         self.paymentProductId = paymentProductId
         self.status = status
         self.coBrands = coBrands
-        self.countryCode = countryCode
+        self.countryCodeString = countryCode
         self.allowedInContext = allowedInContext
     }
-    
 }

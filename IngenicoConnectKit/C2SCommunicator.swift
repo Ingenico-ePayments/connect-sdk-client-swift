@@ -61,9 +61,9 @@ public class C2SCommunicator {
         }
     }
     
-    public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: CountryCode, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
+    public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: String, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
         let URL = "\(baseURL)/\(configuration.customerId)/products/\(productId)/customerDetails"
-        let params = ["values": lookupValues, "countryCode": countryCode.rawValue] as [String : Any]
+        let params = ["values": lookupValues, "countryCode": countryCode] as [String : Any]
         
         postResponse(forURL: URL, withParameters: params, additionalAcceptableStatusCodes: IndexSet([404, 400]), success: { (responseObject) in
             guard let responseDic = responseObject as? [String : Any], let customerDetails = CustomerDetails(json: responseDic), responseDic["errors"] == nil else {
@@ -86,7 +86,7 @@ public class C2SCommunicator {
     public func paymentProducts(forContext context: PaymentContext, success: @escaping (_ paymentProducts: BasicPaymentProducts) -> Void, failure: @escaping (_ error: Error) -> Void) {
         let isRecurring = context.isRecurring ? "true" : "false"
         let URL = "\(baseURL)/\(configuration.customerId)/products"
-        var params:[String:Any] = ["countryCode":context.countryCode.rawValue, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
+        var params:[String:Any] = ["countryCode":context.countryCodeString, "currencyCode":context.amountOfMoney.currencyCodeString, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
         
         if let locale = context.locale {
             params["locale"] = locale
@@ -159,7 +159,7 @@ public class C2SCommunicator {
             return
         }
         let URL = "\(self.baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/networks"
-        let params:[String:Any] = ["countryCode":context.countryCode.rawValue, "locale":locale, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
+        let params:[String:Any] = ["countryCode":context.countryCodeString, "locale":locale, "currencyCode":context.amountOfMoney.currencyCodeString, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
         
         getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
             guard let response = responseObject as? [String: Any] else {
@@ -185,7 +185,7 @@ public class C2SCommunicator {
         }
         
         let URL = "\(baseURL)/\(configuration.customerId)/productgroups"
-        let params:[String:Any] = ["countryCode":context.countryCode.rawValue, "locale":locale, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
+        let params:[String:Any] = ["countryCode":context.countryCodeString, "locale":locale, "currencyCode":context.amountOfMoney.currencyCodeString, "amount":context.amountOfMoney.totalAmount, "hide":"fields", "isRecurring":isRecurring]
         
         getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
             guard let responseDic = responseObject as? [String : Any] else {
@@ -208,7 +208,7 @@ public class C2SCommunicator {
             let isRecurring = context.isRecurring ? "true" : "false"
             
             let URL = "\(self.baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/"
-            var params:[String:Any] = ["countryCode":context.countryCode.rawValue, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "isRecurring":isRecurring]
+            var params:[String:Any] = ["countryCode":context.countryCodeString, "currencyCode":context.amountOfMoney.currencyCodeString, "amount":context.amountOfMoney.totalAmount, "isRecurring":isRecurring]
             if let forceBasicFlow = context.forceBasicFlow {
                 params["forceBasicFlow"] = forceBasicFlow ? "true" : "false"
             }
@@ -255,7 +255,7 @@ public class C2SCommunicator {
     
     public func badRequestError(forProduct paymentProductId: String, context: PaymentContext) -> Error {
         let isRecurring = context.isRecurring ? "true" : "false"
-        let url = "\(baseURL)/\(configuration.customerId)/products/\(paymentProductId)/?countryCode=\(context.countryCode.rawValue)&locale=\(context.locale!)&currencyCode=\(context.amountOfMoney.currencyCode.rawValue)&amount=\(UInt(context.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
+        let url = "\(baseURL)/\(configuration.customerId)/products/\(paymentProductId)/?countryCode=\(context.countryCodeString)&locale=\(context.locale!)&currencyCode=\(context.amountOfMoney.currencyCodeString)&amount=\(UInt(context.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
         let errorUserInfo = ["com.alamofire.serialization.response.error.response":
             HTTPURLResponse(url: URL(string: url)!, statusCode: 400, httpVersion: nil, headerFields: ["Connection": "close"])!, "NSErrorFailingURLKey": url, "com.alamofire.serialization.response.error.data": Data(), "NSLocalizedDescription": "Request failed: bad request (400)"] as [String : Any]
         let error = NSError(domain: "com.alamofire.serialization.response.error.response", code: -1011, userInfo: errorUserInfo)
@@ -274,7 +274,7 @@ public class C2SCommunicator {
         }
         
         let URL = "\(baseURL)/\(configuration.customerId)/productgroups/\(paymentProductGroupId)/"
-        let params:[String:Any] = ["countryCode":context.countryCode.rawValue, "locale":locale, "currencyCode":context.amountOfMoney.currencyCode.rawValue, "amount":context.amountOfMoney.totalAmount, "isRecurring":isRecurring]
+        let params:[String:Any] = ["countryCode":context.countryCodeString, "locale":locale, "currencyCode":context.amountOfMoney.currencyCodeString, "amount":context.amountOfMoney.totalAmount, "isRecurring":isRecurring]
         
         self.getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
             guard let responseDic = responseObject as? [String : Any], let paymentProductGroup = PaymentProductGroup(json: responseDic) else {
@@ -315,11 +315,11 @@ public class C2SCommunicator {
         if let context = context {
             var paymentContext: [String: Any] = [:]
             paymentContext["isRecurring"] = context.isRecurring ? "true" : "false"
-            paymentContext["countryCode"] = context.countryCode.rawValue
+            paymentContext["countryCode"] = context.countryCodeString
             
             var amountOfMoney: [String: Any] = [:]
             amountOfMoney["amount"] = String(context.amountOfMoney.totalAmount)
-            amountOfMoney["currencyCode"] = context.amountOfMoney.currencyCode.rawValue
+            amountOfMoney["currencyCode"] = context.amountOfMoney.currencyCodeString
             paymentContext["amountOfMoney"] = amountOfMoney
             
             parameters["paymentContext"] = paymentContext
@@ -348,10 +348,10 @@ public class C2SCommunicator {
         return String(partialCreditCardNumber[..<partialCreditCardNumber.index(partialCreditCardNumber.startIndex, offsetBy: max)])
     }
     
-    public func convert(amountInCents: Int, source: CurrencyCode, target: CurrencyCode, success: @escaping (_ convertedAmountInCents: Int) -> Void, failure: @escaping (_ error: Error?) -> Void) {
+    public func convert(amountInCents: Int, source: String, target: String, success: @escaping (_ convertedAmountInCents: Int) -> Void, failure: @escaping (_ error: Error?) -> Void) {
         let amount = "\(amountInCents)"
         let URL = "\(baseURL)/\(configuration.customerId)/services/convert/amount"
-        let params:[String:Any] = ["source":source.rawValue, "target":target.rawValue, "amount":amount]
+        let params:[String:Any] = ["source":source, "target":target, "amount":amount]
         
         getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
             guard let json = responseObject as? [String: Any] else {
@@ -368,9 +368,9 @@ public class C2SCommunicator {
         }
     }
     
-    public func directory(forProduct paymentProductId: String, countryCode: CountryCode, currencyCode: CurrencyCode, success: @escaping (_ directoryEntries: DirectoryEntries) -> Void, failure: @escaping (_ error: Error) -> Void) {
+    public func directory(forProduct paymentProductId: String, countryCode: String, currencyCode: String, success: @escaping (_ directoryEntries: DirectoryEntries) -> Void, failure: @escaping (_ error: Error) -> Void) {
         let URL = "\(baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/directory"
-        let params:[String:Any] = ["countryCode":countryCode.rawValue, "currencyCode":currencyCode.rawValue]
+        let params:[String:Any] = ["countryCode":countryCode, "currencyCode":currencyCode]
         
         getResponse(forURL: URL, withParameters: params, success: { (responseObject) in
             guard let responseDic = responseObject as? [String : Any] else {

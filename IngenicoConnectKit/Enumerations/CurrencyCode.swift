@@ -5,7 +5,7 @@
 //  Created for Ingenico ePayments on 21/04/2017.
 //  Copyright © 2017 Global Collect Services. All rights reserved.
 //
-
+@available(*, deprecated, message: "This enum will be removed. Use 3-letter Currency Code Strings instead, adhering to the ISO 4217 standard.")
 public enum CurrencyCode: String {
     case AED
     case AFN

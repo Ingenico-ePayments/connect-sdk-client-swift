@@ -5,7 +5,7 @@
 //  Created for Ingenico ePayments on21/04/2017.
 //  Copyright © 2017 Global Collect Services. All rights reserved.
 //
-
+@available(*, deprecated, message: "This enum will be removed. Use 2-letter Country Code Strings instead, adhering to the ISO 3166-1 alpha-2 standard.")
 public enum CountryCode: String {
     case AF
     case AX

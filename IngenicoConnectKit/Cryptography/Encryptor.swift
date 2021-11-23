@@ -232,7 +232,7 @@ public class Encryptor {
         return nil
     }
     
-    @available(*, deprecated, message: "Depricated in favor of encryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
+    @available(*, deprecated, message: "Deprecated in favor of encryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
     public func encryptAES(plaintext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
         return self.encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes)
     }
@@ -258,7 +258,7 @@ public class Encryptor {
         return nil
     }
     
-    @available(*, deprecated, message: "Depricated in favor of decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
+    @available(*, deprecated, message: "Deprecated in favor of decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])")
     public func decryptAES(ciphertext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
         return self.decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes)
     }

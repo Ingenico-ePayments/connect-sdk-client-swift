@@ -73,7 +73,7 @@ public class Session {
 
     }
     
-    @available(*, deprecated, message: "Use initializer init(clientSessionId:customerId:baseURL:assetsURL:appIdentifier:) instead")
+    @available(*, deprecated, message: "Use init(clientSessionId:customerId:baseURL:assetsURL:appIdentifier:) instead")
     public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String) {
         let assetManager = AssetManager()
         let stringFormatter = StringFormatter()
@@ -114,9 +114,17 @@ public class Session {
             failure(error)
         })
     }
+    
+    @available(*, deprecated, message: "Use customerDetails(String:[String,String]:String:) instead")
     public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: CountryCode, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
+        communicator.customerDetails(forProductId: productId, withLookupValues: lookupValues, countryCode: countryCode.rawValue, success: success, failure: failure)
+    }
+    
+    
+    public func customerDetails(forProductId productId: String, withLookupValues lookupValues: [[String: String]], countryCode: String, success: @escaping (_ paymentProduct: CustomerDetails) ->  Void, failure: @escaping  (_ error: Error) -> Void )  {
         communicator.customerDetails(forProductId: productId, withLookupValues: lookupValues, countryCode: countryCode, success: success, failure: failure)
     }
+    
     public func paymentProductGroups(for context: PaymentContext, success: @escaping (_ paymentProductGroups: BasicPaymentProductGroups) -> Void, failure: @escaping (_ error: Error) -> Void) {
         communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
             self.paymentProductGroups = paymentProductGroups
@@ -225,7 +233,12 @@ public class Session {
         
     }
     
+    @available(*, deprecated, message: "Use convert(Int:String:Sring:) instead")
     public func convert(amountInCents: Int, source: CurrencyCode, target: CurrencyCode, success: @escaping (_ convertedAmountInCents: Int) -> Void, failure: @escaping (_ error: Error) -> Void) {
+        self.convert(amountInCents: amountInCents, source: source, target: target, success: success, failure: failure)
+    }
+    
+    public func convert(amountInCents: Int, source: String, target: String, success: @escaping (_ convertedAmountInCents: Int) -> Void, failure: @escaping (_ error: Error) -> Void) {
         communicator.convert(amountInCents: amountInCents, source: source, target: target, success: { convertedAmountInCents in
             success(convertedAmountInCents)
         }, failure: { error in
@@ -235,7 +248,24 @@ public class Session {
         })
     }
     
+    @available(*, deprecated, message: "Use directory(String:String:Sring:) instead")
     public func directory(forProductId paymentProductId: String, countryCode: CountryCode, currencyCode: CurrencyCode, success: @escaping (_ directory: DirectoryEntries) -> Void, failure: @escaping (_ error: Error) -> Void) {
+        let key = "\(paymentProductId)-\(countryCode.rawValue)-\(currencyCode.rawValue)"
+        
+        if let directoryEntries = self.directoryEntriesMapping[key] as? DirectoryEntries {
+            success(directoryEntries)
+        }
+        else {
+            communicator.directory(forProduct: paymentProductId, countryCode: countryCode.rawValue, currencyCode: currencyCode.rawValue, success: { directoryEntries in
+                self.directoryEntriesMapping[key] = directoryEntries
+                success(directoryEntries)
+            }, failure: { error in
+                failure(error)
+            })
+        }
+    }
+    
+    public func directory(forProductId paymentProductId: String, countryCode: String, currencyCode: String, success: @escaping (_ directory: DirectoryEntries) -> Void, failure: @escaping (_ error: Error) -> Void) {
         let key = "\(paymentProductId)-\(countryCode)-\(currencyCode)"
         
         if let directoryEntries = self.directoryEntriesMapping[key] as? DirectoryEntries {
