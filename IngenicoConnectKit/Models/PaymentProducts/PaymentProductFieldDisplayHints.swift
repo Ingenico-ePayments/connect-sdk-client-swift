@@ -15,6 +15,7 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
     public var formElement: FormElement
     public var mask: String?
     public var obfuscate = false
+    public var placeholderLabel: String?
     public var tooltip: ToolTip?
     public var label: String?
     public var link: URL?
@@ -42,6 +43,9 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
 
         if let input = json["obfuscate"] as? Bool {
             obfuscate = input
+        }
+        if let input = json["placeholderLabel"] as? String {
+            placeholderLabel = input
         }
         if let input = json["label"] as? String {
             label = input

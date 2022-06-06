@@ -159,14 +159,29 @@ public class AssetManager {
          from image identifiers to paths on the device, and store the new
          image in the documents folder.
          */
-        let newURL = URL(string: "\(baseURL)/\(newPath)")!
+        guard let newPathEncoded = newPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            Macros.DLog(message: "Could not encode new path string")
+            return
+        }
+        let newURLString = "\(baseURL)/\(newPathEncoded)"
+        guard let newURLStringEncoded = newURLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            Macros.DLog(message: "Could not encode url string for: \(newURLString)")
+            return
+        }
+        
+        guard let newURL = URL(string: newURLStringEncoded) else {
+            Macros.DLog(message: "Unable to create URL for baseURL: \(baseURL) & newPath: \(newPath)")
+            return
+            
+        }
+        
         let imagePath = URL(fileURLWithPath: "\(documentsFolderPath)/\(identifier)")
         
         do {
             let data = try fileManager.data(atURL: newURL)
             try fileManager.write(toURL: imagePath, data: data, options: [])
             if imageMapping != nil {
-                imageMapping![identifier] = newPath
+                imageMapping![identifier] = newPathEncoded
             }
         } catch {
             Macros.DLog(message: "Unable to save image: \(identifier)")

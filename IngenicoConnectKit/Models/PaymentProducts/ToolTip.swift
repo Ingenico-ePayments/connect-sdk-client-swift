@@ -11,10 +11,14 @@ import UIKit
 
 public class ToolTip: ResponseObjectSerializable {
     
+    public var label: String?
     public var imagePath: String?
     public var image: UIImage?
     
     required public init(json: [String : Any]) {
         imagePath = json["image"] as? String
+        if let input = json["label"] as? String {
+            label = input
+        }
     }
 }
