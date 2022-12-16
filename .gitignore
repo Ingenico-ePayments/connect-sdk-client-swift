@@ -36,3 +36,6 @@ Carthage/Build
 # MacOS
 .DS_Store
 
+#Intellij
+.idea
+
