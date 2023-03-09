@@ -9,7 +9,7 @@
 import Foundation
 
 public class PaymentItems {
-    
+
     public var paymentItems = [BasicPaymentItem]()
     public var stringFormatter: StringFormatter?
     public var allPaymentItems = [BasicPaymentItem]()
@@ -41,52 +41,58 @@ public class PaymentItems {
             }
         }
     }
-    
-    public func createPaymentItemsFromProducts(products: BasicPaymentProducts, groups: BasicPaymentProductGroups?) -> [BasicPaymentItem] {
+
+    public func createPaymentItemsFromProducts(
+        products: BasicPaymentProducts,
+        groups: BasicPaymentProductGroups?
+    ) -> [BasicPaymentItem] {
         var paymentItems = [BasicPaymentItem]()
-        
+
         for product in products.paymentProducts {
             var groupMatch = false
-            
+
             if let groups = groups, let productGroup = product.paymentProductGroup {
                 for group in groups.paymentProductGroups {
-                    if productGroup.isEqual(group.identifier) && !paymentItems.contains(where: { $0.identifier == group.identifier }) { // TODO: make paymentItems Equatable such that we dont have to do such lookup
+                    if productGroup.isEqual(group.identifier) &&
+                        !paymentItems.contains(where: { $0.identifier == group.identifier }) {
+                        // TODO: make paymentItems Equatable such that we dont have to do such lookup
                         group.displayHints.displayOrder = group.displayHints.displayOrder
                         paymentItems.append(group)
                     }
-                    
+
                     groupMatch = true
                     break
                 }
             }
-            
+
             if !groupMatch {
                 paymentItems.append(product)
             }
         }
-        
+
         return paymentItems
     }
-    
+
     public func logoPath(forItem identifier: String) -> String? {
         guard let item = paymentItem(withIdentifier: identifier) else {
             return nil
         }
-        
+
         return item.displayHints.logoPath
     }
-    
+
     public func paymentItem(withIdentifier identifier: String) -> BasicPaymentItem? {
         for paymentItem in allPaymentItems where paymentItem.identifier.isEqual(identifier) {
             return paymentItem
         }
-        
+
         return nil
     }
-    
+
     public func sort() {
         paymentItems = paymentItems.sorted {
-            guard let displayOrder0 = $0.displayHints.displayOrder, let displayOrder1 = $1.displayHints.displayOrder else {
+            guard let displayOrder0 = $0.displayHints.displayOrder,
+                  let displayOrder1 = $1.displayHints.displayOrder else {
                 return false
             }
             return displayOrder0 < displayOrder1

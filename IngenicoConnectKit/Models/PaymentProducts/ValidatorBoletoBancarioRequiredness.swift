@@ -9,7 +9,7 @@
 public class ValidatorBoletoBancarioRequiredness: Validator {
     public var fiscalNumberLength: Int
 
-    required public init?(json: [String : Any]) {
+    required public init?(json: [String: Any]) {
         guard let input = json["fiscalNumberLength"] as? Int else {
             return nil
         }

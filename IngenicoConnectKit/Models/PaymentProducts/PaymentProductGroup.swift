@@ -9,7 +9,7 @@
 import Foundation
 
 public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
-    
+
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
     public var accountsOnFile = AccountsOnFile()
@@ -29,14 +29,13 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
             }
         }
     }
-    
-    public required init?(json: [String : Any]) {
+
+    public required init?(json: [String: Any]) {
 
         guard let identifier = json["id"] as? String,
-              let hints = json["displayHints"] as? [String : Any],
+              let hints = json["displayHints"] as? [String: Any],
               let displayHints = PaymentItemDisplayHints(json: hints),
-              let fields = json["fields"] as? [[String: Any]] else
-        {
+              let fields = json["fields"] as? [[String: Any]] else {
             return nil
         }
         self.identifier = identifier
@@ -44,7 +43,7 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
 
         self.acquirerCountry = json["acquirerCountry"] as? String ?? ""
 
-        if let input = json["accountsOnFile"] as? [[String : Any]] {
+        if let input = json["accountsOnFile"] as? [[String: Any]] {
             for accountInput in input {
                 if let accountFile = AccountOnFile(json: accountInput) {
                     accountsOnFile.accountsOnFile.append(accountFile)
@@ -58,13 +57,13 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
             }
         }
     }
-    
+
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
         return accountsOnFile.accountOnFile(withIdentifier: identifier)
     }
-    
+
     public func paymentProductField(withId paymentProductFieldId: String) -> PaymentProductField? {
-        for field in fields.paymentProductFields where field.identifier.isEqual(paymentProductFieldId){
+        for field in fields.paymentProductFields where field.identifier.isEqual(paymentProductFieldId) {
             return field
         }
         return nil

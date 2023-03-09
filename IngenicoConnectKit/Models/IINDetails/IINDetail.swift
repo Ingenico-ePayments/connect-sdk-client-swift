@@ -11,8 +11,8 @@ import Foundation
 public class IINDetail: ResponseObjectSerializable {
     public var paymentProductId: String
     public var allowedInContext: Bool = false
-    
-    required public init?(json: [String : Any]) {
+
+    required public init?(json: [String: Any]) {
         if let input = json["paymentProductId"] as? Int {
             paymentProductId = "\(input)"
         } else {

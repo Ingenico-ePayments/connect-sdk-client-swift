@@ -10,9 +10,9 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class AssetManagerTestCase: XCTestCase {
-    
+
     let assetManager = AssetManager()
-    var paymentItem : PaymentItem!
+    var paymentItem: PaymentItem!
 
     override func setUp() {
         super.setUp()
@@ -32,7 +32,7 @@ class AssetManagerTestCase: XCTestCase {
         ])!
 
         paymentItem.fields = PaymentProductFields()
-        for i in 0..<5 {
+        for index in 0..<5 {
             let field = PaymentProductField(json: [
                 "displayHints": [
                     "formElement": [
@@ -42,21 +42,21 @@ class AssetManagerTestCase: XCTestCase {
                         "image": "/tooltips/are_here.png"
                     ]
                 ],
-                "id": "field\(i)",
+                "id": "field\(index)",
                 "type": "numericstring"
             ])!
 
           paymentItem.fields.paymentProductFields.append(field)
         }
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
 
     func testLogoIdentifier() {
         var logoIdentifier = assetManager.logoIdentifier(with: paymentItem)
-                XCTAssertEqual(logoIdentifier, "is_a", "Did not properly identify logo identifier with multiple underscores")
+        XCTAssertEqual(logoIdentifier, "is_a", "Did not properly identify logo identifier with multiple underscores")
 
         paymentItem.displayHints.logoPath = "/this/is/a_test.png"
         logoIdentifier = assetManager.logoIdentifier(with: paymentItem)
@@ -86,22 +86,22 @@ class AssetManagerTestCase: XCTestCase {
 
         XCTAssertEqual(paymentItem.displayHints.logoImage?.accessibilityLabel, "logoStubResponse")
 
-        for i in 0..<paymentItem.fields.paymentProductFields.count {
-          let field = paymentItem.fields.paymentProductFields[i]
-          
-          XCTAssertEqual(field.displayHints.tooltip?.image?.accessibilityLabel, "tooltipStubResponse-field\(i)")
+        for index in 0..<paymentItem.fields.paymentProductFields.count {
+          let field = paymentItem.fields.paymentProductFields[index]
+
+          XCTAssertEqual(field.displayHints.tooltip?.image?.accessibilityLabel, "tooltipStubResponse-field\(index)")
         }
     }
 
     func testUpdateImagesForPaymentItems() {
-        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
+        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
           let path = imageMapping["pp_logo_identifier"]
           XCTAssertNil(path)
         }
 
         assetManager.updateImages(for: [paymentItem], baseURL: "")
 
-        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
+        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
           XCTAssertEqual(imageMapping["pp_logo_1"], "/this/is_a_test.png")
         }
     }
@@ -109,22 +109,22 @@ class AssetManagerTestCase: XCTestCase {
     func testUpdateImagesForPaymentItem() {
         assetManager.updateImages(for: paymentItem, baseURL: "")
 
-        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
-            for i in 0..<paymentItem.fields.paymentProductFields.count {
-                XCTAssertEqual(imageMapping["pp_1_tooltip_field\(i)"], "/tooltips/are_here.png")
+        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
+            for index in 0..<paymentItem.fields.paymentProductFields.count {
+                XCTAssertEqual(imageMapping["pp_1_tooltip_field\(index)"], "/tooltips/are_here.png")
             }
         }
     }
 
     func testUpdateImagesAsyncForPaymentItems() {
         let expectation = self.expectation(description: "ImageMapping updated")
-        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
+        if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
             let path = imageMapping["pp_logo_1"]
             XCTAssertNil(path)
         }
 
         assetManager.updateImagesAsync(for: [paymentItem], baseURL: "") {
-            if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
+            if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
                 XCTAssertEqual(imageMapping["pp_logo_1"], "/this/is_a_test.png")
             }
             expectation.fulfill()
@@ -139,9 +139,9 @@ class AssetManagerTestCase: XCTestCase {
         let expectation = self.expectation(description: "ImageMapping updated")
 
         assetManager.updateImagesAsync(for: paymentItem, baseURL: "") {
-            if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String : String] {
-                for i in 0..<self.paymentItem.fields.paymentProductFields.count {
-                    XCTAssertEqual(imageMapping["pp_1_tooltip_field\(i)"], "/tooltips/are_here.png")
+            if let imageMapping = UserDefaults.standard[SDKConstants.kImageMapping] as? [String: String] {
+                for index in 0..<self.paymentItem.fields.paymentProductFields.count {
+                    XCTAssertEqual(imageMapping["pp_1_tooltip_field\(index)"], "/tooltips/are_here.png")
                 }
             }
             expectation.fulfill()

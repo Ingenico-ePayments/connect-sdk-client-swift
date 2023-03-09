@@ -8,7 +8,7 @@
 
 @testable import IngenicoConnectKit
 
-class StubUtil : Util {
+class StubUtil: Util {
 
   override func C2SBaseURL(by region: Region, environment: Environment) -> String {
     return "c2sbaseurlbyregion"

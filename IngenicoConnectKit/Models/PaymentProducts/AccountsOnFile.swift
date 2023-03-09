@@ -9,12 +9,12 @@
 import Foundation
 
 public class AccountsOnFile {
-    
+
     public var accountsOnFile = [AccountOnFile]()
-    
+
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
         for accountOnFile in accountsOnFile
-            where accountOnFile.identifier.isEqual(identifier){
+            where accountOnFile.identifier.isEqual(identifier) {
                 return accountOnFile
         }
         return nil

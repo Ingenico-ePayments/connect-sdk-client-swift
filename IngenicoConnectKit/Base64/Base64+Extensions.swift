@@ -15,7 +15,7 @@ extension Data {
             .replacingOccurrences(of: "+", with: "-")
             .replacingOccurrences(of: "/", with: "_")
     }
-    
+
     public func encode() -> String {
         return self.base64EncodedString()
     }

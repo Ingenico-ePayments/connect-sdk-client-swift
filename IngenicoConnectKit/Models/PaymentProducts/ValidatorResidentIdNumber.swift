@@ -51,34 +51,34 @@ public class ValidatorResidentIdNumber: Validator {
     public func checkSumIsValid(for id: String) -> Bool {
 
         let mod = 11
-        let n = id.count - 1 // -1 because the last digit is the checksum
+        let nrOfDigits = id.count - 1 // -1 because the last digit is the checksum
 
         var sum = 0
 
-        for i in 0...n - 1 {
+        for index in 0...nrOfDigits - 1 {
             /*
             First calculate the weight with the formula: 2^(n - 1)
             Where n is the index of the character starting from the end of the String
             This means the last number in the id has the n = 1, and the second to last has n = 2
              */
-            let weight = Int(pow(2, Double((n - i)))) % mod
+            let weight = Int(pow(2, Double((nrOfDigits - index)))) % mod
 
             /*
              We then calculate the product by multiplying the weight with the character value.
              We add this product to the sum and repeat this for every integer in the id,
              except the last digit because this is the checksum.
              */
-            sum += weight * (Int(id[i]) ?? 0)
+            sum += weight * (Int(id[index]) ?? 0)
         }
 
         let checkSum = (12 - (sum % mod)) % mod
 
         // If the checksum is 10, the character X is used instead.
         if checkSum == 10 {
-            if id[n] == "X" {
+            if id[nrOfDigits] == "X" {
                 return true
             }
-        } else if Int(id[n]) == checkSum {
+        } else if Int(id[nrOfDigits]) == checkSum {
             return true
         }
 

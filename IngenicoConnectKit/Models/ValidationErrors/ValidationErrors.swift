@@ -34,4 +34,3 @@ public class ValidationErrorRange: ValidationError {
     public var minValue = 0
     public var maxValue = 0
 }
-

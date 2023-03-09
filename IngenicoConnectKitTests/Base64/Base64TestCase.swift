@@ -20,14 +20,14 @@ class Base64TestCase: XCTestCase {
   }
 
   func testEncodeRevertable() {
-    let input = Data(bytes: [0,255,43,1])
+    let input = Data(bytes: [0, 255, 43, 1])
     let string = input.encode()
     let output = string.decode()
     XCTAssertEqual(output, input, "encoded and decoded data differs from the untransformed data")
   }
 
   func testURLEncodeRevertable() {
-    let input = Data(bytes: [0,255,43,1])
+    let input = Data(bytes: [0, 255, 43, 1])
     let string = input.base64URLEncode()
     let output = string.base64URLDecode()
     XCTAssertEqual(output, input, "URL encoded and URL decoded data differs from the untransformed data")

@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorExpirationDateTestCase: XCTestCase {
-    
+
     var validator: ValidatorExpirationDate!
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -27,7 +27,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         super.setUp()
         validator = ValidatorExpirationDate()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -36,22 +36,22 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         validator.validate(value: "1244", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid expiration date considered invalid")
     }
-    
+
     func testInvalidNonNumerical() {
         validator.validate(value: "aaaa", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
-    
+
     func testInvalidMonth() {
         validator.validate(value: "1350", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
-    
+
     func testInvalidYearTooEarly() {
         validator.validate(value: "0112", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
-    
+
     func testInvalidYearTooLate() {
         validator.validate(value: "1299", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")

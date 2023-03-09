@@ -10,13 +10,13 @@ import Foundation
 
 public class DirectoryEntries: ResponseObjectSerializable {
     public var directoryEntries: [DirectoryEntry] = []
-    
+
     public init() {
-        
+
     }
-    
-    required public init(json: [String : Any]) {
-        if let entries = json["entries"] as? [[String : Any]] {
+
+    required public init(json: [String: Any]) {
+        if let entries = json["entries"] as? [[String: Any]] {
             for inputEntry in entries {
                 if let entry = DirectoryEntry(json: inputEntry) {
                     directoryEntries.append(entry)

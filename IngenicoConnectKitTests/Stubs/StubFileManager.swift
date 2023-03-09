@@ -9,7 +9,7 @@
 import UIKit
 @testable import IngenicoConnectKit
 
-class StubFileManager : IngenicoConnectKit.FileManager {
+class StubFileManager: IngenicoConnectKit.FileManager {
     override func dict(atPath path: String) -> NSDictionary? {
         switch path {
         case "imageMappingFile":
@@ -59,7 +59,8 @@ class StubFileManager : IngenicoConnectKit.FileManager {
     }
 
     override func write(toURL url: URL, data: Data, options: Data.WritingOptions) {
-        guard (["pp_logo_", "_tooltip_"].reduce(false) { $0 || url.absoluteString.contains($1) }) else {
+        guard url.absoluteString.contains("pp_logo_") ||
+              url.absoluteString.contains("_tooltip_") else {
             fatalError("URL invalid")
         }
     }

@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class PaymentProductsTestCase: XCTestCase {
-    
+
     var products: BasicPaymentProducts!
     var account: AccountOnFile!
     var product1: BasicPaymentProduct!
@@ -61,7 +61,7 @@ class PaymentProductsTestCase: XCTestCase {
             products.paymentProducts.append(product3)
         }
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -69,32 +69,35 @@ class PaymentProductsTestCase: XCTestCase {
     func testHasAccountsOnFileTrue() {
         XCTAssert(products.hasAccountsOnFile, "Payment products should have an account on file")
     }
-    
+
     func testHasAccountsOnFileFalse() {
         products.paymentProducts.remove(at: 0)
         XCTAssertFalse(products.hasAccountsOnFile, "Payment products should not have an account on file")
     }
-    
+
     func testAccountsOnFile() {
         let accountsOnFile = products.accountsOnFile
         XCTAssertEqual(accountsOnFile.count, 1, "Unexpected number of accounts on file")
         XCTAssert(accountsOnFile[0] === account, "Account on file that was added is not returned")
     }
-    
+
     func testPaymentProductWithIdentifierExisting() {
         XCTAssert(products.paymentProduct(withIdentifier: "1") === product1, "Unexpected payment product retrieved")
     }
-    
+
     func testPaymentProductWithIdentifierNonExisting() {
-        XCTAssertNil(products.paymentProduct(withIdentifier: "X"), "Retrieved a payment product that has not been added")
+        XCTAssertNil(
+            products.paymentProduct(withIdentifier: "X"),
+            "Retrieved a payment product that has not been added"
+        )
     }
-    
+
     func testSort() {
         products.sort()
-        
+
         var displayOrder = 0
-        for i in 0..<3 {
-            let product = products.paymentProducts[i]
+        for index in 0..<3 {
+            let product = products.paymentProducts[index]
             if let prodDisplayOrder = product.displayHints.displayOrder, displayOrder > prodDisplayOrder {
                 XCTFail("Products are not sorted")
             }

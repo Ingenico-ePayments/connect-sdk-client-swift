@@ -8,14 +8,14 @@
 
 import Foundation
 
-class StubBundle : Bundle {
+class StubBundle: Bundle {
   override func path(forResource name: String?, ofType ext: String?) -> String? {
     switch name! {
-      case "imageMapping":
+    case "imageMapping":
         return "imageMappingFile"
 
-      default:
+    default:
         return nil
-      }
+    }
   }
 }

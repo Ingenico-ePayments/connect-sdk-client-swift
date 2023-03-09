@@ -9,7 +9,7 @@
 import Foundation
 
 public class IINDetailsResponse: ResponseObjectSerializable {
-    
+
     public var paymentProductId: String?
     public var status: IINStatus = .supported
     public var coBrands = [IINDetail]()
@@ -17,15 +17,15 @@ public class IINDetailsResponse: ResponseObjectSerializable {
     public var countryCode: CountryCode?
     public var countryCodeString: String?
     public var allowedInContext = false
-    
+
     private init() {
     }
-    
-    required public init(json: [String : Any]) {
+
+    required public init(json: [String: Any]) {
         if let input = json["isAllowedInContext"] as? Bool {
             allowedInContext = input
         }
-        
+
         if let input = json["paymentProductId"] as? Int {
             paymentProductId = "\(input)"
         } else if !allowedInContext {
@@ -37,7 +37,7 @@ public class IINDetailsResponse: ResponseObjectSerializable {
             countryCode = CountryCode(rawValue: input)
             countryCodeString = input
         }
-        
+
         if let input = json["coBrands"] as? [[String: Any]] {
             coBrands = []
             for detailInput in input {
@@ -47,19 +47,36 @@ public class IINDetailsResponse: ResponseObjectSerializable {
             }
         }
     }
-    
+
     convenience public init(status: IINStatus) {
         self.init()
         self.status = status
     }
-    
-    
+
     @available(*, deprecated, message: "Use init(String, IINStatus, [IINDEtail], String) instead")
-    convenience public init(paymentProductId: String, status: IINStatus, coBrands: [IINDetail], countryCode: CountryCode, allowedInContext: Bool) {
-        self.init(paymentProductId: paymentProductId, status: status, coBrands: coBrands, countryCode: countryCode.rawValue, allowedInContext: allowedInContext)
+    convenience public init(
+        paymentProductId: String,
+        status: IINStatus,
+        coBrands: [IINDetail],
+        countryCode: CountryCode,
+        allowedInContext: Bool
+    ) {
+        self.init(
+            paymentProductId: paymentProductId,
+            status: status,
+            coBrands: coBrands,
+            countryCode: countryCode.rawValue,
+            allowedInContext: allowedInContext
+        )
     }
-    
-    convenience public init(paymentProductId: String, status: IINStatus, coBrands: [IINDetail], countryCode: String, allowedInContext: Bool) {
+
+    convenience public init(
+        paymentProductId: String,
+        status: IINStatus,
+        coBrands: [IINDetail],
+        countryCode: String,
+        allowedInContext: Bool
+    ) {
         self.init()
         self.paymentProductId = paymentProductId
         self.status = status

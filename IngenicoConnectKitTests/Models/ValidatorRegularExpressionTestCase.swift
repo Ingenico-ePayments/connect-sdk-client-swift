@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorRegularExpressionTestCase: XCTestCase {
-    
+
     var validator: ValidatorRegularExpression!
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -22,7 +22,7 @@ class ValidatorRegularExpressionTestCase: XCTestCase {
             "logo": "/this/is_a_test.png"
         ]
     ])!)
-    
+
     override func setUp() {
         super.setUp()
         guard let regularExpression = try? NSRegularExpression(pattern: "\\d{3}") else {
@@ -32,7 +32,7 @@ class ValidatorRegularExpressionTestCase: XCTestCase {
 
         validator = ValidatorRegularExpression(regularExpression: regularExpression)
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -41,7 +41,7 @@ class ValidatorRegularExpressionTestCase: XCTestCase {
         validator.validate(value: "123", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateIncorrect() {
         validator.validate(value: "abc", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")

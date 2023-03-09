@@ -10,12 +10,12 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class PaymentProductFieldsTestCase: XCTestCase {
-    
+
     let fields = PaymentProductFields()
 
     override func setUp() {
         super.setUp()
-        
+
         let field1 = PaymentProductField(json: [
             "displayHints": [
                 "displayOrder": 1,
@@ -66,21 +66,21 @@ class PaymentProductFieldsTestCase: XCTestCase {
             "id": "field5",
             "type": "numericstring"
         ])!
-        
+
         fields.paymentProductFields.append(field1)
         fields.paymentProductFields.append(field2)
         fields.paymentProductFields.append(field3)
         fields.paymentProductFields.append(field4)
         fields.paymentProductFields.append(field5)
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
 
     func testSort() {
         fields.sort()
-        
+
         var displayOrder = -1
         for field in fields.paymentProductFields {
             if let fieldOrder = field.displayHints.displayOrder, displayOrder > fieldOrder {

@@ -11,12 +11,12 @@ public class CustomerDetails: ResponseObjectSerializable {
     public func value(key: String) -> String {
         return self.dict[key]!
     }
-    public var values: [String:String] {
+    public var values: [String: String] {
         return self.dict
     }
-    private var dict: [String:String] = [:]
+    private var dict: [String: String] = [:]
     public required init?(json: [String: Any]) {
-        if let dict = json as? [String:String] {
+        if let dict = json as? [String: String] {
             self.dict = dict
         }
     }

@@ -9,10 +9,10 @@
 import Foundation
 
 public class PreparedPaymentRequest {
-    
+
     public var encryptedFields: String
     public var encodedClientMetaInfo: String
-    
+
     init(encryptedFields: String, encodedClientMetaInfo mediaInfo: String) {
         self.encryptedFields = encryptedFields
         self.encodedClientMetaInfo = mediaInfo

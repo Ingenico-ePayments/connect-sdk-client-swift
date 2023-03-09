@@ -11,7 +11,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class PaymentProductGroupTestCase: XCTestCase {
-    
+
     let group = PaymentProductGroup(json: [
         "fields": [[:]],
         "id": "1",
@@ -31,21 +31,21 @@ class PaymentProductGroupTestCase: XCTestCase {
             group.accountsOnFile.accountsOnFile.append(accountOnFile)
         }
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func testBasicPaymentProductGroupHasAccountOnFile() {
-        
+
         let account = group.accountOnFile(withIdentifier: "1")
         XCTAssertTrue(account != nil, "Account on file identifier didn't match.")
-        
+
         let notFoundAccount = group.accountOnFile(withIdentifier: "9999")
         XCTAssertTrue(notFoundAccount == nil, "Account on file identifier didn't match.")
-        
+
     }
-    
+
     func testPaymentField() {
         let field = PaymentProductField(json: [
             "displayHints": [
@@ -57,7 +57,7 @@ class PaymentProductGroupTestCase: XCTestCase {
             "type": "numericstring"
         ])!
         group.fields.paymentProductFields.append(field)
-        
+
         let field1 = PaymentProductField(json: [
             "displayHints": [
                 "formElement": [
@@ -68,12 +68,12 @@ class PaymentProductGroupTestCase: XCTestCase {
             "type": "numericstring"
         ])!
         group.fields.paymentProductFields.append(field1)
-        
+
         let foundField = group.paymentProductField(withId: "1")
         XCTAssertTrue(foundField?.identifier == field.identifier, "Did not find the correct PaymentProductField.")
-        
+
         let emptyField = group.paymentProductField(withId: "9999")
         XCTAssertTrue(emptyField == nil, "Should not have found a PaymentProductField.")
-        
+
     }
 }

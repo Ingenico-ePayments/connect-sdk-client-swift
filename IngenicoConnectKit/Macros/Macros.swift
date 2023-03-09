@@ -9,13 +9,16 @@
 import Foundation
 
 public class Macros {
-    public static func DLog(message:String, functionName:String = #function, fileName:String = #file)
-    {
+    public static func DLog(message: String, functionName: String = #function, fileName: String = #file) {
         #if DEBUG
-            print("DLog: Original_Message = \(message)\n Method_Name = \(functionName)\n Line_Number = \(#line)")
+            print(
+                """
+                DLog: Original_Message = \(message)\n Method_Name = \(functionName)\n
+                File_Name = \(fileName)\n Line_Number = \(#line)
+                """
+            )
         #else
             print("DLog: Original_Message = \(message)")
         #endif
     }
 }
-

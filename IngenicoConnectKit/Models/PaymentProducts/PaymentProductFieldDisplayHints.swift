@@ -9,7 +9,7 @@
 import Foundation
 
 public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
-    
+
     public var alwaysShow = false
     public var displayOrder: Int?
     public var formElement: FormElement
@@ -20,11 +20,10 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
     public var label: String?
     public var link: URL?
     public var preferredInputType: PreferredInputType = .noKeyboard
-    
-    required public init?(json: [String : Any]) {
+
+    required public init?(json: [String: Any]) {
         guard let input = json["formElement"] as? [String: Any],
-              let formElement = FormElement(json: input) else
-        {
+              let formElement = FormElement(json: input) else {
             return nil
         }
         self.formElement = formElement

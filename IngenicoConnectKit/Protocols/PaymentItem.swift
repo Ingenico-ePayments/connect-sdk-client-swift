@@ -10,6 +10,6 @@ import Foundation
 
 public protocol PaymentItem: BasicPaymentItem {
     var fields: PaymentProductFields { get set }
-    
+
     func paymentProductField(withId paymentProductFieldId: String) -> PaymentProductField?
 }

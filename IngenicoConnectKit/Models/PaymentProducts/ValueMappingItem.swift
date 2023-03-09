@@ -9,12 +9,12 @@
 import Foundation
 
 public class ValueMappingItem: ResponseObjectSerializable {
-    
+
     public var displayName: String?
     public var displayElements: [DisplayElement]
     public var value: String
-    
-    required public init?(json: [String : Any]) {
+
+    required public init?(json: [String: Any]) {
         guard let value = json["value"] as? String else {
             return nil
         }
@@ -33,8 +33,7 @@ public class ValueMappingItem: ResponseObjectSerializable {
                 let newElement = DisplayElement(id: "displayName", type: .string, value: displayName)
                 self.displayElements.append(newElement)
             }
-        }
-        else {
+        } else {
             let displayNames = self.displayElements.filter { $0.id == "displayName" }
             if  displayNames.count > 0 {
                 self.displayName = displayNames.first?.value

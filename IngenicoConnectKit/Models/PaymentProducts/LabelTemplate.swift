@@ -9,14 +9,14 @@
 import Foundation
 
 public class LabelTemplate {
-    
+
     public var labelTemplateItems = [LabelTemplateItem]()
-    
+
     public func mask(forAttributeKey key: String) -> String? {
-        for labelTemplateItem in labelTemplateItems where labelTemplateItem.attributeKey.isEqual(key){
+        for labelTemplateItem in labelTemplateItems where labelTemplateItem.attributeKey.isEqual(key) {
             return labelTemplateItem.mask
         }
         return nil
     }
-    
+
 }

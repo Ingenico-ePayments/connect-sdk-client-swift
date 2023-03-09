@@ -9,10 +9,10 @@
 import Foundation
 
 public class LabelTemplateItem: ResponseObjectSerializable {
-    
+
     public var attributeKey: String
     public var mask: String?
-    
+
     required public init?(json: [String: Any]) {
         guard let attributeKey = json["attributeKey"] as? String else {
             return nil
@@ -21,5 +21,5 @@ public class LabelTemplateItem: ResponseObjectSerializable {
 
         mask = json["mask"] as? String
     }
-    
+
 }

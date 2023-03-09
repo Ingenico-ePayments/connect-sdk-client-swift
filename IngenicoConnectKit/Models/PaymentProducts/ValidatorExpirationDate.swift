@@ -12,18 +12,18 @@ public class ValidatorExpirationDate: Validator {
     public var dateFormatter = DateFormatter()
     private var fullYearDateFormatter = DateFormatter()
     private var monthAndFullYearDateFormatter = DateFormatter()
-    
+
     public override init() {
         dateFormatter.dateFormat = "MMyy"
         fullYearDateFormatter.dateFormat = "yyyy"
         monthAndFullYearDateFormatter.dateFormat = "MMyyyy"
     }
-    
+
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
 
         // Test whether the date can be parsed normally
-        guard let _ = dateFormatter.date(from: value) else {
+        guard dateFormatter.date(from: value) != nil else {
             let error = ValidationErrorExpirationDate()
             errors.append(error)
             return
@@ -39,7 +39,7 @@ public class ValidatorExpirationDate: Validator {
 
         var componentsForFutureDate = DateComponents()
         componentsForFutureDate.year = gregorianCalendar.component(.year, from: Date()) + 25
-        
+
         guard let futureDate = gregorianCalendar.date(from: componentsForFutureDate) else {
             let error = ValidationErrorExpirationDate()
             errors.append(error)

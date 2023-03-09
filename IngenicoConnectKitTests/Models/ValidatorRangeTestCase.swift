@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorRangeTestCase: XCTestCase {
-    
+
     let validator = ValidatorRange(minValue: 40, maxValue: 50)
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -26,7 +26,7 @@ class ValidatorRangeTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -35,27 +35,27 @@ class ValidatorRangeTestCase: XCTestCase {
         validator.validate(value: "40", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateCorrect2() {
         validator.validate(value: "45", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateCorrect3() {
         validator.validate(value: "50", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateIncorrect1() {
         validator.validate(value: "aaa", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")
     }
-    
+
     func testValidateIncorrect2() {
         validator.validate(value: "39", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")
     }
-    
+
     func testValidateIncorrect3() {
         validator.validate(value: "51", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")

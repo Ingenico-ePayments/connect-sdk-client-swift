@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorLengthTestCase: XCTestCase {
-    
+
     let validator = ValidatorLength(minLength: 1, maxLength: 3)
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -26,7 +26,7 @@ class ValidatorLengthTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -35,22 +35,22 @@ class ValidatorLengthTestCase: XCTestCase {
         validator.validate(value: "1", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateCorrect2() {
         validator.validate(value: "12", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateCorrect3() {
         validator.validate(value: "123", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid value considered invalid")
     }
-    
+
     func testValidateIncorrect1() {
         validator.validate(value: "", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")
     }
-    
+
     func testValidateIncorrect2() {
         validator.validate(value: "1234", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")

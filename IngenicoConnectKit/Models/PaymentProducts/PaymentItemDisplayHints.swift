@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 public class PaymentItemDisplayHints {
-    
+
     public var displayOrder: Int?
     public var label: String?
     public var logoPath: String
     public var logoImage: UIImage?
-    
+
     required public init?(json: [String: Any]) {
         if let input = json["label"] as? String {
             label = input
@@ -27,5 +27,5 @@ public class PaymentItemDisplayHints {
 
         displayOrder = json["displayOrder"] as? Int
     }
-    
+
 }

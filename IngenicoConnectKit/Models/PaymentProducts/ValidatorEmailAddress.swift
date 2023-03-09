@@ -10,17 +10,17 @@ import Foundation
 
 public class ValidatorEmailAddress: Validator {
     public var expression: NSRegularExpression
-    
+
     public override init() {
         let regex = "^[^@\\.]+(\\.[^@\\.]+)*@([^@\\.]+\\.)*[^@\\.]+\\.[^@\\.][^@\\.]+$"
-        
+
         expression = try! NSRegularExpression(pattern: regex)
     }
-    
+
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
-        
-        let numberOfMatches = expression.numberOfMatches(in: value , range: NSMakeRange(0, value.count))
+
+        let numberOfMatches = expression.numberOfMatches(in: value, range: NSRange(location: 0, length: value.count))
         if numberOfMatches != 1 {
             let error = ValidationErrorEmailAddress()
             errors.append(error)

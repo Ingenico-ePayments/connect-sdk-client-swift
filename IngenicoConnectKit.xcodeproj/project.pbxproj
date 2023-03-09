@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -92,11 +92,15 @@
 		73AABAD11F1F806B00B76782 /* DisplayElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACF1F1F806B00B76782 /* DisplayElement.swift */; };
 		73AABAD31F1F80A000B76782 /* DisplayElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABAD21F1F80A000B76782 /* DisplayElementType.swift */; };
 		73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */; };
-		74D565B12519D27000546820 /* ValidatorResidentIdNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */; };
-		74D565B52519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */; };
-		7B16816A2823BA5E003996B6 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1681692823BA5E003996B6 /* OHHTTPStubs.framework */; };
-		7B16816C2823BA6E003996B6 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B16816B2823BA6E003996B6 /* CryptoSwift.framework */; };
-		7B16816E2823BA72003996B6 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B16816D2823BA72003996B6 /* Alamofire.framework */; };
+		7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */; };
+		7BC494192965AA3C00F6138A /* ValidatorResidentIdNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */; };
+		7BFB26CE2954536D00A95841 /* OHHTTPStubs.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; };
+		7BFB26CF2954536D00A95841 /* OHHTTPStubs.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BFB26D02954536D00A95841 /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */; };
+		7BFB26D12954536D00A95841 /* CryptoSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BFB26D22954536D00A95841 /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CD2954536C00A95841 /* Alamofire.xcframework */; };
+		7BFB26D32954536D00A95841 /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CD2954536C00A95841 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7BFB26DC295456DA00A95841 /* KeychainEntitlementTestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB26DB295456DA00A95841 /* KeychainEntitlementTestAppApp.swift */; };
 		B40575E21E02BF7D0099DDBB /* StubBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40575E11E02BF7D0099DDBB /* StubBundle.swift */; };
 		B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */; };
 		B40F4B421E02CA80002A3AC8 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */; };
@@ -139,6 +143,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7BFB26E72954570400A95841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4D77C581DE72EB900F7B1C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7BFB26D8295456DA00A95841;
+			remoteInfo = KeychainEntitlementTestApp;
+		};
 		B4D77C6C1DE72EB900F7B1C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B4D77C581DE72EB900F7B1C1 /* Project object */;
@@ -147,6 +158,22 @@
 			remoteInfo = IngenicoConnectKit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7BFB26D42954536D00A95841 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7BFB26D32954536D00A95841 /* Alamofire.xcframework in Embed Frameworks */,
+				7BFB26D12954536D00A95841 /* CryptoSwift.xcframework in Embed Frameworks */,
+				7BFB26CF2954536D00A95841 /* OHHTTPStubs.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1C0513331E799F2D00D11633 /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionError.swift; path = Enumerations/SessionError.swift; sourceTree = "<group>"; };
@@ -234,11 +261,13 @@
 		73AABACF1F1F806B00B76782 /* DisplayElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElement.swift; path = Models/PaymentProducts/DisplayElement.swift; sourceTree = "<group>"; };
 		73AABAD21F1F80A000B76782 /* DisplayElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElementType.swift; path = Enumerations/DisplayElementType.swift; sourceTree = "<group>"; };
 		73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsError.swift; path = Models/PaymentProducts/CustomerDetailsError.swift; sourceTree = "<group>"; };
-		74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorResidentIdNumber.swift; sourceTree = "<group>"; };
-		74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorResidentIdNumberTestCase.swift; sourceTree = "<group>"; };
-		7B1681692823BA5E003996B6 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
-		7B16816B2823BA6E003996B6 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
-		7B16816D2823BA72003996B6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumberTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorResidentIdNumberTestCase.swift; sourceTree = "<group>"; };
+		7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumber.swift; path = Models/PaymentProducts/ValidatorResidentIdNumber.swift; sourceTree = "<group>"; };
+		7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OHHTTPStubs.xcframework; path = Carthage/Build/OHHTTPStubs.xcframework; sourceTree = "<group>"; };
+		7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CryptoSwift.xcframework; path = Carthage/Build/CryptoSwift.xcframework; sourceTree = "<group>"; };
+		7BFB26CD2954536C00A95841 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		7BFB26D9295456DA00A95841 /* KeychainEntitlementTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeychainEntitlementTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BFB26DB295456DA00A95841 /* KeychainEntitlementTestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntitlementTestAppApp.swift; sourceTree = "<group>"; };
 		B40575E11E02BF7D0099DDBB /* StubBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubBundle.swift; path = IngenicoConnectKitTests/Stubs/StubBundle.swift; sourceTree = "<group>"; };
 		B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubFileManager.swift; path = IngenicoConnectKitTests/Stubs/StubFileManager.swift; sourceTree = "<group>"; };
@@ -289,9 +318,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B16816A2823BA5E003996B6 /* OHHTTPStubs.framework in Frameworks */,
-				7B16816E2823BA72003996B6 /* Alamofire.framework in Frameworks */,
-				7B16816C2823BA6E003996B6 /* CryptoSwift.framework in Frameworks */,
+				7BFB26D22954536D00A95841 /* Alamofire.xcframework in Frameworks */,
+				7BFB26D02954536D00A95841 /* CryptoSwift.xcframework in Frameworks */,
+				7BFB26CE2954536D00A95841 /* OHHTTPStubs.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,11 +369,11 @@
 				6DA4A8951DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift */,
 				6DA4A8971DF999AD007492C2 /* ValidatorFixedListTestCase.swift */,
 				6D8BD9001DFE94270013B869 /* ValidatorLengthTestCase.swift */,
+				7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */,
 				6D8BD9021DFE95760013B869 /* ValidatorLuhnTestCase.swift */,
 				6D8BD9041DFE965A0013B869 /* ValidatorRangeTestCase.swift */,
 				6D8BD9061DFE97C20013B869 /* ValidatorRegularExpressionTestCase.swift */,
 				6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */,
-				74D565B32519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift */,
 			);
 			name = Validator;
 			sourceTree = "<group>";
@@ -384,7 +413,7 @@
 				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
 				732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */,
 				7307A966202C65E9002124B8 /* ValidatorIBAN.swift */,
-				74D565B02519D27000546820 /* ValidatorResidentIdNumber.swift */,
+				7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -420,12 +449,20 @@
 			name = ThirdPartyStatus;
 			sourceTree = "<group>";
 		};
+		7BFB26DA295456DA00A95841 /* KeychainEntitlementTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				7BFB26DB295456DA00A95841 /* KeychainEntitlementTestAppApp.swift */,
+			);
+			path = KeychainEntitlementTestApp;
+			sourceTree = "<group>";
+		};
 		841814CF4293B6C8D8E19417 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7B16816D2823BA72003996B6 /* Alamofire.framework */,
-				7B16816B2823BA6E003996B6 /* CryptoSwift.framework */,
-				7B1681692823BA5E003996B6 /* OHHTTPStubs.framework */,
+				7BFB26CD2954536C00A95841 /* Alamofire.xcframework */,
+				7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */,
+				7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */,
 				B43C1F531DEC35B200E210DF /* XCTest.framework */,
 			);
 			name = Frameworks;
@@ -504,6 +541,7 @@
 			children = (
 				B4D77C631DE72EB900F7B1C1 /* IngenicoConnectKit */,
 				B4D77C6E1DE72EB900F7B1C1 /* IngenicoConnectKitTests */,
+				7BFB26DA295456DA00A95841 /* KeychainEntitlementTestApp */,
 				B4D77C621DE72EB900F7B1C1 /* Products */,
 				841814CF4293B6C8D8E19417 /* Frameworks */,
 			);
@@ -514,6 +552,7 @@
 			children = (
 				B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */,
 				B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */,
+				7BFB26D9295456DA00A95841 /* KeychainEntitlementTestApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -730,6 +769,21 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7BFB26D8295456DA00A95841 /* KeychainEntitlementTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7BFB26E4295456DC00A95841 /* Build configuration list for PBXNativeTarget "KeychainEntitlementTestApp" */;
+			buildPhases = (
+				7BFB26D5295456DA00A95841 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainEntitlementTestApp;
+			productName = KeychainEntitlementTestApp;
+			productReference = 7BFB26D9295456DA00A95841 /* KeychainEntitlementTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4D77C751DE72EB900F7B1C1 /* Build configuration list for PBXNativeTarget "IngenicoConnectKit" */;
@@ -738,7 +792,7 @@
 				B4D77C5D1DE72EB900F7B1C1 /* Frameworks */,
 				B4D77C5E1DE72EB900F7B1C1 /* Headers */,
 				B4D77C5F1DE72EB900F7B1C1 /* Resources */,
-				B91971F5232F7DFE0059BDE6 /* ShellScript */,
+				7BFB26D42954536D00A95841 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -756,12 +810,12 @@
 				B4D77C661DE72EB900F7B1C1 /* Sources */,
 				B4D77C671DE72EB900F7B1C1 /* Frameworks */,
 				B4D77C681DE72EB900F7B1C1 /* Resources */,
-				B99BCC6E23C61CDB00B79D30 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B4D77C6D1DE72EB900F7B1C1 /* PBXTargetDependency */,
+				7BFB26E82954570400A95841 /* PBXTargetDependency */,
 			);
 			name = IngenicoConnectKitTests;
 			productName = IngenicoConnectKitTests;
@@ -774,10 +828,13 @@
 		B4D77C581DE72EB900F7B1C1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1330;
 				ORGANIZATIONNAME = "Global Collect Services";
 				TargetAttributes = {
+					7BFB26D8295456DA00A95841 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					B4D77C601DE72EB900F7B1C1 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = S453L3NXGS;
@@ -789,6 +846,7 @@
 						DevelopmentTeam = UTWYEN5FS2;
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 7BFB26D8295456DA00A95841;
 					};
 				};
 			};
@@ -808,6 +866,7 @@
 			targets = (
 				B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */,
 				B4D77C691DE72EB900F7B1C1 /* IngenicoConnectKitTests */,
+				7BFB26D8295456DA00A95841 /* KeychainEntitlementTestApp */,
 			);
 		};
 /* End PBXProject section */
@@ -835,50 +894,15 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		B91971F5232F7DFE0059BDE6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CryptoSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n";
-		};
-		B99BCC6E23C61CDB00B79D30 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/OHHTTPStubs.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage copy-frameworks\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
+		7BFB26D5295456DA00A95841 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BFB26DC295456DA00A95841 /* KeychainEntitlementTestAppApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4D77C5C1DE72EB900F7B1C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -893,7 +917,7 @@
 				6D78225A1DF0616100B5A9AB /* ValidatorLength.swift in Sources */,
 				6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */,
 				6D7822581DF05B5A00B5A9AB /* ValidatorLuhn.swift in Sources */,
-				74D565B12519D27000546820 /* ValidatorResidentIdNumber.swift in Sources */,
+				7BC494192965AA3C00F6138A /* ValidatorResidentIdNumber.swift in Sources */,
 				6D4E7AAD1DF56BBF00BAE336 /* PaymentItems.swift in Sources */,
 				B43C1F611DEC597700E210DF /* FormElementType.swift in Sources */,
 				6D7822561DF0586900B5A9AB /* ValidatorEmailAddress.swift in Sources */,
@@ -977,6 +1001,7 @@
 				6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */,
 				6D8BD90F1DFEA1940013B869 /* AccountOnFileTestCase.swift in Sources */,
 				1C99FF521E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift in Sources */,
+				7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */,
 				6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */,
 				6D2256381DF95DE9009DB416 /* AccountsOnFileTestCase.swift in Sources */,
 				6DA4A88C1DF9842C007492C2 /* BasicPaymentProductTestCase.swift in Sources */,
@@ -1002,7 +1027,6 @@
 				73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */,
 				6DA4A8981DF999AD007492C2 /* ValidatorFixedListTestCase.swift in Sources */,
 				6DA4A8961DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift in Sources */,
-				74D565B52519DD7A00546820 /* ValidatorResidentIdNumberTestCase.swift in Sources */,
 				6D8BD9031DFE95760013B869 /* ValidatorLuhnTestCase.swift in Sources */,
 				6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */,
 				6DA4A8901DF98A6B007492C2 /* PaymentProductFieldTestCase.swift in Sources */,
@@ -1015,6 +1039,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7BFB26E82954570400A95841 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7BFB26D8295456DA00A95841 /* KeychainEntitlementTestApp */;
+			targetProxy = 7BFB26E72954570400A95841 /* PBXContainerItemProxy */;
+		};
 		B4D77C6D1DE72EB900F7B1C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B4D77C601DE72EB900F7B1C1 /* IngenicoConnectKit */;
@@ -1023,6 +1052,49 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		7BFB26E5295456DC00A95841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.KeychainEntitlementTestApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		B4D77C731DE72EB900F7B1C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1150,7 +1222,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ON_DEMAND_RESOURCES_INITIAL_INSTALL_TAGS = "";
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1180,7 +1253,11 @@
 				);
 				INFOPLIST_FILE = IngenicoConnectKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1211,7 +1288,11 @@
 				);
 				INFOPLIST_FILE = IngenicoConnectKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1231,12 +1312,17 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainEntitlementTestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeychainEntitlementTestApp";
 			};
 			name = Debug;
 		};
@@ -1251,7 +1337,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IngenicoConnectKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1262,6 +1352,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7BFB26E4295456DC00A95841 /* Build configuration list for PBXNativeTarget "KeychainEntitlementTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BFB26E5295456DC00A95841 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B4D77C5B1DE72EB900F7B1C1 /* Build configuration list for PBXProject "IngenicoConnectKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

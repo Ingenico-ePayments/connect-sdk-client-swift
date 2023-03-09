@@ -9,7 +9,7 @@
 
 import Foundation
 
-public class CustomerDetailsError : Error {
+public class CustomerDetailsError: Error {
     public let responseValues: [[String: Any]]
     init(responseValues: [[String: Any]]) {
         self.responseValues = responseValues

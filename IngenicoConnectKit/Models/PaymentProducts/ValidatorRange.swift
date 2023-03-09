@@ -12,13 +12,13 @@ public class ValidatorRange: Validator, ResponseObjectSerializable {
     public var minValue = 0
     public var maxValue = 0
     public var formatter = NumberFormatter()
-    
+
     public init(minValue: Int?, maxValue: Int?) {
         self.minValue = minValue ?? 0
         self.maxValue = maxValue ?? 0
     }
-    
-    required public init(json: [String : Any]) {
+
+    required public init(json: [String: Any]) {
         if let input = json["maxValue"] as? Int {
             maxValue = input
         }
@@ -29,7 +29,7 @@ public class ValidatorRange: Validator, ResponseObjectSerializable {
 
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
-        
+
         let error = ValidationErrorRange()
         error.minValue = minValue
         error.maxValue = maxValue

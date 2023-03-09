@@ -16,18 +16,18 @@ public class PaymentContext {
     public var forceBasicFlow: Bool?
     public var amountOfMoney: PaymentAmountOfMoney
     public var isRecurring: Bool
-    
+
     @available(*, deprecated, message: "Use init(PaymentAmountOfMoney:Bool:String:) instead")
     public convenience init(amountOfMoney: PaymentAmountOfMoney, isRecurring: Bool, countryCode: CountryCode) {
         self.init(amountOfMoney: amountOfMoney, isRecurring: isRecurring, countryCode: countryCode.rawValue)
     }
-    
+
     public init(amountOfMoney: PaymentAmountOfMoney, isRecurring: Bool, countryCode: String) {
         self.amountOfMoney = amountOfMoney
         self.isRecurring = isRecurring
         self.countryCode = CountryCode.init(rawValue: countryCode) ?? .US
         self.countryCodeString = countryCode
-        
+
         if let languageCode = Locale.current.languageCode {
             self.locale = languageCode.appending("_")
         }
@@ -35,7 +35,7 @@ public class PaymentContext {
             self.locale = self.locale!.appending(regionCode)
         }
     }
-    
+
     public var description: String {
         return "\(amountOfMoney.description)-\(countryCodeString)-\(isRecurring ? "YES" : "NO")"
     }

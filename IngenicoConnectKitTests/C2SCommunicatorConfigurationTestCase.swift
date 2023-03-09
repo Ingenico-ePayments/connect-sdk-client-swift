@@ -16,7 +16,15 @@ class C2SCommunicatorConfigurationTestCase: XCTestCase {
   override func setUp() {
     super.setUp()
 
-    configuration = C2SCommunicatorConfiguration(clientSessionId: "", customerId: "", region: .EU, environment: .sandbox, appIdentifier: "", util: util)
+    configuration =
+      C2SCommunicatorConfiguration(
+        clientSessionId: "",
+        customerId: "",
+        region: .EU,
+        environment: .sandbox,
+        appIdentifier: "",
+        util: util
+      )
   }
 
   override func tearDown() {
@@ -33,6 +41,10 @@ class C2SCommunicatorConfigurationTestCase: XCTestCase {
 
   func testBase64EncodedClientMetaInfo() {
     print(configuration.base64EncodedClientMetaInfo ?? "leeg")
-    XCTAssertEqual(configuration.base64EncodedClientMetaInfo, "base64encodedclientmetainfo", "Unexpected encoded client meta info")
+    XCTAssertEqual(
+        configuration.base64EncodedClientMetaInfo,
+        "base64encodedclientmetainfo",
+        "Unexpected encoded client meta info"
+    )
   }
 }

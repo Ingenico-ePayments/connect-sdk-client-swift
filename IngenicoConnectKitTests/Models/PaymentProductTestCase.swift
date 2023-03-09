@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class PaymentProductTestCase: XCTestCase {
-    
+
     let paymentProduct = PaymentProduct(json: [
         "fields": [[:]],
         "id": 1,
@@ -36,7 +36,7 @@ class PaymentProductTestCase: XCTestCase {
 
         paymentProduct.fields.paymentProductFields.append(field)
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -45,7 +45,7 @@ class PaymentProductTestCase: XCTestCase {
         let paymentField = paymentProduct.paymentProductField(withId: "cardNumber")
         XCTAssert(field === paymentField, "Retrieved field is unequal to added field")
     }
-    
+
     func testPaymentProductFieldWithIdNil() {
         let paymentField = paymentProduct.paymentProductField(withId: "X")
         XCTAssertNil(paymentField, "Retrieved a field while no field should be returned")

@@ -13,8 +13,8 @@ public class DirectoryEntry: ResponseObjectSerializable {
     public var issuerList: String
     public var issuerName: String
     public var countryNames: [String] = []
-    
-    public required init?(json: [String : Any]) {
+
+    public required init?(json: [String: Any]) {
         if let input = json["issuerId"] as? String {
             issuerIdentifier = input
         } else {
@@ -30,7 +30,7 @@ public class DirectoryEntry: ResponseObjectSerializable {
         } else {
             return nil
         }
-        
+
         if let input = json["countryNames"] as? [String] {
             for countryInput in input {
                 countryNames.append(countryInput)

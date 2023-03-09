@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class BasicPaymentProductTestCase: XCTestCase {
-    
+
     let product = BasicPaymentProduct(json: [
         "fields": [[:]],
         "id": 1,
@@ -27,12 +27,12 @@ class BasicPaymentProductTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        
+
         accountsOnFile.accountsOnFile.append(account1)
         accountsOnFile.accountsOnFile.append(account2)
         product.accountsOnFile = accountsOnFile
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }

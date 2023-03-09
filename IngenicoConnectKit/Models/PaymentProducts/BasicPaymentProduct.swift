@@ -9,20 +9,20 @@
 import Foundation
 
 public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSerializable {
-    
+
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
     public var accountsOnFile = AccountsOnFile()
     public var acquirerCountry: String?
-    
+
     public var allowsTokenization = false
     public var allowsRecurring = false
     public var autoTokenized = false
     public var allowsInstallments = false
-    
+
     public var paymentMethod: String
     public var paymentProductGroup: String?
-    
+
     public var paymentProduct302SpecificData: PaymentProduct302SpecificData?
     public var paymentProduct320SpecificData: PaymentProduct320SpecificData?
     public var paymentProduct863SpecificData: PaymentProduct863SpecificData?
@@ -37,7 +37,7 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
             }
         }
     }
-    
+
     public required init?(json: [String: Any]) {
         guard let identifier = json["id"] as? Int,
               let paymentMethod = json["paymentMethod"] as? String,
@@ -46,16 +46,19 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
         else {
             return nil
         }
-        if let paymentProduct302SpecificDataDictionary = json["paymentProduct302SpecificData"] as? [String:Any],
-            let paymentProduct302SpecificData = PaymentProduct302SpecificData(json:paymentProduct302SpecificDataDictionary) {
+        if let paymentProduct302SpecificDataDictionary = json["paymentProduct302SpecificData"] as? [String: Any],
+            let paymentProduct302SpecificData =
+                PaymentProduct302SpecificData(json: paymentProduct302SpecificDataDictionary) {
             self.paymentProduct302SpecificData = paymentProduct302SpecificData
         }
-        if let paymentProduct320SpecificDataDictionary = json["paymentProduct320SpecificData"] as? [String:Any],
-            let paymentProduct320SpecificData = PaymentProduct320SpecificData(json:paymentProduct320SpecificDataDictionary){
+        if let paymentProduct320SpecificDataDictionary = json["paymentProduct320SpecificData"] as? [String: Any],
+            let paymentProduct320SpecificData =
+                PaymentProduct320SpecificData(json: paymentProduct320SpecificDataDictionary) {
             self.paymentProduct320SpecificData = paymentProduct320SpecificData
         }
-        if let paymentProduct863SpecificDataDictionary = json["paymentProduct863SpecificData"] as? [String:Any],
-            let paymentProduct863SpecificData = PaymentProduct863SpecificData(json:paymentProduct863SpecificDataDictionary){
+        if let paymentProduct863SpecificDataDictionary = json["paymentProduct863SpecificData"] as? [String: Any],
+            let paymentProduct863SpecificData =
+                PaymentProduct863SpecificData(json: paymentProduct863SpecificDataDictionary) {
             self.paymentProduct863SpecificData = paymentProduct863SpecificData
         }
 
@@ -80,13 +83,13 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
         }
 
     }
-    
+
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
         return accountsOnFile.accountOnFile(withIdentifier: identifier)
     }
-    
+
     public static func == (lhs: BasicPaymentProduct, rhs: BasicPaymentProduct) -> Bool {
         return lhs.identifier == rhs.identifier
     }
-    
+
 }

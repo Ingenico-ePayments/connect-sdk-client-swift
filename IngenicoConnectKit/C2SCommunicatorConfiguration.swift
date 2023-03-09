@@ -15,14 +15,40 @@ public class C2SCommunicatorConfiguration {
     let appIdentifier: String
     let ipAddress: String?
 
-    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
+    @available(
+        *,
+        deprecated,
+        message: """
+                 Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API
+                 to obtain the endpoints for the Client API.
+                 """
+    )
     let region: Region
-    @available(*, deprecated, message: "Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API to obtain the endpoints for the Client API.")
+    @available(
+        *,
+        deprecated,
+        message: """
+                 Use the clientApiUrl and assetUrl returned in the server to server Create Client Session API
+                 to obtain the endpoints for the Client API.
+                 """
+    )
     let environment: Environment
 
-
-    @available(*, deprecated, message: "Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:util:) instead")
-    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, util: Util? = nil) {
+    @available(
+        *,
+        deprecated,
+        message: """
+                 Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:util:) instead
+                 """
+    )
+    public init(
+        clientSessionId: String,
+        customerId: String,
+        region: Region,
+        environment: Environment,
+        appIdentifier: String,
+        util: Util? = nil
+    ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.region = region
@@ -31,9 +57,23 @@ public class C2SCommunicatorConfiguration {
         self.appIdentifier = appIdentifier
         self.ipAddress = nil
     }
-    
-    @available(*, deprecated, message: "Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:ipAddress:util:) instead")
-    public init(clientSessionId: String, customerId: String, region: Region, environment: Environment, appIdentifier: String, ipAddress: String?, util: Util? = nil) {
+
+    @available(
+        *,
+        deprecated,
+        message: """
+                 Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:ipAddress:util:) instead
+                 """
+    )
+    public init(
+        clientSessionId: String,
+        customerId: String,
+        region: Region,
+        environment: Environment,
+        appIdentifier: String,
+        ipAddress: String?,
+        util: Util? = nil
+    ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.region = region
@@ -42,7 +82,14 @@ public class C2SCommunicatorConfiguration {
         self.appIdentifier = appIdentifier
         self.ipAddress = ipAddress
     }
-    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, util: Util? = nil) {
+    public init(
+        clientSessionId: String,
+        customerId: String,
+        baseURL: String,
+        assetBaseURL: String,
+        appIdentifier: String,
+        util: Util? = nil
+    ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.util = util ?? Util.shared
@@ -50,11 +97,19 @@ public class C2SCommunicatorConfiguration {
         self.ipAddress = nil
         self.environment = Environment.production
         self.region = Region.AMS
-        
+
         self.baseURL = baseURL
         self.assetsBaseURL = assetBaseURL
     }
-    public init(clientSessionId: String, customerId: String, baseURL: String, assetBaseURL: String, appIdentifier: String, ipAddress: String?, util: Util? = nil) {
+    public init(
+        clientSessionId: String,
+        customerId: String,
+        baseURL: String,
+        assetBaseURL: String,
+        appIdentifier: String,
+        ipAddress: String?,
+        util: Util? = nil
+    ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
         self.util = util ?? Util.shared
@@ -67,7 +122,7 @@ public class C2SCommunicatorConfiguration {
         self.assetsBaseURL = assetBaseURL
     }
     public var _baseURL: String?
-    
+
     /// New base URL should be a valid URL
     public var baseURL: String {
         get {
@@ -83,9 +138,14 @@ public class C2SCommunicatorConfiguration {
             var components = finalComponents.path.split(separator: "/").map { String($0)}
             let versionComponents = (SDKConstants.kApiVersion as NSString).pathComponents
             let error = {
-                fatalError("This version of the connectSDK is only compatible with \(versionComponents.joined(separator: "/")) , you supplied: '\(components.joined(separator: "/"))'")
+                fatalError(
+                    """
+                    This version of the connectSDK is only compatible with \(versionComponents.joined(separator: "/")),
+                    you supplied: '\(components.joined(separator: "/"))'
+                    """
+                )
             }
-            
+
             switch components.count {
             case 0:
                 components = versionComponents
@@ -104,7 +164,7 @@ public class C2SCommunicatorConfiguration {
                 }
             default:
                 error()
-                
+
             }
             finalComponents.path = "/" + components.joined(separator: "/")
             return finalComponents.url?.absoluteString
@@ -120,7 +180,7 @@ public class C2SCommunicatorConfiguration {
             _assetsBaseURL = newValue
         }
     }
-    
+
     public var base64EncodedClientMetaInfo: String? {
         return util.base64EncodedClientMetaInfo(withAppIdentifier: appIdentifier, ipAddress: ipAddress)
     }

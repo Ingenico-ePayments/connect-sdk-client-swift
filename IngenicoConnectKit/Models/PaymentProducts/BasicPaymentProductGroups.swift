@@ -9,8 +9,8 @@
 import Foundation
 
 public class BasicPaymentProductGroups: ResponseObjectSerializable {
-    
-    public var paymentProductGroups = [BasicPaymentProductGroup]() 
+
+    public var paymentProductGroups = [BasicPaymentProductGroup]()
 
     public var hasAccountsOnFile: Bool {
         for productGroup in paymentProductGroups where productGroup.accountsOnFile.accountsOnFile.count > 0 {
@@ -41,10 +41,9 @@ public class BasicPaymentProductGroups: ResponseObjectSerializable {
         }
     }
 
-
     public init() {
     }
-    
+
     required public init(json: [String: Any]) {
         if let input = json["paymentProductGroups"] as? [[String: Any]] {
             for groupInput in input {
@@ -52,26 +51,27 @@ public class BasicPaymentProductGroups: ResponseObjectSerializable {
                     paymentProductGroups.append(group)
                 }
             }
-            
+
             sort()
         }
     }
-    
+
     public func logoPath(forProductGroup identifier: String) -> String? {
         let productGroup = paymentProductGroup(withIdentifier: identifier)
         return productGroup?.displayHints.logoPath
     }
-    
+
     public func paymentProductGroup(withIdentifier identifier: String) -> BasicPaymentProductGroup? {
         for productGroup in paymentProductGroups where productGroup.identifier.isEqual(identifier) {
             return productGroup
         }
         return nil
     }
-    
+
     public func sort() {
         paymentProductGroups = paymentProductGroups.sorted {
-            guard let displayOrder0 = $0.displayHints.displayOrder, let displayOrder1 = $1.displayHints.displayOrder else {
+            guard let displayOrder0 = $0.displayHints.displayOrder,
+                    let displayOrder1 = $1.displayHints.displayOrder else {
                 return false
             }
             return displayOrder0 < displayOrder1

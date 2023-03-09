@@ -9,7 +9,7 @@
 import Foundation
 
 public class BasicPaymentProductGroup: ResponseObjectSerializable, BasicPaymentItem {
-    
+
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
     public var accountsOnFile = AccountsOnFile()
@@ -28,9 +28,8 @@ public class BasicPaymentProductGroup: ResponseObjectSerializable, BasicPaymentI
 
     public required init?(json: [String: Any]) {
         guard let identifier = json["id"] as? String,
-            let hints = json["displayHints"] as? [String : Any],
-            let displayHints = PaymentItemDisplayHints(json: hints) else
-        {
+            let hints = json["displayHints"] as? [String: Any],
+            let displayHints = PaymentItemDisplayHints(json: hints) else {
             return nil
         }
         self.identifier = identifier
@@ -45,9 +44,8 @@ public class BasicPaymentProductGroup: ResponseObjectSerializable, BasicPaymentI
             }
         }
     }
-    
+
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
         return accountsOnFile.accountOnFile(withIdentifier: identifier)
     }
 }
-

@@ -10,7 +10,7 @@ import Foundation
 import PassKit
 
 public class PaymentProductNetworks {
-    
+
     public var paymentProductNetworks = [PKPaymentNetwork]()
-    
+
 }

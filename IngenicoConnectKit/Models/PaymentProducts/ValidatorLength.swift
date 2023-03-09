@@ -16,8 +16,8 @@ public class ValidatorLength: Validator, ResponseObjectSerializable {
         self.minLength = minLength ?? 0
         self.maxLength = maxLength ?? 0
     }
-    
-    public required init(json: [String : Any]) {
+
+    public required init(json: [String: Any]) {
         if let input = json["maxLength"] as? Int {
             maxLength = input
         }
@@ -28,11 +28,11 @@ public class ValidatorLength: Validator, ResponseObjectSerializable {
 
     public override func validate(value: String, for request: PaymentRequest) {
         super.validate(value: value, for: request)
-        
+
         let error = ValidationErrorLength()
         error.minLength = minLength
         error.maxLength = maxLength
-        
+
         if value.count < minLength || value.count > maxLength {
             errors.append(error)
         }

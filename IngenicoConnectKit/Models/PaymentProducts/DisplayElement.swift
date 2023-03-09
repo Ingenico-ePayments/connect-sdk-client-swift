@@ -9,7 +9,7 @@
 import Foundation
 
 public class DisplayElement: ResponseObjectSerializable {
-    public required init?(json: [String : Any]) {
+    public required init?(json: [String: Any]) {
         guard let id = json["id"]  as? String else {
             return nil
         }
@@ -23,7 +23,7 @@ public class DisplayElement: ResponseObjectSerializable {
         self.value = value
         self.type = type
     }
-    
+
     public var id: String
     public var type: DisplayElementType
     public var value: String

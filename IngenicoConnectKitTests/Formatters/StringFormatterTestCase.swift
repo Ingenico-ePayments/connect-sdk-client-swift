@@ -67,7 +67,6 @@ class StringFormatterTestCase: XCTestCase {
     XCTAssertEqual(output, expectedOutput, "Unmasking a string has failed")
   }
 
-
   func testRelaxMask() {
     let input = "{{9999}}/{{aaaa}}+{{****}}"
     let output = stringFormatter.relaxMask(mask: input)

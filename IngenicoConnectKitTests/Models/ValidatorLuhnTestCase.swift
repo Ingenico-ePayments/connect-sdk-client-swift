@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorLuhnTestCase: XCTestCase {
-    
+
     let validator = ValidatorLuhn()
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -26,7 +26,7 @@ class ValidatorLuhnTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -35,7 +35,7 @@ class ValidatorLuhnTestCase: XCTestCase {
         validator.validate(value: "4242424242424242", for: request)
         XCTAssert(validator.errors.count == 0, "Valid value considered invalid")
     }
-    
+
     func testValidateIncorrect() {
         validator.validate(value: "1111", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid value considered valid")

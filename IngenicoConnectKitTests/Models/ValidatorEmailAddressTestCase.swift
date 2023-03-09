@@ -10,7 +10,7 @@ import XCTest
 @testable import IngenicoConnectKit
 
 class ValidatorEmailAddressTestCase: XCTestCase {
-    
+
     let validator = ValidatorEmailAddress()
     let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
         "fields": [[:]],
@@ -22,11 +22,11 @@ class ValidatorEmailAddressTestCase: XCTestCase {
             "logo": "/this/is_a_test.png"
         ]
     ])!)
-    
+
     override func setUp() {
         super.setUp()
     }
-    
+
     override func tearDown() {
         super.tearDown()
     }
@@ -35,32 +35,32 @@ class ValidatorEmailAddressTestCase: XCTestCase {
         validator.validate(value: "test@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect3() {
         validator.validate(value: "\"Fred Bloggs\"@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect4() {
         validator.validate(value: "\"Joe\\Blow\"@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect6() {
         validator.validate(value: "customer/department=shipping@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect7() {
         validator.validate(value: "$A12345@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect8() {
         validator.validate(value: "!def!xyz%abc@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
     }
-    
+
     func testValidateCorrect9() {
         validator.validate(value: "_somename@example.com", for: request)
         XCTAssertEqual(validator.errors.count, 0, "Valid address is considered invalid")
@@ -90,7 +90,7 @@ class ValidatorEmailAddressTestCase: XCTestCase {
         validator.validate(value: "Abc.example.com", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
     }
-    
+
     func testValidateIncorrect2() {
         validator.validate(value: "A@b@c@example.com", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid address is considered valid")
