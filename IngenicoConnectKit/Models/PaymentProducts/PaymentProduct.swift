@@ -11,6 +11,7 @@ import Foundation
 public class PaymentProduct: BasicPaymentProduct, PaymentItem {
 
     public var fields: PaymentProductFields = PaymentProductFields()
+    public var fieldsWarning: String?
 
     public required init?(json: [String: Any]) {
         super.init(json: json)
@@ -24,6 +25,8 @@ public class PaymentProduct: BasicPaymentProduct, PaymentItem {
                 fields.paymentProductFields.append(field)
             }
         }
+
+        fieldsWarning = json["fieldsWarning"] as? String
     }
 
     public func paymentProductField(withId: String) -> PaymentProductField? {

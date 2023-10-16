@@ -409,42 +409,66 @@ public class Session {
         }
     }
 
+    public func publicKey(
+        success: @escaping (_ publicKeyResponse: PublicKeyResponse) -> Void,
+        failure: @escaping (_ error: Error) -> Void
+    ) {
+        communicator.publicKey(
+            success: { publicKeyResponse in
+                success(publicKeyResponse)
+            },
+            failure: { error in
+                failure(error)
+            }
+        )
+
+    }
+
     public func prepare(
         _ paymentRequest: PaymentRequest,
         success: @escaping (_ preparedPaymentRequest: PreparedPaymentRequest) -> Void,
         failure: @escaping (_ error: Error) -> Void
     ) {
-        communicator.publicKey(success: { publicKeyResponse in
-            let publicKeyAsData = publicKeyResponse.encodedPublicKey.decode()
-            guard let strippedPublicKeyAsData = self.encryptor.stripPublicKey(data: publicKeyAsData) else {
-                failure(SessionError.RuntimeError("Failed to decode Public key."))
-                return
+        self.publicKey(
+            success: { publicKeyResponse in
+                let publicKeyAsData = publicKeyResponse.encodedPublicKey.decode()
+                guard let strippedPublicKeyAsData = self.encryptor.stripPublicKey(data: publicKeyAsData) else {
+                    failure(SessionError.RuntimeError("Failed to decode Public key."))
+                    return
+                }
+                let tag = "globalcollect-sdk-public-key-swift"
+
+                self.encryptor.deleteRSAKey(withTag: tag)
+                self.encryptor.storePublicKey(publicKey: strippedPublicKeyAsData, tag: tag)
+
+                guard let publicKey = self.encryptor.RSAKey(withTag: tag) else {
+                    failure(SessionError.RuntimeError("Failed to find RSA Key."))
+                    return
+                }
+
+                let paymentRequestJSON =
+                    self.preparePaymentRequestJSON(
+                        forClientSessionId: self.clientSessionId,
+                        paymentRequest: paymentRequest
+                    )
+                let encryptedFields =
+                    self.joseEncryptor.encryptToCompactSerialization(
+                        JSON: paymentRequestJSON,
+                        withPublicKey: publicKey,
+                        keyId: publicKeyResponse.keyId
+                    )
+                let encodedClientMetaInfo = self.communicator.base64EncodedClientMetaInfo
+                let preparedRequest =
+                    PreparedPaymentRequest(
+                        encryptedFields: encryptedFields,
+                        encodedClientMetaInfo: encodedClientMetaInfo
+                    )
+                success(preparedRequest)
+            },
+            failure: { error in
+                failure(error)
             }
-            let tag = "globalcollect-sdk-public-key-swift"
-
-            self.encryptor.deleteRSAKey(withTag: tag)
-            self.encryptor.storePublicKey(publicKey: strippedPublicKeyAsData, tag: tag)
-
-            guard let publicKey = self.encryptor.RSAKey(withTag: tag) else {
-                failure(SessionError.RuntimeError("Failed to find RSA Key."))
-                return
-            }
-
-            let paymentRequestJSON =
-                self.preparePaymentRequestJSON(forClientSessionId: self.clientSessionId, paymentRequest: paymentRequest)
-            let encryptedFields =
-                self.joseEncryptor.encryptToCompactSerialization(
-                    JSON: paymentRequestJSON,
-                    withPublicKey: publicKey,
-                    keyId: publicKeyResponse.keyId
-                )
-            let encodedClientMetaInfo = self.communicator.base64EncodedClientMetaInfo
-            let preparedRequest =
-                PreparedPaymentRequest(encryptedFields: encryptedFields, encodedClientMetaInfo: encodedClientMetaInfo)
-            success(preparedRequest)
-        }, failure: { error in
-            failure(error)
-        })
+        )
     }
 
     private func preparePaymentRequestJSON(

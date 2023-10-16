@@ -94,6 +94,7 @@
 		73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */; };
 		7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */; };
 		7BC494192965AA3C00F6138A /* ValidatorResidentIdNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */; };
+		7BEEA28929BA2F160085406C /* AuthenticationIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */; };
 		7BFB26CE2954536D00A95841 /* OHHTTPStubs.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; };
 		7BFB26CF2954536D00A95841 /* OHHTTPStubs.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7BFB26D02954536D00A95841 /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */; };
@@ -263,6 +264,7 @@
 		73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsError.swift; path = Models/PaymentProducts/CustomerDetailsError.swift; sourceTree = "<group>"; };
 		7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumberTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorResidentIdNumberTestCase.swift; sourceTree = "<group>"; };
 		7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumber.swift; path = Models/PaymentProducts/ValidatorResidentIdNumber.swift; sourceTree = "<group>"; };
+		7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationIndicator.swift; sourceTree = "<group>"; };
 		7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OHHTTPStubs.xcframework; path = Carthage/Build/OHHTTPStubs.xcframework; sourceTree = "<group>"; };
 		7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CryptoSwift.xcframework; path = Carthage/Build/CryptoSwift.xcframework; sourceTree = "<group>"; };
 		7BFB26CD2954536C00A95841 /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 			children = (
 				73AABACE1F1F806B00B76782 /* CustomerDetails.swift */,
 				73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */,
+				7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */,
 				73AABACF1F1F806B00B76782 /* DisplayElement.swift */,
 				6D7822651DF066C700B5A9AB /* DataRestrictions.swift */,
 				6D7822691DF067A900B5A9AB /* ToolTip.swift */,
@@ -953,6 +956,7 @@
 				6D4E7AA71DF5656600BAE336 /* BasicPaymentProductGroup.swift in Sources */,
 				735404512153C71700771041 /* PaymentProduct863SpecificData.swift in Sources */,
 				6D7822641DF0660B00B5A9AB /* PaymentItemDisplayHints.swift in Sources */,
+				7BEEA28929BA2F160085406C /* AuthenticationIndicator.swift in Sources */,
 				73AABAD11F1F806B00B76782 /* DisplayElement.swift in Sources */,
 				6D7822461DF03D2100B5A9AB /* FormElement.swift in Sources */,
 				B43C1F6D1DEC59E300E210DF /* Region.swift in Sources */,

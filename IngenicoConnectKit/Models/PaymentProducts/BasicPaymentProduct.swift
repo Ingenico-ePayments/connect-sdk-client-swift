@@ -20,8 +20,18 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
     public var autoTokenized = false
     public var allowsInstallments = false
 
+    public var authenticationIndicator: AuthenticationIndicator?
+
+    public var deviceFingerprintEnabled = false
+
+    public var minAmount: Int?
+    public var maxAmount: Int?
+
     public var paymentMethod: String
+    public var mobileIntegrationLevel: String?
+    public var usesRedirectionTo3rdParty = false
     public var paymentProductGroup: String?
+    public var supportsMandates = false
 
     public var paymentProduct302SpecificData: PaymentProduct302SpecificData?
     public var paymentProduct320SpecificData: PaymentProduct320SpecificData?
@@ -71,8 +81,17 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
         allowsRecurring = json["allowsRecurring"] as? Bool ?? false
         autoTokenized = json["autoTokenized"] as? Bool ?? false
         allowsInstallments = json["allowsInstallments"] as? Bool ?? false
+        authenticationIndicator = json["authenticationIndicator"] as? AuthenticationIndicator
 
+        deviceFingerprintEnabled = json["deviceFingerprintEnabled"] as? Bool ?? false
+
+        minAmount = json["minAmount"] as? Int
+        maxAmount = json["maxAmount"] as? Int
+
+        mobileIntegrationLevel = json["mobileIntegrationLevel"] as? String
+        usesRedirectionTo3rdParty = json["usesRedirectionTo3rdParty"] as? Bool ?? false
         paymentProductGroup = json["paymentProductGroup"] as? String
+        supportsMandates = json["supportsMandates"] as? Bool ?? false
 
         if let input = json["accountsOnFile"] as? [[String: Any]] {
             for accountInput in input {
