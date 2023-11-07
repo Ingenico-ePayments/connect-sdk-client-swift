@@ -5,6 +5,7 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
+// swiftlint:disable identifier_name
 
 import Foundation
 import CryptoSwift
@@ -55,7 +56,7 @@ public class Encryptor {
             Macros.DLog(message: "Error while retrieving key with tag \(tag): \(copyStatus)")
         }
 
-        return keyRef as! (SecKey?)
+        return keyRef as! (SecKey?) // swiftlint:disable:this force_cast
     }
 
     public func deleteRSAKey(withTag tag: String) {
@@ -130,10 +131,12 @@ public class Encryptor {
 
         let identities: NSDictionary = unsafeBitCast(CFArrayGetValueAtIndex(items, 0), to: NSDictionary.self)
 
+        // swiftlint:disable force_cast
         let secIdentity: SecIdentity? = identities.value(forKey: kSecImportItemIdentity as String) as! SecIdentity?
         guard let identity = secIdentity else {
             return
         }
+        // swiftlint:enable force_cast
 
         let copyPrivateKeyStatus = SecIdentityCopyPrivateKey(identity, &privateKey)
         if copyPrivateKeyStatus != errSecSuccess {

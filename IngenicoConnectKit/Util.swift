@@ -43,7 +43,7 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v5.11.1",
+            "sdkIdentifier": "SwiftClientSDK/v5.12.0",
             "sdkCreator": "Ingenico",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
@@ -197,7 +197,6 @@ public class Util {
 
     }
 
-    // TODO: move to Base64 class
     public func base64EncodedString(fromDictionary dictionary: [AnyHashable: Any]) -> String? {
         guard let json = try? JSONSerialization.data(withJSONObject: dictionary, options: []) else {
             Macros.DLog(message: "Unable to serialize dictionary")

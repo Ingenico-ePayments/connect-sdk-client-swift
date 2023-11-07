@@ -26,8 +26,7 @@ class EncryptorTestCase: XCTestCase {
 
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
-        _ = encryptor.generateRSAKeyPair(withPublicTag: publicTag,
-                                                        privateTag: privateTag)
+        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
 
         let publicKey: SecKey? = encryptor.RSAKey(withTag: publicTag)
         let privateKey: SecKey? = encryptor.RSAKey(withTag: privateTag)
@@ -84,13 +83,15 @@ class EncryptorTestCase: XCTestCase {
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
 
-        let keyPair = encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
 
-        if let key = encryptor.RSAKey(withTag: publicTag) {
-            // TODO: compare the two keys
-        } else {
+        guard encryptor.RSAKey(withTag: publicTag) != nil,
+              encryptor.RSAKey(withTag: privateTag) != nil else {
             XCTFail("Unable to retrieve a generated key with tag")
+            return
         }
+
+        XCTAssert(true)
 
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
@@ -100,7 +101,13 @@ class EncryptorTestCase: XCTestCase {
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
 
-        _ = encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+
+        guard encryptor.RSAKey(withTag: publicTag) != nil,
+              encryptor.RSAKey(withTag: privateTag) != nil else {
+            XCTFail("Unable to retrieve a generated key with tag")
+            return
+        }
 
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)

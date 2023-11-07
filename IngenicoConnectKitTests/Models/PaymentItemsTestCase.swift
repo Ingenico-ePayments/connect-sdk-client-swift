@@ -255,7 +255,13 @@ class PaymentItemsTestCase: XCTestCase {
             )
 
             let formatter = StringFormatter()
-            formatter.decimalRegex = try! NSRegularExpression(pattern: "[4-5]")
+
+            guard let decimalRegex = try? NSRegularExpression(pattern: "[4-5]") else {
+                XCTFail("Could not create Regular Expression")
+                return
+            }
+            formatter.decimalRegex = decimalRegex
+
             item.stringFormatter = formatter
             for file in item.accountsOnFile.accountsOnFile {
                 XCTAssertTrue(

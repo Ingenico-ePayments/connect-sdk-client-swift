@@ -21,8 +21,8 @@ public class ValueMappingItem: ResponseObjectSerializable {
         self.value = value
         self.displayElements = []
         if let displayElements = json["displayElements"] as? [[String: Any]] {
-            for el in displayElements {
-                if let displayElement = DisplayElement(json: el) {
+            for element in displayElements {
+                if let displayElement = DisplayElement(json: element) {
                     self.displayElements.append(displayElement)
                 }
             }
@@ -35,7 +35,7 @@ public class ValueMappingItem: ResponseObjectSerializable {
             }
         } else {
             let displayNames = self.displayElements.filter { $0.id == "displayName" }
-            if  displayNames.count > 0 {
+            if displayNames.count > 0 {
                 self.displayName = displayNames.first?.value
             }
         }

@@ -169,7 +169,7 @@ class SessionTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { (error) in
             XCTFail(
-                "Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)"
+                "Unexpected failure while testing testPaymentProductGroups: \(error.localizedDescription)"
             )
             expectation.fulfill()
         })
@@ -181,11 +181,43 @@ class SessionTestCase: XCTestCase {
     }
 
     func testPaymentProductNetworksForProductId() {
-        // TODO: Test needs to be made
+        stub(condition: isHost(host)) { _ in
+            let response = [
+                "networks": ["Visa", "MasterCard"]
+            ] as [String: Any]
+            return
+                OHHTTPStubsResponse(
+                    jsonObject: response,
+                    statusCode: 200,
+                    headers: ["Content-Type": "application/json"]
+                )
+        }
+
+        let expectation = self.expectation(description: "Response provided")
+        session.paymentProductNetworks(forProductId: "1", context: context, success: { paymentProductNetworks in
+            self.check(paymentProductNetworks: paymentProductNetworks)
+
+            expectation.fulfill()
+        }, failure: { (error) in
+            XCTFail(
+                "Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)"
+            )
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                print("Timeout error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func check(paymentProductNetworks: PaymentProductNetworks) {
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks.count, 2)
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks[0].rawValue, "Visa")
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks[1].rawValue, "MasterCard")
     }
 
     func testPaymentProductWithId() {
-        // TODO: Merges two response stubs, find a way to make stubs specific for a url without get variables.
         stub(condition: isHost(host)) { _ in
             let response = [
                 "paymentProductGroups": [
@@ -271,7 +303,6 @@ class SessionTestCase: XCTestCase {
             for index in 0..<product.fields.paymentProductFields.count {
                 let field = product.fields.paymentProductFields[index]
 
-                // TODO: This is never true.
                 // Should analyse why imagePath is never set in JSON conversion.
                 // And add test that tests the behavior when it is set.
                 if field.displayHints.tooltip?.imagePath != nil {

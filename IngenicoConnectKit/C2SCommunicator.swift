@@ -30,6 +30,10 @@ public class C2SCommunicator {
         return configuration.base64EncodedClientMetaInfo ?? ""
     }
 
+    internal var loggingEnabled: Bool {
+        return configuration.loggingEnabled
+    }
+
     public var headers: NSDictionary {
         return [
             "Authorization": "GCS v1Client:\(clientSessionId)",
@@ -527,13 +531,27 @@ public class C2SCommunicator {
             }
         }
 
+        if loggingEnabled {
+            logRequest(forURL: URL, requestMethod: .get)
+        }
+
         networkingWrapper.getResponse(
             forURL: URL,
             withParameters: parameters,
             headers: HTTPHeaders(httpHeaders),
             additionalAcceptableStatusCodes: nil,
-            success: success,
-            failure: failure
+            success: { response in
+                if self.loggingEnabled {
+                    self.logSuccessResponse(forURL: URL, forResponse: response)
+                }
+                success(response as Any)
+            },
+            failure: { error in
+                if self.loggingEnabled {
+                    self.logFailureResponse(forURL: URL, forError: error)
+                }
+                failure(error)
+            }
         )
     }
 
@@ -551,14 +569,101 @@ public class C2SCommunicator {
             }
         }
 
+        if loggingEnabled {
+            logRequest(forURL: URL, requestMethod: .post, postBody: parameters as? Parameters)
+        }
+
         networkingWrapper.postResponse(
             forURL: URL,
             headers: HTTPHeaders(httpHeaders),
             withParameters: parameters as? Parameters,
             additionalAcceptableStatusCodes: additionalAcceptableStatusCodes,
-            success: success,
-            failure: failure
+            success: { response in
+                if self.loggingEnabled {
+                    self.logSuccessResponse(forURL: URL, forResponse: response)
+                }
+                success(response as Any)
+            },
+            failure: { error in
+                if self.loggingEnabled {
+                    self.logFailureResponse(forURL: URL, forError: error)
+                }
+                failure(error)
+            }
         )
     }
 
+    private func responseWithoutStatusCode(response: [String: Any]?) -> [String: Any]? {
+        var originalResponse = response
+        originalResponse?.removeValue(forKey: "statusCode")
+
+        return originalResponse
+    }
+
+    private func logSuccessResponse(forURL URL: String, forResponse response: [String: Any]?) {
+        let responseCode = response?["statusCode"] as? Int
+
+        let originalResponse = self.responseWithoutStatusCode(response: response)
+
+        self.logResponse(forURL: URL, responseCode: responseCode, responseBody: "\(originalResponse as AnyObject)")
+    }
+
+    private func logFailureResponse(forURL URL: String, forError error: Error) {
+        self.logResponse(
+            forURL: URL,
+            responseCode: error.asAFError?.responseCode,
+            responseBody: "\(error.localizedDescription)",
+            isError: true
+        )
+    }
+
+    /**
+     * Logs all request headers, url and body
+     */
+    private func logRequest(forURL URL: String, requestMethod: HTTPMethod, postBody: Parameters? = nil) {
+        var requestLog =
+        """
+        Request URL : \(URL)
+        Request Method : \(requestMethod.rawValue)
+        Request Headers : \n
+        """
+
+        headers.forEach { header in
+            requestLog += " \(header) \n"
+        }
+
+        if requestMethod == .post {
+            requestLog += "Body: \(postBody?.description ?? "")"
+        }
+
+        print(requestLog)
+    }
+
+    /**
+     * Logs all response headers, status code and body
+     */
+    private func logResponse(forURL URL: String, responseCode: Int?, responseBody: String, isError: Bool = false) {
+        var responseLog =
+        """
+        Response URL : \(URL)
+        Response Code :
+        """
+
+        if let responseCode {
+            responseLog += " \(responseCode) \n"
+        } else {
+            responseLog += " Nil \n"
+        }
+
+        responseLog += "Response Headers : \n"
+
+        headers.forEach { header in
+            responseLog += " \(header) \n"
+        }
+
+        responseLog += isError ? "Response Error : " : "Response Body : "
+        responseLog += responseBody
+
+        print(responseLog)
+    }
 }

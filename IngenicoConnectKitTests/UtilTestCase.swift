@@ -21,23 +21,29 @@ class UtilTestCase: XCTestCase {
   }
 
   func testBase64EncodedClientMetaInfo() {
-    if let info = util.base64EncodedClientMetaInfo {
-      let decodedInfo = info.decode()
+      if let info = util.base64EncodedClientMetaInfo {
+          let decodedInfo = info.decode()
 
-      if let JSON = try! JSONSerialization.jsonObject(with: decodedInfo, options: []) as? [String: String] {
-        XCTAssertEqual(JSON["deviceBrand"], "Apple", "Incorrect device brand in meta info")
-        XCTAssertEqual(JSON["deviceType"], "x86_64", "Incorrect device type in meta info")
+          guard let JSON = try? JSONSerialization.jsonObject(with: decodedInfo, options: []) as? [String: String] else {
+              XCTFail("Could not deserialize JSON")
+              return
+          }
+
+          XCTAssertEqual(JSON["deviceBrand"], "Apple", "Incorrect device brand in meta info")
+          XCTAssertEqual(JSON["deviceType"], "x86_64", "Incorrect device type in meta info")
       }
-    }
   }
 
   func testBase64EncodedClientMetaInfoWithAddedData() {
-    if let info = util.base64EncodedClientMetaInfo(withAddedData: ["test": "value"]) {
-      let decodedInfo = info.decode()
+      if let info = util.base64EncodedClientMetaInfo(withAddedData: ["test": "value"]) {
+        let decodedInfo = info.decode()
 
-      if let JSON = try! JSONSerialization.jsonObject(with: decodedInfo, options: []) as? [String: String] {
+        guard let JSON = try? JSONSerialization.jsonObject(with: decodedInfo, options: []) as? [String: String] else {
+            XCTFail("Could not deserialize JSON")
+            return
+        }
+
         XCTAssertEqual(JSON["test"], "value", "Incorrect value for added key in meta info")
-      }
     }
   }
 }

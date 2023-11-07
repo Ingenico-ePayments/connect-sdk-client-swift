@@ -5,6 +5,7 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
+// swiftlint:disable function_parameter_count
 
 import Foundation
 import Alamofire
@@ -46,7 +47,10 @@ public class AlamofireWrapper {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
-                    success(value as? [String: Any])
+                    var responseObject = value as? [String: Any]
+                                        responseObject?["statusCode"] = response.response?.statusCode
+
+                                        success(responseObject)
                 case .failure(let error):
                     Macros.DLog(
                         message: "Error while retrieving response for URL \(URL): \(error.localizedDescription)"
@@ -73,7 +77,10 @@ public class AlamofireWrapper {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
-                    success(value as? [String: Any])
+                    var responseObject = value as? [String: Any]
+                                        responseObject?["statusCode"] = response.response?.statusCode
+
+                                        success(responseObject)
                 case .failure(let error):
                     Macros.DLog(
                         message: "Error while retrieving response for URL \(URL): \(error.localizedDescription)"

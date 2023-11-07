@@ -67,7 +67,6 @@
 		6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */; };
 		6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */; };
 		6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */; };
-		6D8BD90F1DFEA1940013B869 /* AccountOnFileTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */; };
 		6D8BD9111DFEACBD0013B869 /* AssetManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */; };
 		6D8BD9131DFEB3080013B869 /* C2SCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8BD9121DFEB3080013B869 /* C2SCommunicator.swift */; };
 		6DA4A88C1DF9842C007492C2 /* BasicPaymentProductTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */; };
@@ -237,7 +236,6 @@
 		6D8BD9081DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorEmailAddressTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorEmailAddressTestCase.swift; sourceTree = "<group>"; };
 		6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProductFieldsTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentProductFieldsTestCase.swift; sourceTree = "<group>"; };
 		6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentRequestTestCase.swift; path = IngenicoConnectKitTests/Models/PaymentRequestTestCase.swift; sourceTree = "<group>"; };
-		6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountOnFileTestCase.swift; path = IngenicoConnectKitTests/Models/AccountOnFileTestCase.swift; sourceTree = "<group>"; };
 		6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetManagerTestCase.swift; path = IngenicoConnectKitTests/AssetManagerTestCase.swift; sourceTree = "<group>"; };
 		6D8BD9121DFEB3080013B869 /* C2SCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C2SCommunicator.swift; sourceTree = "<group>"; };
 		6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentProductTestCase.swift; path = IngenicoConnectKitTests/Models/BasicPaymentProductTestCase.swift; sourceTree = "<group>"; };
@@ -340,7 +338,6 @@
 		1C1E0BEF1E93C26400F9DC5E /* AccountOnFile */ = {
 			isa = PBXGroup;
 			children = (
-				6D8BD90E1DFEA1940013B869 /* AccountOnFileTestCase.swift */,
 				6D2256351DF959E0009DB416 /* AccountOnFileAttributesTestCase.swift */,
 				6D2256371DF95DE9009DB416 /* AccountsOnFileTestCase.swift */,
 			);
@@ -1003,7 +1000,6 @@
 				6D8BD9051DFE965A0013B869 /* ValidatorRangeTestCase.swift in Sources */,
 				6DA4A88E1DF98580007492C2 /* PaymentProductTestCase.swift in Sources */,
 				6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */,
-				6D8BD90F1DFEA1940013B869 /* AccountOnFileTestCase.swift in Sources */,
 				1C99FF521E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift in Sources */,
 				7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */,
 				6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */,

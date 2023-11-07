@@ -91,7 +91,6 @@ class PaymentRequestTestCase: XCTestCase {
         let value = request.maskedValue(forField: attribute.key)
         XCTAssertTrue(value != nil, "Value was not yet.")
 
-        // TODO: Test masked value
         request.paymentProduct?.paymentProductField(withId: fieldId)?.displayHints.mask =
             "[[9999]] [[9999]] [[9999]] [[9999]] [[999]]"
         XCTAssertTrue(value != request.maskedValue(forField: fieldId), "Value was not succesfully masked.")

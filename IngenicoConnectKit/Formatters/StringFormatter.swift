@@ -5,6 +5,8 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
+// swiftlint:disable function_parameter_count
+// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -14,9 +16,15 @@ public class StringFormatter {
     public var upperAlphaRegex: NSRegularExpression
 
     public init() {
-        decimalRegex = try! NSRegularExpression(pattern: "[0-9]")
-        lowerAlphaRegex = try! NSRegularExpression(pattern: "[a-z]")
-        upperAlphaRegex = try! NSRegularExpression(pattern: "[A-Z]")
+        guard let decimalRegex = try? NSRegularExpression(pattern: "[0-9]"),
+              let lowerAlphaRegex = try? NSRegularExpression(pattern: "[a-z]"),
+              let upperAlphaRegex = try? NSRegularExpression(pattern: "[A-Z]") else {
+            fatalError("Could not create Regular Expression")
+        }
+
+        self.decimalRegex = decimalRegex
+        self.lowerAlphaRegex = lowerAlphaRegex
+        self.upperAlphaRegex = upperAlphaRegex
     }
 
     public func formatString(string: String, mask: String) -> String {
@@ -148,7 +156,10 @@ public class StringFormatter {
     }
 
     func parts(ofMask mask: String) -> [String] {
-        let regex = try! NSRegularExpression(pattern: "\\{\\{|\\}\\}|([^\\{\\}]|\\{(?!\\{)|\\}(?!\\}))*")
+        guard let regex = try? NSRegularExpression(pattern: "\\{\\{|\\}\\}|([^\\{\\}]|\\{(?!\\{)|\\}(?!\\}))*") else {
+            fatalError("Could not create Regular Expression")
+        }
+
         let results = regex.matches(in: mask, range: NSRange(location: 0, length: mask.count))
 
         return results.map { (mask as NSString).substring(with: $0.range) }

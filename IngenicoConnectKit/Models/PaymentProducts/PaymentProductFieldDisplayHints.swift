@@ -43,34 +43,42 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable {
         if let input = json["obfuscate"] as? Bool {
             obfuscate = input
         }
+
         if let input = json["placeholderLabel"] as? String {
             placeholderLabel = input
         }
+
         if let input = json["label"] as? String {
             label = input
         }
+
         if let input = json["link"]  as? String {
             link = URL(string: input)
         }
+
         if let input = json["preferredInputType"] as? String {
-            switch input {
-            case "StringKeyboard":
-                preferredInputType = .stringKeyboard
-            case "IntegerKeyboard":
-                preferredInputType = .integerKeyboard
-            case "EmailAddressKeyboard":
-                preferredInputType = .emailAddressKeyboard
-            case "PhoneNumberKeyboard":
-                preferredInputType = .phoneNumberKeyboard
-            case "DateKeyboard":
-                preferredInputType = .dateKeyboard
-            default:
-                break
-            }
+            preferredInputType = self.getPreferredInputType(preferredInputType: input)
         }
 
         if let input = json["tooltip"] as? [String: Any] {
             tooltip = ToolTip(json: input)
+        }
+    }
+
+    private func getPreferredInputType(preferredInputType: String) -> PreferredInputType {
+        switch preferredInputType {
+        case "StringKeyboard":
+            return .stringKeyboard
+        case "IntegerKeyboard":
+            return .integerKeyboard
+        case "EmailAddressKeyboard":
+            return .emailAddressKeyboard
+        case "PhoneNumberKeyboard":
+            return .phoneNumberKeyboard
+        case "DateKeyboard":
+            return .dateKeyboard
+        default:
+            return .noKeyboard
         }
     }
 }

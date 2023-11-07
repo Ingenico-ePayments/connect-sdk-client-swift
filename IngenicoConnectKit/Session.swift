@@ -46,6 +46,15 @@ public class Session {
 
     public var iinLookupPending = false
 
+    public var loggingEnabled: Bool {
+        get {
+            return communicator.loggingEnabled
+        }
+        set {
+            communicator.configuration.loggingEnabled = newValue
+        }
+    }
+
     public init(
         communicator: C2SCommunicator,
         assetManager: AssetManager,
@@ -65,7 +74,8 @@ public class Session {
         customerId: String,
         baseURL: String,
         assetBaseURL: String,
-        appIdentifier: String
+        appIdentifier: String,
+        loggingEnabled: Bool = false
     ) {
         let assetManager = AssetManager()
         let stringFormatter = StringFormatter()
@@ -74,7 +84,8 @@ public class Session {
                                                          customerId: customerId,
                                                          baseURL: baseURL,
                                                          assetBaseURL: assetBaseURL,
-                                                         appIdentifier: appIdentifier)
+                                                         appIdentifier: appIdentifier,
+                                                         loggingEnabled: loggingEnabled)
         let communicator = C2SCommunicator(configuration: configuration)
         let jsonEncryptor = JOSEEncryptor(encryptor: encryptor)
 
@@ -86,13 +97,14 @@ public class Session {
 
     }
 
-    @available(*, deprecated, message: "Use init(clientSessionId:customerId:baseURL:assetsURL:appIdentifier:) instead")
+    @available(*, deprecated, message: "Use init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:loggingEnabled:) instead")
     public init(
         clientSessionId: String,
         customerId: String,
         region: Region,
         environment: Environment,
-        appIdentifier: String
+        appIdentifier: String,
+        loggingEnabled: Bool = false
     ) {
         let assetManager = AssetManager()
         let stringFormatter = StringFormatter()
@@ -101,7 +113,8 @@ public class Session {
                                                          customerId: customerId,
                                                          region: region,
                                                          environment: environment,
-                                                         appIdentifier: appIdentifier)
+                                                         appIdentifier: appIdentifier,
+                                                         loggingEnabled: loggingEnabled)
         let communicator = C2SCommunicator(configuration: configuration)
         let jsonEncryptor = JOSEEncryptor(encryptor: encryptor)
 

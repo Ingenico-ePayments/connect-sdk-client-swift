@@ -21,52 +21,55 @@ public class DataRestrictions: ResponseObjectSerializable {
             isRequired = input
         }
         if let input = json["validators"] as? [String: Any] {
-            if input.index(forKey: "luhn") != nil {
-                let validator = ValidatorLuhn()
-                validators.validators.append(validator)
-            }
-            if input.index(forKey: "expirationDate") != nil {
-                let validator = ValidatorExpirationDate()
-                validators.validators.append(validator)
-            }
-            if let range = input["range"] as? [String: Any] {
-                let validator = ValidatorRange(json: range)
-                validators.validators.append(validator)
-            }
-            if let length = input["length"] as? [String: Any] {
-                let validator = ValidatorLength(json: length)
-                validators.validators.append(validator)
-            }
-            if let fixedList = input["fixedList"] as? [String: Any] {
-                let validator = ValidatorFixedList(json: fixedList)
-                validators.validators.append(validator)
-            }
-            if input.index(forKey: "emailAddress") != nil {
-                let validator = ValidatorEmailAddress()
-                validators.validators.append(validator)
-            }
-            if input.index(forKey: "residentIdNumber") != nil {
-                let validator = ValidatorResidentIdNumber()
-                validators.validators.append(validator)
-            }
-            if let regularExpression = input["regularExpression"] as? [String: Any],
-                let validator = ValidatorRegularExpression(json: regularExpression) {
-                validators.validators.append(validator)
-            }
-            if (input["termsAndConditions"] as? [String: Any]) != nil {
-                let validator = ValidatorTermsAndConditions()
-                validators.validators.append(validator)
-            }
-            if (input["iban"] as? [String: Any]) != nil {
-                let validator = ValidatorIBAN()
-                validators.validators.append(validator)
-            }
-            if let boletoBancarioRequiredness = input["boletoBancarioRequiredness"] as? [String: Any],
-               let validator = ValidatorBoletoBancarioRequiredness(json: boletoBancarioRequiredness) {
-                validators.variableRequiredness = true
-                validators.validators.append(validator)
-            }
+            self.setValidators(input: input)
         }
     }
 
+    private func setValidators(input: [String: Any]) {
+        if input.index(forKey: "luhn") != nil {
+            let validator = ValidatorLuhn()
+            validators.validators.append(validator)
+        }
+        if input.index(forKey: "expirationDate") != nil {
+            let validator = ValidatorExpirationDate()
+            validators.validators.append(validator)
+        }
+        if let range = input["range"] as? [String: Any] {
+            let validator = ValidatorRange(json: range)
+            validators.validators.append(validator)
+        }
+        if let length = input["length"] as? [String: Any] {
+            let validator = ValidatorLength(json: length)
+            validators.validators.append(validator)
+        }
+        if let fixedList = input["fixedList"] as? [String: Any] {
+            let validator = ValidatorFixedList(json: fixedList)
+            validators.validators.append(validator)
+        }
+        if input.index(forKey: "emailAddress") != nil {
+            let validator = ValidatorEmailAddress()
+            validators.validators.append(validator)
+        }
+        if input.index(forKey: "residentIdNumber") != nil {
+            let validator = ValidatorResidentIdNumber()
+            validators.validators.append(validator)
+        }
+        if let regularExpression = input["regularExpression"] as? [String: Any],
+           let validator = ValidatorRegularExpression(json: regularExpression) {
+            validators.validators.append(validator)
+        }
+        if (input["termsAndConditions"] as? [String: Any]) != nil {
+            let validator = ValidatorTermsAndConditions()
+            validators.validators.append(validator)
+        }
+        if (input["iban"] as? [String: Any]) != nil {
+            let validator = ValidatorIBAN()
+            validators.validators.append(validator)
+        }
+        if let boletoBancarioRequiredness = input["boletoBancarioRequiredness"] as? [String: Any],
+           let validator = ValidatorBoletoBancarioRequiredness(json: boletoBancarioRequiredness) {
+            validators.variableRequiredness = true
+            validators.validators.append(validator)
+        }
+    }
 }

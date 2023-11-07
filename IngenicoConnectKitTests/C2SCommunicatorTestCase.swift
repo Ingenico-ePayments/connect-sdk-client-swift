@@ -323,7 +323,6 @@ class C2SCommunicatorTestCase: XCTestCase {
     }
 
     func testPaymentProductWithId() {
-        // TODO: Merges two response stubs, find a way to make stubs specific for a url without get variables.
         stub(condition: isHost("ams1.sandbox.api-ingenico.com")) { _ in
             let response = [
                 "paymentProductGroups": [
@@ -482,7 +481,172 @@ class C2SCommunicatorTestCase: XCTestCase {
     }
 
     func testPaymentProductGroupWithId() {
-        // TODO: still needs to be written
+        stub(condition: isHost("ams1.sandbox.api-ingenico.com")) { _ in
+            let response = [
+                    "displayHints": [
+                        "displayOrder": 20,
+                        "label": "Cards",
+                        "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                    ],
+                    "fields": [[
+                        "dataRestrictions": [
+                            "isRequired": true,
+                            "validators": [
+                                "length": [
+                                    "maxLength": 19,
+                                    "minLength": 12
+                                ],
+                                "luhn": [
+
+                                ]
+                            ]
+                        ],
+                        "displayHints": [
+                            "displayOrder": 10,
+                            "formElement": [
+                                "type": "text"
+                            ],
+                            "label": "Card number:",
+                            "mask": "[[9999]] [[9999]] [[9999]] [[9999]] [[999]]",
+                            "obfuscate": false,
+                            "placeholderLabel": "**** **** **** ****",
+                            "preferredInputType": "IntegerKeyboard"
+                        ],
+                        "id": "cardNumber",
+                        "type": "numericstring"
+                        ], [
+                            "dataRestrictions": [
+                                "isRequired": true,
+                                "validators": [
+                                    "expirationDate": [
+
+                                    ],
+                                    "length": [
+                                        "maxLength": 4,
+                                        "minLength": 4
+                                    ],
+                                    "regularExpression": [
+                                        "regularExpression": "(?:0[1-9]|1[0-2])[0-9][2]"
+                                    ]
+                                ]
+                            ],
+                            "displayHints": [
+                                "displayOrder": 20,
+                                "formElement": [
+                                    "type": "text"
+                                ],
+                                "label": "Expiry date:",
+                                "mask": "[[99]]/[[99]]",
+                                "obfuscate": false,
+                                "placeholderLabel": "MM/YY",
+                                "preferredInputType": "IntegerKeyboard"
+                            ],
+                            "id": "expiryDate",
+                            "type": "expirydate"
+                        ], [
+                            "dataRestrictions": [
+                                "isRequired": false,
+                                "validators": [
+                                    "length": [
+                                        "maxLength": 4,
+                                        "minLength": 3
+                                    ],
+                                    "regularExpression": [
+                                        "regularExpression": "^[0-9][3][0-9]?$"
+                                    ]
+                                ]
+                            ],
+                            "displayHints": [
+                                "displayOrder": 24,
+                                "formElement": [
+                                    "type": "text"
+                                ],
+                                "label": "CVV:",
+                                "mask": "[[9999]]",
+                                "obfuscate": false,
+                                "placeholderLabel": "123",
+                                "preferredInputType": "IntegerKeyboard",
+                                "tooltip": [
+                                    "image": "/templates/master/global/css/img/ppimages/ppf_cvv_v1.png",
+                                    "label": "The CVV is a 3 or 4 digit code embossed or imprinted on your card."
+                                ]
+                            ],
+                            "id": "cvv",
+                            "type": "numericstring"
+                        ]],
+                    "id": "cards"
+                ] as [String: Any]
+            return
+                OHHTTPStubsResponse(
+                    jsonObject: response,
+                    statusCode: 200,
+                    headers: ["Content-Type": "application/json"]
+                )
+        }
+
+        let expectation = self.expectation(description: "Response provided")
+        communicator.paymentProductGroup(withIdentifier: "1", context: context, success: { paymentProductGroup in
+            self.check(paymentProductGroup: paymentProductGroup)
+
+            expectation.fulfill()
+        }, failure: { (_) in
+            XCTFail("Product group with id failed.")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                print("Timeout error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func check(paymentProductGroup: PaymentProductGroup) {
+        XCTAssertEqual(paymentProductGroup.identifier, "cards")
+        XCTAssertEqual(paymentProductGroup.displayHints.displayOrder, 20)
+        XCTAssertEqual(paymentProductGroup.displayHints.label, "Cards")
+        XCTAssertEqual(
+            paymentProductGroup.displayHints.logoPath,
+            "/templates/master/global/css/img/ppimages/group-card.png"
+        )
+        XCTAssertEqual(paymentProductGroup.fields.paymentProductFields.count, 3)
+        XCTAssertEqual(paymentProductGroup.accountsOnFile.accountsOnFile.count, 0)
+    }
+
+    func testPaymentProductNetworksForProductId() {
+        stub(condition: isHost("ams1.sandbox.api-ingenico.com")) { _ in
+            let response = [
+                "networks": ["Visa", "MasterCard"]
+            ] as [String: Any]
+            return
+                OHHTTPStubsResponse(
+                    jsonObject: response,
+                    statusCode: 200,
+                    headers: ["Content-Type": "application/json"]
+                )
+        }
+
+        let expectation = self.expectation(description: "Response provided")
+        communicator.paymentProductNetworks(forProduct: "1", context: context, success: { paymentProductNetworks in
+            self.check(paymentProductNetworks: paymentProductNetworks)
+
+            expectation.fulfill()
+        }, failure: { (error) in
+            XCTFail(
+                "Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)"
+            )
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 3) { error in
+            if let error = error {
+                print("Timeout error: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func check(paymentProductNetworks: PaymentProductNetworks) {
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks.count, 2)
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks[0].rawValue, "Visa")
+        XCTAssertEqual(paymentProductNetworks.paymentProductNetworks[1].rawValue, "MasterCard")
     }
 
     func testPaymentProductIdByPartialCreditCardNumber() {

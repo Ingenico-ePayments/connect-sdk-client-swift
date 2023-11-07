@@ -54,8 +54,7 @@ public class PaymentItems {
             if let groups = groups, let productGroup = product.paymentProductGroup {
                 for group in groups.paymentProductGroups {
                     if productGroup.isEqual(group.identifier) &&
-                        !paymentItems.contains(where: { $0.identifier == group.identifier }) {
-                        // TODO: make paymentItems Equatable such that we dont have to do such lookup
+                       !paymentItems.contains(where: { $0.identifier == group.identifier }) {
                         group.displayHints.displayOrder = group.displayHints.displayOrder
                         paymentItems.append(group)
                     }

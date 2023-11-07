@@ -14,6 +14,7 @@ public class C2SCommunicatorConfiguration {
     let util: Util
     let appIdentifier: String
     let ipAddress: String?
+    internal var loggingEnabled: Bool
 
     @available(
         *,
@@ -38,7 +39,15 @@ public class C2SCommunicatorConfiguration {
         *,
         deprecated,
         message: """
-                 Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:util:) instead
+                 Use method init(
+                    clientSessionId:
+                    customerId:
+                    baseURL:
+                    assetBaseURL:
+                    appIdentifier:
+                    util:
+                    loggingEnabled:
+                 ) instead
                  """
     )
     public init(
@@ -47,7 +56,8 @@ public class C2SCommunicatorConfiguration {
         region: Region,
         environment: Environment,
         appIdentifier: String,
-        util: Util? = nil
+        util: Util? = nil,
+        loggingEnabled: Bool = false
     ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
@@ -56,13 +66,23 @@ public class C2SCommunicatorConfiguration {
         self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = nil
+        self.loggingEnabled = loggingEnabled
     }
 
     @available(
         *,
         deprecated,
         message: """
-                 Use method init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:ipAddress:util:) instead
+                 Use method init(
+                    clientSessionId:
+                    customerId:
+                    baseURL:
+                    assetBaseURL:
+                    appIdentifier:
+                    ipAddress:
+                    util:
+                    loggingEnabled:
+                 ) instead
                  """
     )
     public init(
@@ -72,7 +92,8 @@ public class C2SCommunicatorConfiguration {
         environment: Environment,
         appIdentifier: String,
         ipAddress: String?,
-        util: Util? = nil
+        util: Util? = nil,
+        loggingEnabled: Bool = false
     ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
@@ -81,14 +102,17 @@ public class C2SCommunicatorConfiguration {
         self.util = util ?? Util.shared
         self.appIdentifier = appIdentifier
         self.ipAddress = ipAddress
+        self.loggingEnabled = loggingEnabled
     }
+
     public init(
         clientSessionId: String,
         customerId: String,
         baseURL: String,
         assetBaseURL: String,
         appIdentifier: String,
-        util: Util? = nil
+        util: Util? = nil,
+        loggingEnabled: Bool = false
     ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
@@ -97,10 +121,12 @@ public class C2SCommunicatorConfiguration {
         self.ipAddress = nil
         self.environment = Environment.production
         self.region = Region.AMS
+        self.loggingEnabled = loggingEnabled
 
         self.baseURL = baseURL
         self.assetsBaseURL = assetBaseURL
     }
+
     public init(
         clientSessionId: String,
         customerId: String,
@@ -108,7 +134,8 @@ public class C2SCommunicatorConfiguration {
         assetBaseURL: String,
         appIdentifier: String,
         ipAddress: String?,
-        util: Util? = nil
+        util: Util? = nil,
+        loggingEnabled: Bool = false
     ) {
         self.clientSessionId = clientSessionId
         self.customerId = customerId
@@ -117,10 +144,12 @@ public class C2SCommunicatorConfiguration {
         self.ipAddress = ipAddress
         self.environment = Environment.production
         self.region = Region.AMS
+        self.loggingEnabled = loggingEnabled
 
         self.baseURL = baseURL
         self.assetsBaseURL = assetBaseURL
     }
+
     public var _baseURL: String?
 
     /// New base URL should be a valid URL

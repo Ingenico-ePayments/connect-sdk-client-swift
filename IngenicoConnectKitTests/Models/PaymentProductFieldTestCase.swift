@@ -13,9 +13,30 @@ class PaymentProductFieldTestCase: XCTestCase {
 
     let field = PaymentProductField(json: [
         "displayHints": [
+            "alwaysShow": false,
+            "displayOrder": 10,
             "formElement": [
                 "type": "text"
-            ]
+            ],
+            "label": "Card number",
+            "link": "http://test.com",
+            "mask": "{{9999}} {{9999}} {{9999}} {{9999}} {{999}}",
+            "obfuscate": false,
+            "placeholderLabel": "**** **** **** ****",
+            "preferredInputType": "IntegerKeyboard"
+        ],
+        "dataRestrictions": [
+           "isRequired": false,
+           "validators": [
+              "length": [
+                 "minLength": 4,
+                 "maxLength": 6
+              ],
+              "range": [
+                "minValue": 50,
+                "maxValue": 60
+              ]
+           ]
         ],
         "id": "cardNumber",
         "type": "numericstring"
@@ -33,11 +54,6 @@ class PaymentProductFieldTestCase: XCTestCase {
 
     override func setUp() {
         super.setUp()
-
-        let length = ValidatorLength(minLength: 4, maxLength: 6)
-        let range = ValidatorRange(minValue: 50, maxValue: 60)
-        field.dataRestrictions.validators.validators.append(length)
-        field.dataRestrictions.validators.validators.append(range)
     }
 
     override func tearDown() {
@@ -68,4 +84,23 @@ class PaymentProductFieldTestCase: XCTestCase {
         XCTAssertEqual(field.errors.count, 3, "Unexpected number of errors after validation")
     }
 
+    func testPaymentProductField() {
+        XCTAssertEqual(field.identifier, "cardNumber")
+        XCTAssertEqual(field.type, FieldType.numericString)
+        XCTAssertEqual(field.usedForLookup, false)
+        XCTAssertEqual(field.dataRestrictions.isRequired, false)
+        XCTAssertEqual(field.dataRestrictions.validators.validators.count, 2)
+    }
+
+    func testDisplayHints() {
+        XCTAssertFalse(field.displayHints.alwaysShow, "Expected alwaysShow to be false")
+        XCTAssertEqual(field.displayHints.displayOrder, 10)
+        XCTAssertEqual(field.displayHints.formElement.type, FormElementType.textType)
+        XCTAssertEqual(field.displayHints.label, "Card number")
+        XCTAssertEqual(field.displayHints.link, URL(string: "http://test.com"))
+        XCTAssertEqual(field.displayHints.mask, "{{9999}} {{9999}} {{9999}} {{9999}} {{999}}")
+        XCTAssertFalse(field.displayHints.obfuscate, "Expected obfuscate to be false")
+        XCTAssertEqual(field.displayHints.placeholderLabel, "**** **** **** ****")
+        XCTAssertEqual(field.displayHints.preferredInputType, PreferredInputType.integerKeyboard)
+    }
 }

@@ -11,7 +11,7 @@ import Foundation
 public class PaymentProductField: ResponseObjectSerializable {
 
     public var identifier: String
-    public var usedForLookup: Bool
+    public var usedForLookup: Bool = false
     public var dataRestrictions = DataRestrictions()
     public var displayHints: PaymentProductFieldDisplayHints
     public var type: FieldType
@@ -24,26 +24,25 @@ public class PaymentProductField: ResponseObjectSerializable {
     public required init?(json: [String: Any]) {
         guard let identifier = json["id"] as? String,
               let hints = json["displayHints"] as? [String: Any],
-              let displayHints = PaymentProductFieldDisplayHints(json: hints) else {
+              let displayHints = PaymentProductFieldDisplayHints(json: hints),
+              let numericStringCheck = try? NSRegularExpression(pattern: "^\\d+$")
+        else {
             return nil
         }
         self.identifier = identifier
         self.displayHints = displayHints
 
-        guard let numericStringCheck = try? NSRegularExpression(pattern: "^\\d+$") else {
-            return nil
-        }
         numberFormatter.numberStyle = .decimal
         self.numericStringCheck = numericStringCheck
 
         if let input = json["dataRestrictions"] as? [String: Any] {
             dataRestrictions = DataRestrictions(json: input)
         }
+
         if let usedForLookup = json["usedForLookup"] as? Bool {
             self.usedForLookup = usedForLookup
-        } else {
-            self.usedForLookup = false
         }
+
         switch json["type"] as? String {
         case "string"?:
             type = .string
