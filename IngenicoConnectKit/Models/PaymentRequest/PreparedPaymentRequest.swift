@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PreparedPaymentRequest {
+public class PreparedPaymentRequest: Codable {
 
     public var encryptedFields: String
     public var encodedClientMetaInfo: String

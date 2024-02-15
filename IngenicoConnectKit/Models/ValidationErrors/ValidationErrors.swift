@@ -8,15 +8,29 @@
 
 import Foundation
 
-public class ValidationError { public init() {} }
+public class ValidationError: Codable {
+    public var errorMessage: String = ""
+    public var paymentProductFieldId: String?
+    public var rule: Validator?
+
+    public init() {}
+
+    public init(errorMessage: String, paymentProductFieldId: String?, rule: Validator?) {
+        self.errorMessage = errorMessage
+        self.paymentProductFieldId = paymentProductFieldId
+        self.rule = rule
+    }
+}
 
 public class ValidationErrorAllowed: ValidationError {}
 public class ValidationErrorEmailAddress: ValidationError {}
 public class ValidationErrorExpirationDate: ValidationError {}
 public class ValidationErrorFixedList: ValidationError {}
+@available(*, deprecated, message: "In a future release, this class will be removed.")
 public class ValidationErrorInteger: ValidationError {}
 public class ValidationErrorIsRequired: ValidationError {}
 public class ValidationErrorLuhn: ValidationError {}
+@available(*, deprecated, message: "In a future release, this class will be removed.")
 public class ValidationErrorNumericString: ValidationError {}
 public class ValidationErrorRegularExpression: ValidationError {}
 public class ValidationErrorTermsAndConditions: ValidationError {}
@@ -34,3 +48,5 @@ public class ValidationErrorRange: ValidationError {
     public var minValue = 0
     public var maxValue = 0
 }
+
+public class ValidationErrorInvalidPaymentProduct: ValidationError {}

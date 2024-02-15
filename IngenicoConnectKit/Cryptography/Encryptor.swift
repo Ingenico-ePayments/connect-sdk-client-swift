@@ -5,12 +5,12 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import Foundation
 import CryptoSwift
 import Security
 
+@available(*, deprecated, message: "In a future release, this class and its functions will become internal to the SDK.")
 public class Encryptor {
 
     public func generateRSAKeyPair(withPublicTag publicTag: String, privateTag: String) {
@@ -230,6 +230,7 @@ public class Encryptor {
         return Array(publicKey[prefixLength..<publicKey.count])
     }
 
+    // swiftlint:disable identifier_name
     public func encryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let plaintext = convertDataToByteArray(data: data)
 
@@ -276,7 +277,8 @@ public class Encryptor {
     public func decryptAES(ciphertext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
         return self.decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes)
     }
-    func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
+
+    public func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
         guard let aes = try? AES(key: key, blockMode: CBC(iv: IV), padding: .pkcs7),
               let plaintext = try? aes.decrypt(ciphertext) else {
             return nil
@@ -284,6 +286,7 @@ public class Encryptor {
 
         return plaintext
     }
+    // swiftlint:enable identifier_name
 
     public func generateHMAC(data: Data, key: Data) -> (Data?) {
         let input = convertDataToByteArray(data: data)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PaymentItems {
+public class PaymentItems: Encodable {
 
     public var paymentItems = [BasicPaymentItem]()
     public var stringFormatter: StringFormatter?
@@ -31,6 +31,7 @@ public class PaymentItems {
         return accountsOnFile
     }
 
+    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
     public init(products: BasicPaymentProducts, groups: BasicPaymentProductGroups?) {
         paymentItems = createPaymentItemsFromProducts(products: products, groups: groups)
 
@@ -40,6 +41,18 @@ public class PaymentItems {
                 allPaymentItems.append(group)
             }
         }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case basicPaymentItems, accountsOnFile
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        let wrappedBasicPaymentItems = paymentItems.map { BasicPaymentItemWrapper(basicPaymentItem: $0)}
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(wrappedBasicPaymentItems, forKey: .basicPaymentItems)
+        try? container.encode(accountsOnFile, forKey: .accountsOnFile)
     }
 
     public func createPaymentItemsFromProducts(
@@ -96,5 +109,18 @@ public class PaymentItems {
             }
             return displayOrder0 < displayOrder1
         }
+    }
+}
+
+private struct BasicPaymentItemWrapper: Encodable {
+    let basicPaymentItem: BasicPaymentItem
+
+    private enum CodingKeys: String, CodingKey {
+        case basicPaymentItem
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(basicPaymentItem, forKey: .basicPaymentItem)
     }
 }

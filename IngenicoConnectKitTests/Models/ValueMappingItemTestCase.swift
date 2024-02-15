@@ -12,21 +12,20 @@ import XCTest
 
 class ValueMappingItemTestCase: XCTestCase {
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
     func testExample() {
-        let item = ValueMappingItem(json: ["displayName": "displayName", "value": "value"])!
+        let itemJSON = Data("""
+        {
+            "displayName": "displayName",
+            "value": "value",
+        }
+        """.utf8)
+
+        guard let item = try? JSONDecoder().decode(ValueMappingItem.self, from: itemJSON) else {
+            XCTFail("Not a valid ValueMappingItem")
+            return
+        }
 
         XCTAssertTrue(item.displayName == "displayName", "Unexpected")
         XCTAssertTrue(item.value == "value", "Unexpected")
     }
-
 }

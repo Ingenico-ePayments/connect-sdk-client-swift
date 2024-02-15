@@ -16,66 +16,85 @@ class PaymentProductFieldsTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let field1 = PaymentProductField(json: [
-            "displayHints": [
+        let field1JSON = Data("""
+        {
+            "displayHints": {
                 "displayOrder": 1,
-                "formElement": [
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "field1",
             "type": "numericstring"
-        ])!
-        let field2 = PaymentProductField(json: [
-            "displayHints": [
+        }
+        """.utf8)
+
+        let field2JSON = Data("""
+        {
+            "displayHints": {
                 "displayOrder": 100,
-                "formElement": [
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "field2",
             "type": "numericstring"
-        ])!
-        let field3 = PaymentProductField(json: [
-            "displayHints": [
+        }
+        """.utf8)
+
+        let field3JSON = Data("""
+        {
+            "displayHints": {
                 "displayOrder": 4,
-                "formElement": [
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "field3",
             "type": "numericstring"
-        ])!
-        let field4 = PaymentProductField(json: [
-            "displayHints": [
+        }
+        """.utf8)
+
+        let field4JSON = Data("""
+        {
+            "displayHints": {
                 "displayOrder": 50,
-                "formElement": [
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "field4",
             "type": "numericstring"
-        ])!
-        let field5 = PaymentProductField(json: [
-            "displayHints": [
+        }
+        """.utf8)
+
+        let field5JSON = Data("""
+        {
+            "displayHints": {
                 "displayOrder": 3,
-                "formElement": [
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "field5",
             "type": "numericstring"
-        ])!
+        }
+        """.utf8)
+
+        guard let field1 = try? JSONDecoder().decode(PaymentProductField.self, from: field1JSON),
+              let field2 = try? JSONDecoder().decode(PaymentProductField.self, from: field2JSON),
+              let field3 = try? JSONDecoder().decode(PaymentProductField.self, from: field3JSON),
+              let field4 = try? JSONDecoder().decode(PaymentProductField.self, from: field4JSON),
+              let field5 = try? JSONDecoder().decode(PaymentProductField.self, from: field5JSON) else {
+            XCTFail("Not all fields are a valid PaymentProductField object")
+            return
+        }
 
         fields.paymentProductFields.append(field1)
         fields.paymentProductFields.append(field2)
         fields.paymentProductFields.append(field3)
         fields.paymentProductFields.append(field4)
         fields.paymentProductFields.append(field5)
-    }
-
-    override func tearDown() {
-        super.tearDown()
     }
 
     func testSort() {

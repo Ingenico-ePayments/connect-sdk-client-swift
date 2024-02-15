@@ -6,11 +6,11 @@
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
 
-public enum IINStatus {
-    case supported
-    case unsupported
-    case unknown
-    case notEnoughDigits
-    case pending
-    case existingButNotAllowed
+public enum IINStatus: String, Codable {
+    case supported = "SUPPORTED"
+    case unsupported = "UNSUPPORTED"
+    case unknown = "UNKNOWN"
+    case notEnoughDigits = "NOT_ENOUGH_DIGITS"
+    case pending = "PENDING"
+    case existingButNotAllowed = "EXISTING_BUT_NOT_ALLOWED"
 }

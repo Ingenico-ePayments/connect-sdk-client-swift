@@ -7,7 +7,7 @@
 //
 
 import Foundation
-public enum DisplayElementType: String {
+public enum DisplayElementType: String, Codable {
     case string = "STRING"
     case integer = "INTEGER"
     case currency = "CURRENCY"

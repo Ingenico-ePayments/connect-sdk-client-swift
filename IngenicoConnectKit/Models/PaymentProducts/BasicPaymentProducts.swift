@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProducts: Equatable, ResponseObjectSerializable {
+public class BasicPaymentProducts: Equatable, ResponseObjectSerializable, Codable {
     public var paymentProducts = [BasicPaymentProduct]()
     public var stringFormatter: StringFormatter? {
         get { return paymentProducts.first?.stringFormatter }
@@ -20,6 +20,7 @@ public class BasicPaymentProducts: Equatable, ResponseObjectSerializable {
             }
         }
     }
+
     public var hasAccountsOnFile: Bool {
         for product in paymentProducts
             where product.accountsOnFile.accountsOnFile.count > 0 {
@@ -39,9 +40,10 @@ public class BasicPaymentProducts: Equatable, ResponseObjectSerializable {
         return accountsOnFile
     }
 
-    public init() {
-    }
+    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
+    public init() {}
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     required public init(json: [String: Any]) {
         guard let paymentProductsInput = json["paymentProducts"] as? [[String: Any]] else {
             return
@@ -52,6 +54,17 @@ public class BasicPaymentProducts: Equatable, ResponseObjectSerializable {
                 paymentProducts.append(paymentProduct)
             }
         }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case paymentProducts
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.paymentProducts =
+            (try? container.decodeIfPresent([BasicPaymentProduct].self, forKey: .paymentProducts)) ??
+                [BasicPaymentProduct]()
     }
 
     public func logoPath(forPaymentProduct identifier: String) -> String? {

@@ -21,3 +21,4 @@ public enum Region {
     case AMS
     case PAR
 }
+// swiftlint:enable identifier_name

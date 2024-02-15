@@ -8,8 +8,23 @@
 
 import Foundation
 
-public class ValidatorResidentIdNumber: Validator {
+public class ValidatorResidentIdNumber: Validator, ValidationRule {
 
+    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
+    public override init() {
+        super.init(messageId: "residentIdNumber", validationType: .residentIdNumber)
+    }
+
+    // periphery:ignore:parameters decoder
+    public required init(from decoder: Decoder) throws {
+        super.init(messageId: "residentIdNumber", validationType: .residentIdNumber)
+    }
+
+    @available(
+        *,
+        deprecated,
+        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
+    )
     /**
      Validates a Chinese Resident ID Number.
         - Parameters:
@@ -18,7 +33,28 @@ public class ValidatorResidentIdNumber: Validator {
         - Important: The return value can be obtained by reading the errors array of this class
      */
     public override func validate(value: String, for: PaymentRequest) {
-        errors.removeAll()
+        _ = validate(value: value, for: nil)
+    }
+
+    /**
+     Validates a Chinese Resident ID Number.
+        - Parameters:
+            - Field: The field which contains the ID to be verified, 15 to 18 characters long
+            - PaymentRequest: The Payment request that the id is a part of
+        - Important: Any possible errors can be obtained by reading the errors array of this class
+     */
+    public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {
+        guard let fieldValue = request.getValue(forField: fieldId) else {
+            return false
+        }
+
+        return validate(value: fieldValue, for: fieldId)
+    }
+
+    internal override func validate(value: String, for fieldId: String?) -> Bool {
+        self.clearErrors()
+
+        let error = ValidationErrorResidentId(errorMessage: self.messageId, paymentProductFieldId: fieldId, rule: self)
 
         if value.count == 15 {
             // We perform no checksum validation for IDs with a length of 15
@@ -26,18 +62,20 @@ public class ValidatorResidentIdNumber: Validator {
             // We only check if the id is a valid Integer
 
             if Int(value) == nil {
-                errors.append(ValidationErrorResidentId())
-                return
+                errors.append(error)
+                return false
             }
         } else if value.count == 18 {
             if !checkSumIsValid(for: value) {
-                errors.append(ValidationErrorResidentId())
-                return
+                errors.append(error)
+                return false
             }
         } else {
-            errors.append(ValidationErrorResidentId())
-            return
+            errors.append(error)
+            return false
         }
+
+        return true
     }
 
     /**

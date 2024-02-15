@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AuthenticationIndicator: ResponseObjectSerializable {
+public class AuthenticationIndicator: ResponseObjectSerializable, Codable {
     public var name: String
     public var value: String
 

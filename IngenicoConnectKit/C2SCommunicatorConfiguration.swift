@@ -8,6 +8,14 @@
 
 import Foundation
 
+@available(
+    *,
+    deprecated,
+    message:
+        """
+        In a future release, this class, its functions and its properties will become internal to the SDK.
+        """
+)
 public class C2SCommunicatorConfiguration {
     let clientSessionId: String
     let customerId: String
@@ -150,7 +158,17 @@ public class C2SCommunicatorConfiguration {
         self.assetsBaseURL = assetBaseURL
     }
 
+    @available(
+        *,
+        deprecated,
+        message:
+            """
+            In a future release, this property will become private to this class. Use baseURL instead.
+            """
+    )
+    // swiftlint:disable identifier_name
     public var _baseURL: String?
+    // swiftlint:enable identifier_name
 
     /// New base URL should be a valid URL
     public var baseURL: String {

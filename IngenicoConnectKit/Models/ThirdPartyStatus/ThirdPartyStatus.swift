@@ -4,13 +4,14 @@
 //
 //  Created for Ingenico ePayments on 15/06/2017.
 //
-// swiftlint:disable identifier_name
 
 import UIKit
 
-public enum ThirdPartyStatus: String {
+public enum ThirdPartyStatus: String, Codable {
+    // swiftlint:disable identifier_name
     case Waiting = "WAITING"
     case Initialized = "INITIALIZED"
     case Authorized = "AUTHORIZED"
     case Completed = "COMPLETED"
+    // swiftlint:enable identifier_name
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSerializable {
+public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSerializable, Codable {
 
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
@@ -48,6 +48,7 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
         }
     }
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     public required init?(json: [String: Any]) {
         guard let identifier = json["id"] as? Int,
               let paymentMethod = json["paymentMethod"] as? String,
@@ -100,7 +101,80 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
                 }
             }
         }
+    }
 
+    private enum CodingKeys: String, CodingKey {
+        case id, displayHints, accountsOnFile, acquirerCountry, allowsTokenization, allowsRecurring, autoTokenized,
+             allowsInstallments, authenticationIndicator, deviceFingerprintEnabled, minAmount, maxAmount, paymentMethod,
+             mobileIntegrationLevel, usesRedirectionTo3rdParty, paymentProductGroup, supportsMandates,
+             paymentProduct302SpecificData, paymentProduct320SpecificData, paymentProduct863SpecificData
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let idInt = try? container.decode(Int.self, forKey: .id) {
+            self.identifier = "\(idInt)"
+        } else {
+            self.identifier = try container.decode(String.self, forKey: .id)
+        }
+        self.paymentMethod = try container.decode(String.self, forKey: .paymentMethod)
+        self.displayHints = try container.decode(PaymentItemDisplayHints.self, forKey: .displayHints)
+
+        self.paymentProduct302SpecificData =
+            try? container.decodeIfPresent(PaymentProduct302SpecificData.self, forKey: .paymentProduct302SpecificData)
+        self.paymentProduct320SpecificData =
+            try? container.decodeIfPresent(PaymentProduct320SpecificData.self, forKey: .paymentProduct320SpecificData)
+        self.paymentProduct863SpecificData =
+            try? container.decodeIfPresent(PaymentProduct863SpecificData.self, forKey: .paymentProduct863SpecificData)
+
+        self.acquirerCountry = try? container.decodeIfPresent(String.self, forKey: .acquirerCountry)
+        self.allowsTokenization = (try? container.decodeIfPresent(Bool.self, forKey: .allowsTokenization)) ?? false
+        self.allowsRecurring = (try? container.decodeIfPresent(Bool.self, forKey: .allowsRecurring)) ?? false
+        self.autoTokenized = (try? container.decodeIfPresent(Bool.self, forKey: .autoTokenized)) ?? false
+        self.allowsInstallments = (try? container.decodeIfPresent(Bool.self, forKey: .allowsInstallments)) ?? false
+        self.authenticationIndicator =
+            try? container.decodeIfPresent(AuthenticationIndicator.self, forKey: .authenticationIndicator)
+        self.deviceFingerprintEnabled =
+            (try? container.decodeIfPresent(Bool.self, forKey: .deviceFingerprintEnabled)) ?? false
+
+        self.minAmount = try? container.decodeIfPresent(Int.self, forKey: .minAmount)
+        self.maxAmount = try? container.decodeIfPresent(Int.self, forKey: .maxAmount)
+
+        self.mobileIntegrationLevel = try? container.decodeIfPresent(String.self, forKey: .mobileIntegrationLevel)
+        self.usesRedirectionTo3rdParty =
+            (try? container.decodeIfPresent(Bool.self, forKey: .usesRedirectionTo3rdParty)) ?? false
+        self.paymentProductGroup = try? container.decodeIfPresent(String.self, forKey: .paymentProductGroup)
+        self.supportsMandates = (try? container.decodeIfPresent(Bool.self, forKey: .supportsMandates)) ?? false
+
+        if let accountsOnFile = try? container.decodeIfPresent([AccountOnFile].self, forKey: .accountsOnFile) {
+            for accountOnFile in accountsOnFile {
+                self.accountsOnFile.accountsOnFile.append(accountOnFile)
+            }
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(identifier, forKey: .id)
+        try? container.encode(paymentMethod, forKey: .paymentMethod)
+        try? container.encode(displayHints, forKey: .displayHints)
+        try? container.encodeIfPresent(paymentProduct302SpecificData, forKey: .paymentProduct302SpecificData)
+        try? container.encodeIfPresent(paymentProduct320SpecificData, forKey: .paymentProduct320SpecificData)
+        try? container.encodeIfPresent(paymentProduct863SpecificData, forKey: .paymentProduct863SpecificData)
+        try? container.encodeIfPresent(acquirerCountry, forKey: .acquirerCountry)
+        try? container.encode(allowsTokenization, forKey: .allowsTokenization)
+        try? container.encode(allowsRecurring, forKey: .allowsRecurring)
+        try? container.encode(autoTokenized, forKey: .autoTokenized)
+        try? container.encode(allowsInstallments, forKey: .allowsInstallments)
+        try? container.encodeIfPresent(authenticationIndicator, forKey: .authenticationIndicator)
+        try? container.encode(deviceFingerprintEnabled, forKey: .deviceFingerprintEnabled)
+        try? container.encodeIfPresent(minAmount, forKey: .minAmount)
+        try? container.encodeIfPresent(maxAmount, forKey: .maxAmount)
+        try? container.encodeIfPresent(mobileIntegrationLevel, forKey: .mobileIntegrationLevel)
+        try? container.encode(usesRedirectionTo3rdParty, forKey: .usesRedirectionTo3rdParty)
+        try? container.encodeIfPresent(paymentProductGroup, forKey: .paymentProductGroup)
+        try? container.encode(supportsMandates, forKey: .supportsMandates)
+        try? container.encode(accountsOnFile.accountsOnFile, forKey: .accountsOnFile)
     }
 
     public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
@@ -110,5 +184,4 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
     public static func == (lhs: BasicPaymentProduct, rhs: BasicPaymentProduct) -> Bool {
         return lhs.identifier == rhs.identifier
     }
-
 }

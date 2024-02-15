@@ -5,12 +5,12 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import Foundation
 
 extension String {
 
+    // swiftlint:disable identifier_name
     subscript (i: Int) -> String {
         return self[i ..< i + 1]
     }
@@ -30,6 +30,7 @@ extension String {
         let end = index(start, offsetBy: range.upperBound - range.lowerBound)
         return String(self[start ..< end])
     }
+    // swiftlint:enable identifier_name
 
     public func base64URLDecode() -> Data {
         let underscoreReplaced = self.replacingOccurrences(of: "-", with: "+")

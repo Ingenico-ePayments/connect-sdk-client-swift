@@ -17,15 +17,30 @@ class AccountOnFileAttributesTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let attribute1 = AccountOnFileAttribute(json: ["key": "key1", "value": "value1", "status": "READ_ONLY"])!
-        let attribute2 = AccountOnFileAttribute(json: ["key": "key2", "value": "value2", "status": "CAN_WRITE"])!
+        let attribute1JSON = Data("""
+        {
+            "key": "key1",
+            "value": "value1",
+            "status": "READ_ONLY"
+        }
+        """.utf8)
+
+        let attribute2JSON = Data("""
+        {
+            "key": "key2",
+            "value": "value2",
+            "status": "CAN_WRITE"
+        }
+        """.utf8)
+
+        guard let attribute1 = try? JSONDecoder().decode(AccountOnFileAttribute.self, from: attribute1JSON),
+              let attribute2 = try? JSONDecoder().decode(AccountOnFileAttribute.self, from: attribute2JSON) else {
+            XCTFail("Not all attributes are a valid AccountOnFileAttribute object")
+            return
+        }
 
         attributes.attributes.append(attribute1)
         attributes.attributes.append(attribute2)
-    }
-
-    override func tearDown() {
-        super.tearDown()
     }
 
     func testValueForField() {
@@ -40,17 +55,46 @@ class AccountOnFileAttributesTestCase: XCTestCase {
         XCTAssert(!attributes.hasValue(forField: "key3"), "Attributes should not have a value for this key")
     }
 
-    func testIsReadOnly() {
-        let readOnlyAttr = AccountOnFileAttribute(json: ["key": "key3", "value": "value3", "status": "READ_ONLY"])!
+    func testAttributes() {
+        let readOnlyAttrJSON = Data("""
+        {
+            "key": "key3",
+            "value": "value3",
+            "status": "READ_ONLY"
+        }
+        """.utf8)
+        guard let readOnlyAttr = try? JSONDecoder().decode(AccountOnFileAttribute.self, from: readOnlyAttrJSON) else {
+            XCTFail("Not a valid AccountOnFileAttribute")
+            return
+        }
         attributes.attributes.append(readOnlyAttr)
         XCTAssertTrue(attributes.isReadOnly(field: readOnlyAttr.key), "readOnlyAttr is not read only.")
 
-        let readableAttr = AccountOnFileAttribute(json: ["key": "readable", "value": "value3", "status": "CAN_WRITE"])!
+        let readableAttrJSON = Data("""
+        {
+            "key": "readable",
+            "value": "value3",
+            "status": "CAN_WRITE"
+        }
+        """.utf8)
+        guard let readableAttr = try? JSONDecoder().decode(AccountOnFileAttribute.self, from: readableAttrJSON) else {
+            XCTFail("Not a valid AccountOnFileAttribute")
+            return
+        }
         attributes.attributes.append(readableAttr)
         XCTAssertTrue(!attributes.isReadOnly(field: readableAttr.key), "readableAttr is read only.")
 
-        let mustWriteAttr =
-            AccountOnFileAttribute(json: ["key": "readable", "value": "value3", "status": "MUST_WRITE"])!
+        let mustWriteAttrJSON = Data("""
+        {
+            "key": "readable",
+            "value": "value3",
+            "status": "MUST_WRITE"
+        }
+        """.utf8)
+        guard let mustWriteAttr = try? JSONDecoder().decode(AccountOnFileAttribute.self, from: mustWriteAttrJSON) else {
+            XCTFail("Not a valid AccountOnFileAttribute")
+            return
+        }
         attributes.attributes.append(mustWriteAttr)
         XCTAssertTrue(!attributes.isReadOnly(field: mustWriteAttr.key), "mustWriteAttr is read only.")
     }

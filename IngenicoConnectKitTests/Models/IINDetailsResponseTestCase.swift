@@ -15,14 +15,19 @@ class IINDetailsResponseTestCase: XCTestCase {
 
     let host = "ams1.sandbox.api-ingenico.com"
 
-    var session = Session(clientSessionId: "client-session-id",
-                          customerId: "customer-id",
-                          region: .EU,
-                          environment: .sandbox,
-                          appIdentifier: "")
-    let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR),
-                                      isRecurring: true,
-                                      countryCode: .NL)
+    let session = Session(
+        clientSessionId: "client-session-id",
+        customerId: "customer-id",
+        baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+        assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
+        appIdentifier: "",
+        loggingEnabled: false
+    )
+    let context = PaymentContext(
+        amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
+        isRecurring: true,
+        countryCode: "NL"
+    )
 
     override func setUp() {
         super.setUp()
@@ -38,24 +43,16 @@ class IINDetailsResponseTestCase: XCTestCase {
                     [
                         "paymentProductId": 1,
                         "isAllowedInContext": true
-                    ],
-                    [
-                        "isAllowedInContext": true
                     ]
                 ]
             ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
                 )
         }
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
     }
 
     func testGetIINDetailsNotEnoughDigits() {
@@ -84,9 +81,9 @@ class IINDetailsResponseTestCase: XCTestCase {
                 "Payment product ID did not match: \(String(describing: response.paymentProductId))"
             )
             XCTAssertEqual(
-                response.countryCode,
-                .RU,
-                "Country code did not match: \(String(describing: response.countryCode))"
+                response.countryCodeString,
+                "RU",
+                "Country code did not match: \(String(describing: response.countryCodeString))"
             )
 
             let details = IINDetail(paymentProductId: response.paymentProductId!, allowedInContext: true)

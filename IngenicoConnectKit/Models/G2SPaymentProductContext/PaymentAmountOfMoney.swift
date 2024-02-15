@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PaymentAmountOfMoney {
+public class PaymentAmountOfMoney: Decodable {
     public var totalAmount = 0
     @available(*, deprecated, message: "In the next major release, the type of currencyCode will change to String.")
     public var currencyCode: CurrencyCode
@@ -23,6 +23,24 @@ public class PaymentAmountOfMoney {
         self.totalAmount = totalAmount
         self.currencyCode = CurrencyCode.init(rawValue: currencyCode) ?? .USD
         self.currencyCodeString = currencyCode
+    }
+
+    enum CodingKeys: CodingKey {
+        case amount, currencyCode
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.totalAmount = try container.decode(Int.self, forKey: .amount)
+
+        if let currencyCodeString = try? container.decodeIfPresent(String.self, forKey: .currencyCode) {
+            self.currencyCodeString = currencyCodeString
+            self.currencyCode = CurrencyCode.init(rawValue: currencyCodeString) ?? .USD
+        } else {
+            self.currencyCodeString = "USD"
+            self.currencyCode = .USD
+        }
     }
 
     public var description: String {

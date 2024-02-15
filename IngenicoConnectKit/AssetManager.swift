@@ -21,6 +21,17 @@ extension UserDefaults {
     }
 }
 
+@available(
+    *,
+    deprecated,
+     message:
+        """
+        In a future release this class, its functions and its properties will be removed.
+        Instead please retrieve the logo / tooltip image directly from the PaymentItem.
+        If an image is not available, or you wish to retrieve it again, you can retrieve it
+        from the logo's / tooltip image's URL that is also stored in the PaymentItem.
+        """
+)
 public class AssetManager {
     public let logoFormat = "pp_logo_%@"
     public let tooltipFormat = "pp_%@_tooltip_%@"

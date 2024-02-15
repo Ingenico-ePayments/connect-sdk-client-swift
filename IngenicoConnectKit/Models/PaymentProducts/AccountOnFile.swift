@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AccountOnFile: ResponseObjectSerializable {
+public class AccountOnFile: ResponseObjectSerializable, Codable {
 
     public var identifier: String
     public var paymentProductIdentifier: String
@@ -16,6 +16,7 @@ public class AccountOnFile: ResponseObjectSerializable {
     public var attributes = AccountOnFileAttributes()
     public var stringFormatter = StringFormatter()
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     public required init?(json: [String: Any]) {
 
         guard let identifier = json["id"] as? Int,
@@ -41,6 +42,45 @@ public class AccountOnFile: ResponseObjectSerializable {
                 }
             }
         }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, paymentProductId, displayHints, attributes
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let idInt = try? container.decode(Int.self, forKey: .id) {
+            self.identifier = "\(idInt)"
+        } else {
+            self.identifier = try container.decode(String.self, forKey: .id)
+        }
+
+        if let paymentProductIdInt = try? container.decode(Int.self, forKey: .paymentProductId) {
+            self.paymentProductIdentifier = "\(paymentProductIdInt)"
+        } else {
+            self.paymentProductIdentifier = try container.decode(String.self, forKey: .paymentProductId)
+        }
+
+        if let displayHints = try? container.decodeIfPresent(AccountOnFileDisplayHints.self, forKey: .displayHints) {
+            self.displayHints = displayHints
+        }
+
+        if let accountOnFileAttributes =
+            try? container.decodeIfPresent([AccountOnFileAttribute].self, forKey: .attributes) {
+                for accountOnFileAttribute in accountOnFileAttributes {
+                    self.attributes.attributes.append(accountOnFileAttribute)
+                }
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(identifier, forKey: .id)
+        try? container.encode(paymentProductIdentifier, forKey: .paymentProductId)
+        try? container.encode(displayHints, forKey: .displayHints)
+        try? container.encode(attributes.attributes, forKey: .attributes)
     }
 
     public func maskedValue(forField paymentProductFieldId: String) -> String {

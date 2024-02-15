@@ -15,26 +15,17 @@ class PaymentItemsTestCase: XCTestCase {
 
     let host = "ams1.sandbox.api-ingenico.com"
 
-    var session = Session(clientSessionId: "client-session-id",
-                          customerId: "customer-id",
-                          region: .EU,
-                          environment: .sandbox,
-                          appIdentifier: "")
-    let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR),
+    let session = StubSession(
+        clientSessionId: "client-session-id",
+        customerId: "customer-id",
+        baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+        assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
+        appIdentifier: "",
+        loggingEnabled: false
+    )
+    let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
                                  isRecurring: true,
-                                 countryCode: .NL)
-
-    override func setUp() {
-        super.setUp()
-        session.assetManager.fileManager = StubFileManager()
-        session.assetManager.sdkBundle = StubBundle()
-
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+                                 countryCode: "NL")
 
     func testPaymentItems() {
         stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/products") && isMethodGET()) { _ in
@@ -46,7 +37,7 @@ class PaymentItemsTestCase: XCTestCase {
                             "displayHints": [
                                 "displayOrder": 20,
                                 "label": "Visa",
-                                "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
+                                "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
                             ],
                             "id": 1,
                             "maxAmount": 1000000,
@@ -61,7 +52,7 @@ class PaymentItemsTestCase: XCTestCase {
                             "displayHints": [
                                 "displayOrder": 19,
                                 "label": "American Express",
-                                "logo": "/templates/master/global/css/img/ppimages/pp_logo_2_v1.png"
+                                "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_2_v1.png"
                             ],
                             "id": 2,
                             "maxAmount": 1000000,
@@ -75,7 +66,7 @@ class PaymentItemsTestCase: XCTestCase {
                             "displayHints": [
                                 "displayOrder": 18,
                                 "label": "MasterCard",
-                                "logo": "/templates/master/global/css/img/ppimages/pp_logo_3_v1.png"
+                                "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_3_v1.png"
                             ],
                             "id": 3,
                             "maxAmount": 1000000,
@@ -114,7 +105,7 @@ class PaymentItemsTestCase: XCTestCase {
                     ]
                 ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -128,7 +119,7 @@ class PaymentItemsTestCase: XCTestCase {
                             "displayHints": [
                                 "displayOrder": 20,
                                 "label": "Cards",
-                                "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                                "logo": "https://example.com/templates/master/global/css/img/ppimages/group-card.png"
                             ],
                             "id": "cards",
                             "acquirerCountry": "NL",
@@ -146,7 +137,7 @@ class PaymentItemsTestCase: XCTestCase {
                     ]
                 ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -202,20 +193,21 @@ class PaymentItemsTestCase: XCTestCase {
             }
         }
 
-        XCTAssertTrue(AccountOnFile(json: ["": ""]) == nil, "Init of the account on file should have failed.")
-        XCTAssertTrue(
-            AccountOnFile(json: ["id": "string id"]) == nil,
-            "Init of the account on file should have failed."
-        )
+        let accountOnFileEmptyJSON = Data("""
+        {
+            "": ""
+        }
+        """.utf8)
+        let accountOnFileEmpty = try? JSONDecoder().decode(AccountOnFile.self, from: accountOnFileEmptyJSON)
+        XCTAssertTrue(accountOnFileEmpty == nil, "Init of the account on file should have failed.")
 
-        XCTAssertTrue(AccountOnFile(
-            json: ["id": 1, "paymentProductId": ""]) == nil,
-                      "Init of the account on file should have failed. Based on the payment product ID."
-        )
-        XCTAssertTrue(
-            AccountOnFile(json: ["id": 1, "paymentProductId": "string id"]) == nil,
-            "Init of the account on file should have failed. Based on the payment product ID."
-        )
+        let accountOnFileIdStringIdJSON = Data("""
+        {
+            "id": "string id"
+        }
+        """.utf8)
+        let accountOnFileIdStringId = try? JSONDecoder().decode(AccountOnFile.self, from: accountOnFileIdStringIdJSON)
+        XCTAssertTrue(accountOnFileIdStringId == nil, "Init of the account on file should have failed.")
 
     }
 
@@ -231,13 +223,23 @@ class PaymentItemsTestCase: XCTestCase {
                 "Display order was nil (\(String(describing: item.displayHints.displayOrder)))."
             )
             XCTAssertTrue(
-                item.displayHints.logoPath == "/templates/master/global/css/img/ppimages/group-card.png",
-                "Logo path was incorrect."
+                item.displayHints.logoPath ==
+                    "https://example.com/templates/master/global/css/img/ppimages/group-card.png",
+                    "Logo path was incorrect."
             )
-            XCTAssertTrue(item.displayHints.logoImage != nil, "Logo image was nil.")
+            XCTAssertNotNil(item.displayHints.logoImage, "Logo image was nil.")
 
-            let file = AccountOnFile(json: ["id": 222, "paymentProductId": 1])!
-            file.identifier = "222"
+            let accountOnFileJSON = Data("""
+            {
+                "id": 222,
+                "paymentProductId" : 1
+            }
+            """.utf8)
+            guard let file = try? JSONDecoder().decode(AccountOnFile.self, from: accountOnFileJSON) else {
+                XCTFail("Not a valid AccountOnFile")
+                return
+            }
+
             item.accountsOnFile.accountsOnFile.append(file)
             XCTAssertTrue(item.accountOnFile(withIdentifier: "1") != nil, "Account on file was not found.")
             XCTAssertTrue(

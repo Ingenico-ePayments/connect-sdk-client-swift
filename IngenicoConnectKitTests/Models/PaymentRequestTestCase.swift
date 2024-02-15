@@ -13,66 +13,91 @@ import OHHTTPStubs
 
 class PaymentRequestTestCase: XCTestCase {
 
-    let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
-        "fields": [[:]],
-        "id": 1,
-        "paymentMethod": "card",
-        "displayHints": [
-            "displayOrder": 20,
-            "label": "Visa",
-            "logo": "/this/is_a_test.png"
-        ]
-    ])!)
-    let account = AccountOnFile(json: ["id": 1, "paymentProductId": 1])!
+    var request: PaymentRequest!
+    var account: AccountOnFile!
     let fieldId = "1"
     var attribute: AccountOnFileAttribute!
-    var session = Session(clientSessionId: "client-session-id",
-                          customerId: "customer-id",
-                          region: .EU,
-                          environment: .sandbox,
-                          appIdentifier: "")
+    let session = Session(
+        clientSessionId: "client-session-id",
+        customerId: "customer-id",
+        baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+        assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
+        appIdentifier: "",
+        loggingEnabled: false
+    )
 
     override func setUp() {
         super.setUp()
 
-        attribute =
-            AccountOnFileAttribute(json: ["key": fieldId, "value": "paymentProductFieldValue1", "status": "CAN_WRITE"])!
-
-        account.attributes = AccountOnFileAttributes()
-        account.attributes.attributes.append(attribute)
-        request.accountOnFile = account
-
-        request.paymentProduct = PaymentProduct(json: [
-            "fields": [[:]],
+        let paymentProductJSON = Data("""
+        {
+            "fields": [],
             "id": 1,
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 20,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])!
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
 
-        let field = PaymentProductField(json: [
+        guard let paymentProduct = try? JSONDecoder().decode(PaymentProduct.self, from: paymentProductJSON) else {
+            XCTFail("Not a valid PaymentProduct")
+            return
+        }
+
+        request = PaymentRequest(paymentProduct: paymentProduct)
+
+        let accountJSON = Data("""
+        {
+            "id": 1,
+            "paymentProductId": 1,
+            "attributes": [{
+                "key": "\(fieldId)",
+                "value": "1111222233334444",
+                "status": "CAN_WRITE"
+            }]
+        }
+        """.utf8)
+        account = try? JSONDecoder().decode(AccountOnFile.self, from: accountJSON)
+        guard let account else {
+            XCTFail("Not a valid AccountOnFile")
+            return
+        }
+
+        attribute = account.attributes.attributes.first
+
+        request.accountOnFile = account
+
+        let fieldDictionary = [
             "displayHints": [
+                "displayOrder": 0,
                 "formElement": [
                     "type": "text"
                 ]
             ],
             "id": fieldId,
             "type": "numericstring"
-        ])!
+        ] as [String: Any]
+
+        guard let fieldJSON = try? JSONSerialization.data(withJSONObject: fieldDictionary) else {
+            XCTFail("Not a valid Dictionary")
+            return
+        }
+        guard let field = try? JSONDecoder().decode(PaymentProductField.self, from: fieldJSON) else {
+            XCTFail("Not a valid PaymentProductField")
+            return
+        }
+
         request.paymentProduct?.fields.paymentProductFields.append(field)
         request.paymentProduct?.paymentProductField(withId: fieldId)?.displayHints.mask =
             "{{9999}} {{9999}} {{9999}} {{9999}} {{9999}}"
-        request.setValue(forField: field.identifier, value: "payment1Value")
+        request.setValue(forField: field.identifier, value: "1111222233334444")
         request.formatter = StringFormatter()
 
         request.validate()
-    }
-
-    override func tearDown() {
-        super.tearDown()
     }
 
     func testGetValue() {
@@ -84,21 +109,7 @@ class PaymentRequestTestCase: XCTestCase {
             "Should have been nil: \(request.getValue(forField: "9999")!)."
         )
 
-        XCTAssertTrue(request.getValue(forField: fieldId) == "payment1Value", "Value not found.")
-    }
-
-    func testMaskedValue() {
-        let value = request.maskedValue(forField: attribute.key)
-        XCTAssertTrue(value != nil, "Value was not yet.")
-
-        request.paymentProduct?.paymentProductField(withId: fieldId)?.displayHints.mask =
-            "[[9999]] [[9999]] [[9999]] [[9999]] [[999]]"
-        XCTAssertTrue(value != request.maskedValue(forField: fieldId), "Value was not succesfully masked.")
-
-        XCTAssertTrue(
-            request.maskedValue(forField: "999") == nil,
-            "Value was found: \(request.maskedValue(forField: "999")!)."
-        )
+        XCTAssertTrue(request.getValue(forField: fieldId) == "1111222233334444", "Value not found.")
     }
 
     func testIsPartOfAccount() {
@@ -127,21 +138,23 @@ class PaymentRequestTestCase: XCTestCase {
         XCTAssertTrue(!request.isReadOnly(field: "9999"), "It is NOT suppose to be read only.")
     }
 
-    func testUnmaskedValues() {
-        print("Masked: \(String(describing: request.maskedValue(forField: fieldId)))")
-        XCTAssertTrue(request.unmaskedFieldValues?.first != nil, "No unmasked items.")
-        XCTAssertTrue(request.unmaskedFieldValues?.first!.value == "1", "No unmasked items.")
+    func testMaskedFieldValues() {
+        XCTAssertEqual(request.maskedFieldValues?.first?.value, "1111 2222 3333 4444 ")
+    }
+
+    func testMaskedValue() {
+        let value = request.getValue(forField: attribute.key)
+        XCTAssertTrue(value != nil, "Value was not set.")
+
+        XCTAssertEqual(request.maskedValue(forField: fieldId), "1111 2222 3333 4444 ")
+    }
+
+    func testUnmaskedFieldValues() {
+        XCTAssertEqual(request.unmaskedFieldValues?.first?.value, "1111222233334444")
     }
 
     func testUnmaskedValue() {
-        print("Masked: \(String(describing: request.maskedValue(forField: fieldId)))")
-        XCTAssertTrue(request.unmaskedValue(forField: fieldId) == "1", "No unmasked items.")
-
-        request.paymentProduct?.paymentProductField(withId: fieldId)?.displayHints.mask = "12345"
-        print("Masked: \(String(describing: request.maskedValue(forField: fieldId)))")
-        XCTAssertTrue(request.unmaskedValue(forField: fieldId) == "", "No unmasked items.")
-
-        XCTAssertTrue(request.unmaskedValue(forField: "9999") == nil, "Unexpected success.")
+        XCTAssertEqual(request.unmaskedValue(forField: fieldId), "1111222233334444")
     }
 
     func testPrepare() {
@@ -157,7 +170,7 @@ class PaymentRequestTestCase: XCTestCase {
                 ]
             // swiftlint:enable line_length
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -178,5 +191,4 @@ class PaymentRequestTestCase: XCTestCase {
             }
         }
     }
-
 }

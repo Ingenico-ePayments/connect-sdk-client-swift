@@ -12,28 +12,58 @@ import XCTest
 
 class PaymentProductGroupTestCase: XCTestCase {
 
-    let group = PaymentProductGroup(json: [
-        "fields": [[:]],
-        "id": "1",
-        "paymentMethod": "card",
-        "displayHints": [
-            "displayOrder": 20,
-            "label": "Visa",
-            "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-        ]
-    ])!
+    var group: PaymentProductGroup!
 
     override func setUp() {
         super.setUp()
 
+        let groupJSON = Data("""
+        {
+            "fields": [],
+            "id": "1",
+            "paymentMethod": "card",
+            "deviceFingerprintEnabled": true,
+            "allowsInstallments": false,
+            "displayHints": {
+                "displayOrder": 20,
+                "label": "Visa",
+                "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
+            }
+        }
+        """.utf8)
+        guard let group = try? JSONDecoder().decode(PaymentProductGroup.self, from: groupJSON) else {
+            XCTFail("Not a valid PaymentProductGroup")
+            return
+        }
+        self.group = group
+
         for index in 1..<6 {
-            let accountOnFile = AccountOnFile(json: ["id": index, "paymentProductId": index])!
+            let accountOnFileJSON = Data("""
+            {
+                "id": \(index),
+                "paymentProductId": \(index)
+            }
+            """.utf8)
+
+            guard let accountOnFile = try? JSONDecoder().decode(AccountOnFile.self, from: accountOnFileJSON) else {
+                XCTFail("Not a valid AccountOnFile")
+                return
+            }
+
             group.accountsOnFile.accountsOnFile.append(accountOnFile)
         }
     }
 
-    override func tearDown() {
-        super.tearDown()
+    func testPaymentProductGroupValues() {
+        XCTAssertEqual(group.identifier, "1")
+        XCTAssertEqual(group.displayHints.displayOrder, 20)
+        XCTAssertEqual(group.displayHints.label, "Visa")
+        XCTAssertEqual(group.displayHints.logoPath, "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png")
+        XCTAssertTrue(group.deviceFingerprintEnabled)
+        XCTAssertFalse(group.allowsInstallments)
+        XCTAssertEqual(group.accountsOnFile.accountsOnFile[0].identifier, "1")
+        XCTAssertEqual(group.accountsOnFile.accountsOnFile[0].paymentProductIdentifier, "1")
+        XCTAssertEqual(group.fields.paymentProductFields.count, 0)
     }
 
     func testBasicPaymentProductGroupHasAccountOnFile() {
@@ -47,33 +77,46 @@ class PaymentProductGroupTestCase: XCTestCase {
     }
 
     func testPaymentField() {
-        let field = PaymentProductField(json: [
-            "displayHints": [
-                "formElement": [
+        let field1JSON = Data("""
+        {
+            "displayHints": {
+                "displayOrder": 1,
+                "formElement": {
                     "type": "text"
-                ]
-            ],
+                }
+            },
             "id": "1",
             "type": "numericstring"
-        ])!
-        group.fields.paymentProductFields.append(field)
-
-        let field1 = PaymentProductField(json: [
-            "displayHints": [
-                "formElement": [
-                    "type": "text"
-                ]
-            ],
-            "id": "2",
-            "type": "numericstring"
-        ])!
+        }
+        """.utf8)
+        guard let field1 = try? JSONDecoder().decode(PaymentProductField.self, from: field1JSON) else {
+            XCTFail("Not a valid PaymentProductField")
+            return
+        }
         group.fields.paymentProductFields.append(field1)
 
+        let field2JSON = Data("""
+        {
+            "displayHints": {
+                "displayOrder": 2,
+                "formElement": {
+                    "type": "text"
+                }
+            },
+            "id": "2",
+            "type": "numericstring"
+        }
+        """.utf8)
+        guard let field2 = try? JSONDecoder().decode(PaymentProductField.self, from: field2JSON) else {
+            XCTFail("Not a valid PaymentProductField")
+            return
+        }
+        group.fields.paymentProductFields.append(field2)
+
         let foundField = group.paymentProductField(withId: "1")
-        XCTAssertTrue(foundField?.identifier == field.identifier, "Did not find the correct PaymentProductField.")
+        XCTAssertTrue(foundField?.identifier == field1.identifier, "Did not find the correct PaymentProductField.")
 
         let emptyField = group.paymentProductField(withId: "9999")
         XCTAssertTrue(emptyField == nil, "Should not have found a PaymentProductField.")
-
     }
 }

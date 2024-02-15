@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated, message: "In a future release, this class and its functions will be removed.")
 public class FileManager {
     public func dict(atPath path: String) -> NSDictionary? {
         return NSDictionary(contentsOfFile: path)

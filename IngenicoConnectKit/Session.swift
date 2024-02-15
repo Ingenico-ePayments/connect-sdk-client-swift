@@ -8,6 +8,16 @@
 
 import PassKit
 
+@available(
+    *,
+    deprecated,
+    message:
+        """
+        In a future release, this class, its functions and its properties will be removed.
+        Session has been replaced by ClientApi.
+        Obtain an instance by initializing ConnectSDK and access the ClientApi by calling ConnectSDK.clientApi.
+        """
+)
 public class Session {
     public var communicator: C2SCommunicator
     public var assetManager: AssetManager
@@ -55,6 +65,15 @@ public class Session {
         }
     }
 
+    public var clientSessionId: String {
+        return communicator.clientSessionId
+    }
+
+    @available(*, deprecated, message: "This function is dependant on Environment, and will therefore be removed.")
+    public var isEnvironmentTypeProduction: Bool {
+        return communicator.isEnvironmentTypeProduction
+    }
+
     public init(
         communicator: C2SCommunicator,
         assetManager: AssetManager,
@@ -97,7 +116,14 @@ public class Session {
 
     }
 
-    @available(*, deprecated, message: "Use init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:loggingEnabled:) instead")
+    @available(
+        *,
+        deprecated,
+        message:
+            """
+            Use init(clientSessionId:customerId:baseURL:assetBaseURL:appIdentifier:loggingEnabled:) instead
+            """
+    )
     public init(
         clientSessionId: String,
         customerId: String,
@@ -133,14 +159,9 @@ public class Session {
         communicator.paymentProducts(forContext: context, success: { paymentProducts in
             self.paymentProducts = paymentProducts
             self.paymentProducts.stringFormatter = self.stringFormatter
-            self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
-            self.assetManager.updateImagesAsync(
-                for: paymentProducts.paymentProducts,
-                baseURL: self.communicator.assetsBaseURL
-            ) {
+            self.setLogoForPaymentItems(for: paymentProducts.paymentProducts) {
                 success(paymentProducts)
             }
-
         }, failure: { error in
             failure(error)
         })
@@ -164,39 +185,6 @@ public class Session {
         )
     }
 
-    @available(*, deprecated, message: "Use customerDetails(String:[String,String]:String:) instead")
-    public func customerDetails(
-        forProductId productId: String,
-        withLookupValues lookupValues: [[String: String]],
-        countryCode: CountryCode,
-        success: @escaping (_ paymentProduct: CustomerDetails) -> Void,
-        failure: @escaping  (_ error: Error) -> Void
-    ) {
-        communicator.customerDetails(
-            forProductId: productId,
-            withLookupValues: lookupValues,
-            countryCode: countryCode.rawValue,
-            success: success,
-            failure: failure
-        )
-    }
-
-    public func customerDetails(
-        forProductId productId: String,
-        withLookupValues lookupValues: [[String: String]],
-        countryCode: String,
-        success: @escaping (_ paymentProduct: CustomerDetails) -> Void,
-        failure: @escaping  (_ error: Error) -> Void
-    ) {
-        communicator.customerDetails(
-            forProductId: productId,
-            withLookupValues: lookupValues,
-            countryCode: countryCode,
-            success: success,
-            failure: failure
-        )
-    }
-
     public func paymentProductGroups(
         for context: PaymentContext,
         success: @escaping (_ paymentProductGroups: BasicPaymentProductGroups) -> Void,
@@ -205,12 +193,9 @@ public class Session {
         communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
             self.paymentProductGroups = paymentProductGroups
             self.paymentProductGroups.stringFormatter = self.stringFormatter
-            self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
-            self.assetManager.updateImagesAsync(
-                for: paymentProductGroups.paymentProductGroups,
-                baseURL: self.communicator.assetsBaseURL
-            )
-            success(paymentProductGroups)
+            self.setLogoForPaymentProductGroups(for: paymentProductGroups.paymentProductGroups) {
+                success(paymentProductGroups)
+            }
         }, failure: { error in
             failure(error)
         })
@@ -225,22 +210,12 @@ public class Session {
         communicator.paymentProducts(forContext: context, success: { paymentProducts in
             self.paymentProducts = paymentProducts
             self.paymentProducts.stringFormatter = self.stringFormatter
-            // self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
-            self.assetManager.updateImagesAsync(
-                for: paymentProducts.paymentProducts,
-                baseURL: self.communicator.assetsBaseURL
-            ) {
-                self.assetManager.initializeImages(for: paymentProducts.paymentProducts)
+            self.setLogoForPaymentItems(for: paymentProducts.paymentProducts) {
                 if groupPaymentProducts {
                     self.communicator.paymentProductGroups(forContext: context, success: { paymentProductGroups in
                         self.paymentProductGroups = paymentProductGroups
                         self.paymentProductGroups.stringFormatter = self.stringFormatter
-                        // self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
-                        self.assetManager.updateImagesAsync(
-                            for: paymentProductGroups.paymentProductGroups,
-                            baseURL: self.communicator.assetsBaseURL
-                        ) {
-                            self.assetManager.initializeImages(for: paymentProductGroups.paymentProductGroups)
+                        self.setLogoForPaymentProductGroups(for: paymentProductGroups.paymentProductGroups) {
                             let items = PaymentItems(products: paymentProducts, groups: paymentProductGroups)
                             success(items)
                         }
@@ -269,10 +244,10 @@ public class Session {
         } else {
             communicator.paymentProduct(withIdentifier: paymentProductId, context: context, success: { paymentProduct in
                 self.paymentProductMapping[key] = paymentProduct
-                self.assetManager.initializeImages(for: paymentProduct)
-                self.assetManager.updateImagesAsync(for: paymentProduct, baseURL: self.communicator.assetsBaseURL)
-
-                success(paymentProduct)
+                self.setTooltipImages(for: paymentProduct)
+                self.setLogoForDisplayHints(for: paymentProduct.displayHints) {
+                    success(paymentProduct)
+                }
             }, failure: { error in
                 failure(error)
             })
@@ -293,12 +268,9 @@ public class Session {
                 context: context,
                 success: { paymentProductGroup in
                     self.paymentProductGroupMapping[key] = paymentProductGroup
-                    self.assetManager.initializeImages(for: paymentProductGroup)
-                    self.assetManager.updateImagesAsync(
-                        for: paymentProductGroup,
-                        baseURL: self.communicator.assetsBaseURL
-                    )
-                    success(paymentProductGroup)
+                    self.setLogoForDisplayHints(for: paymentProductGroup.displayHints) {
+                        success(paymentProductGroup)
+                    }
                 },
                 failure: { error in
                     failure(error)
@@ -334,7 +306,14 @@ public class Session {
         }
     }
 
-    @available(*, deprecated, message: "Use convert(Int:String:Sring:) instead")
+    @available(
+        *,
+        deprecated,
+        message:
+            """
+            Use convert(Int, String, String, (ConvertedAmountResponse) -> Void, (Error) -> Void) instead
+            """
+    )
     public func convert(
         amountInCents: Int,
         source: CurrencyCode,
@@ -345,6 +324,14 @@ public class Session {
         self.convert(amountInCents: amountInCents, source: source, target: target, success: success, failure: failure)
     }
 
+    @available(
+        *,
+        deprecated,
+        message:
+            """
+            Use convert(Int, String, String, (ConvertedAmountResponse) -> Void, (Error) -> Void) instead
+            """
+    )
     public func convert(
         amountInCents: Int,
         source: String,
@@ -358,6 +345,28 @@ public class Session {
             target: target,
             success: { convertedAmountInCents in
                 success(convertedAmountInCents)
+            },
+            failure: { error in
+                if let error = error {
+                    failure(error)
+                }
+            }
+        )
+    }
+
+    public func convert(
+        amountInCents: Int,
+        source: String,
+        target: String,
+        success: @escaping (_ convertedAmountResponse: ConvertedAmountResponse) -> Void,
+        failure: @escaping (_ error: Error) -> Void
+    ) {
+        communicator.convert(
+            amountInCents: amountInCents,
+            source: source,
+            target: target,
+            success: { convertedAmountResponse in
+                success(convertedAmountResponse)
             },
             failure: { error in
                 if let error = error {
@@ -522,14 +531,6 @@ public class Session {
         return paymentRequestJSON
     }
 
-    public var clientSessionId: String {
-        return communicator.clientSessionId
-    }
-
-    @available(*, deprecated, message: "This function is dependant on Environment, and will therefore be removed.")
-    public var isEnvironmentTypeProduction: Bool {
-        return communicator.isEnvironmentTypeProduction
-    }
     public func keyValuePairs(from dictionary: [String: String]) -> [[String: String]] {
         var keyValuePairs = [[String: String]]()
         for (key, value) in  dictionary {
@@ -547,5 +548,85 @@ public class Session {
         }
 
         return String(bytes: JSONAsData, encoding: String.Encoding.utf8)
+    }
+
+    private func setLogoForPaymentItems(for paymentItems: [BasicPaymentItem], completion: @escaping() -> Void) {
+        var counter = 0
+        for paymentItem in paymentItems {
+            setLogoForDisplayHints(for: paymentItem.displayHints, completion: {
+                counter += 1
+                if counter == paymentItems.count {
+                    completion()
+                }
+            })
+        }
+    }
+
+    private func setLogoForPaymentProductGroups(
+        for paymentProductGroups: [BasicPaymentProductGroup],
+        completion: @escaping() -> Void
+    ) {
+        var counter = 0
+        for paymentProductGroup in paymentProductGroups {
+            setLogoForDisplayHints(for: paymentProductGroup.displayHints, completion: {
+                counter += 1
+                if counter == paymentProductGroups.count {
+                    completion()
+                }
+            })
+        }
+    }
+
+    private func setLogoForDisplayHints(for displayHints: PaymentItemDisplayHints, completion: @escaping() -> Void) {
+        self.getLogoByStringURL(from: displayHints.logoPath) { data, _, error in
+            if let imageData = data, error == nil {
+                displayHints.logoImage = UIImage(data: imageData)
+            }
+            completion()
+        }
+    }
+
+    private func setTooltipImages(for paymentItem: PaymentItem) {
+        for field in paymentItem.fields.paymentProductFields {
+            guard let tooltip = field.displayHints.tooltip,
+                  let imagePath = tooltip.imagePath else { return }
+
+            self.getLogoByStringURL(from: imagePath) { data, _, error in
+                if let imageData = data, error == nil {
+                    tooltip.image = UIImage(data: imageData)
+                }
+            }
+        }
+    }
+
+    internal func getLogoByStringURL(
+        from url: String,
+        completion: @escaping (Data?, URLResponse?, Error?) -> Void
+    ) {
+        guard let assetsBaseURL else {
+            Macros.DLog(message: "assetsBaseURL is nil")
+            completion(nil, nil, nil)
+            return
+        }
+
+        let completeUrl = assetsBaseURL + url
+
+        guard let encodedUrlString = completeUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            Macros.DLog(message: "Unable to decode URL for url string: \(url)")
+            completion(nil, nil, nil)
+            return
+        }
+
+        guard let encodedUrl = URL(string: encodedUrlString) else {
+            Macros.DLog(message: "Unable to create URL for url string: \(encodedUrlString)")
+            completion(nil, nil, nil)
+            return
+        }
+
+        URLSession.shared.dataTask(with: encodedUrl, completionHandler: {data, response, error in
+            DispatchQueue.main.async {
+                completion(data, response, error)
+            }
+        }).resume()
     }
 }

@@ -6,11 +6,11 @@
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
 
-public enum PreferredInputType {
-    case stringKeyboard
-    case integerKeyboard
-    case emailAddressKeyboard
-    case phoneNumberKeyboard
-    case dateKeyboard
-    case noKeyboard
+public enum PreferredInputType: String, Codable {
+    case stringKeyboard = "StringKeyboard"
+    case integerKeyboard = "IntegerKeyboard"
+    case emailAddressKeyboard = "EmailAddressKeyboard"
+    case phoneNumberKeyboard = "PhoneNumberKeyboard"
+    case dateKeyboard = "DateKeyboard"
+    case noKeyboard = "NoKeyboard"
 }

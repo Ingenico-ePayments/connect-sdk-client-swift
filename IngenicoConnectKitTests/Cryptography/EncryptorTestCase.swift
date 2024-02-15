@@ -14,14 +14,6 @@ class EncryptorTestCase: XCTestCase {
     let publicTag = "test-public-tag"
     let privateTag = "tets-private-tag"
 
-    override func setUp() {
-        super.setUp()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
-
     func testGenerateRSAKeyPair() {
 
         encryptor.deleteRSAKey(withTag: publicTag)
@@ -148,7 +140,7 @@ class EncryptorTestCase: XCTestCase {
 
     func testGenerateHMACContent() {
         let hmacKey = encryptor.generateRandomBytes(length: 16)
-        let input = Data(bytes: [0, 255, 43, 1])
+        let input = Data([0, 255, 43, 1])
         let hmac1 = encryptor.generateHMAC(data: input, key: hmacKey!)
         let hmac2 = encryptor.generateHMAC(data: input, key: hmacKey!)
         XCTAssertEqual(hmac1, hmac2, "HMACs generated from the same input do not match")

@@ -8,12 +8,13 @@
 
 import Foundation
 
-public class DirectoryEntry: ResponseObjectSerializable {
+public class DirectoryEntry: ResponseObjectSerializable, Codable {
     public var issuerIdentifier: String
     public var issuerList: String
     public var issuerName: String
     public var countryNames: [String] = []
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     public required init?(json: [String: Any]) {
         if let input = json["issuerId"] as? String {
             issuerIdentifier = input
@@ -36,5 +37,26 @@ public class DirectoryEntry: ResponseObjectSerializable {
                 countryNames.append(countryInput)
             }
         }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case issuerId, issuerList, issuerName, countryNames
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.issuerIdentifier = try container.decode(String.self, forKey: .issuerId)
+        self.issuerList = try container.decode(String.self, forKey: .issuerList)
+        self.issuerName = try container.decode(String.self, forKey: .issuerName)
+        self.countryNames = (try? container.decodeIfPresent([String].self, forKey: .countryNames)) ?? []
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(issuerIdentifier, forKey: .issuerId)
+        try? container.encode(issuerList, forKey: .issuerList)
+        try? container.encode(issuerName, forKey: .issuerName)
+        try? container.encode(countryNames, forKey: .countryNames)
     }
 }

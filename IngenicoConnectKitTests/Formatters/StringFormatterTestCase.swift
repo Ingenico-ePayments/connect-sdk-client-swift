@@ -13,16 +13,6 @@ class StringFormatterTestCase: XCTestCase {
 
   let stringFormatter = StringFormatter()
 
-  override func setUp() {
-    super.setUp()
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-  }
-
-  override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-  }
-
   func testFormatStringNumbers() {
     let input = "1234567890"
     let mask = "{{99}} {{99}} {{99}} {{99}} {{99}}"

@@ -16,15 +16,30 @@ class LabelTemplateTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let item1 = LabelTemplateItem(json: ["attributeKey": "key1", "mask": "mask1"])
-        let item2 = LabelTemplateItem(json: ["attributeKey": "key2", "mask": "mask2"])
+        let item1JSON = Data("""
+        {
+            "attributeKey": "key1",
+            "mask": "mask1"
+        }
+        """.utf8)
+        guard let item1 = try? JSONDecoder().decode(LabelTemplateItem.self, from: item1JSON) else {
+            XCTFail("Not a valid LabelTemplateItem")
+            return
+        }
 
-        template.labelTemplateItems.append(item1!)
-        template.labelTemplateItems.append(item2!)
-    }
+        let item2JSON = Data("""
+        {
+            "attributeKey": "key2",
+            "mask": "mask2"
+        }
+        """.utf8)
+        guard let item2 = try? JSONDecoder().decode(LabelTemplateItem.self, from: item2JSON) else {
+            XCTFail("Not a valid LabelTemplateItem")
+            return
+        }
 
-    override func tearDown() {
-        super.tearDown()
+        template.labelTemplateItems.append(item1)
+        template.labelTemplateItems.append(item2)
     }
 
     func testMaskForAttributeKey() {

@@ -8,47 +8,35 @@
 
 import Foundation
 
-public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
+public class PaymentProductGroup: BasicPaymentProductGroup, PaymentItem {
 
-    public var identifier: String
-    public var displayHints: PaymentItemDisplayHints
-    public var accountsOnFile = AccountsOnFile()
-    public var acquirerCountry: String?
+    @available(
+        *,
+        deprecated,
+        message: "In a future release, this property will be removed since it is not returned from the API."
+    )
     public var allowsTokenization = false
+    @available(
+        *,
+        deprecated,
+        message: "In a future release, this property will be removed since it is not returned from the API."
+    )
     public var allowsRecurring = false
+    @available(
+        *,
+        deprecated,
+         message: "In a future release, this property will be removed since it is not returned from the API."
+    )
     public var autoTokenized = false
     public var fields = PaymentProductFields()
 
-    public var stringFormatter: StringFormatter? {
-        get { return accountsOnFile.accountsOnFile.first?.stringFormatter }
-        set {
-            if let stringFormatter = newValue {
-                for accountOnFile in accountsOnFile.accountsOnFile {
-                    accountOnFile.stringFormatter = stringFormatter
-                }
-            }
-        }
-    }
-
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     public required init?(json: [String: Any]) {
 
-        guard let identifier = json["id"] as? String,
-              let hints = json["displayHints"] as? [String: Any],
-              let displayHints = PaymentItemDisplayHints(json: hints),
-              let fields = json["fields"] as? [[String: Any]] else {
+        super.init(json: json)
+
+        guard let fields = json["fields"] as? [[String: Any]] else {
             return nil
-        }
-        self.identifier = identifier
-        self.displayHints = displayHints
-
-        self.acquirerCountry = json["acquirerCountry"] as? String ?? ""
-
-        if let input = json["accountsOnFile"] as? [[String: Any]] {
-            for accountInput in input {
-                if let accountFile = AccountOnFile(json: accountInput) {
-                    accountsOnFile.accountsOnFile.append(accountFile)
-                }
-            }
         }
 
         for field in fields {
@@ -58,8 +46,26 @@ public class PaymentProductGroup: PaymentItem, ResponseObjectSerializable {
         }
     }
 
-    public func accountOnFile(withIdentifier identifier: String) -> AccountOnFile? {
-        return accountsOnFile.accountOnFile(withIdentifier: identifier)
+    private enum CodingKeys: String, CodingKey {
+        case fields
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let fieldsInput = try? container.decodeIfPresent([PaymentProductField].self, forKey: .fields) {
+            for field in fieldsInput {
+                self.fields.paymentProductFields.append(field)
+            }
+        }
+
+        try super.init(from: decoder)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try? container.encode(fields.paymentProductFields, forKey: .fields)
+
+        try super.encode(to: encoder)
     }
 
     public func paymentProductField(withId paymentProductFieldId: String) -> PaymentProductField? {

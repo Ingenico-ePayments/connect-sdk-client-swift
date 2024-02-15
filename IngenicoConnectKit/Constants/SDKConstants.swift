@@ -5,7 +5,6 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import Foundation
 import UIKit
@@ -25,8 +24,9 @@ public class SDKConstants {
     public static var kSDKBundlePath =
         Bundle(identifier: SDKConstants.kSDKBundleIdentifier)?.path(forResource: "IngenicoConnectKit", ofType: "bundle")
 
+    // swiftlint:disable identifier_name
     public static func SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: String) -> Bool {
         return UIDevice.current.systemVersion.compare(v, options: String.CompareOptions.numeric) != .orderedAscending
     }
-
+    // swiftlint:enable identifier_name
 }

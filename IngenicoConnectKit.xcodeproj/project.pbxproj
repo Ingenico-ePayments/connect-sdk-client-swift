@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -87,10 +87,8 @@
 		73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */; };
 		73AABACC1F1F804200B76782 /* ThirdPartyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACA1F1F804200B76782 /* ThirdPartyStatus.swift */; };
 		73AABACD1F1F804200B76782 /* ThirdPartyStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACB1F1F804200B76782 /* ThirdPartyStatusResponse.swift */; };
-		73AABAD01F1F806B00B76782 /* CustomerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACE1F1F806B00B76782 /* CustomerDetails.swift */; };
 		73AABAD11F1F806B00B76782 /* DisplayElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACF1F1F806B00B76782 /* DisplayElement.swift */; };
 		73AABAD31F1F80A000B76782 /* DisplayElementType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABAD21F1F80A000B76782 /* DisplayElementType.swift */; };
-		73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */; };
 		7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */; };
 		7BC494192965AA3C00F6138A /* ValidatorResidentIdNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */; };
 		7BEEA28929BA2F160085406C /* AuthenticationIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */; };
@@ -140,6 +138,23 @@
 		B4D349EF1EAA1FC000487866 /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349EE1EAA1FC000487866 /* CountryCode.swift */; };
 		B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */; };
 		B4D77C6B1DE72EB900F7B1C1 /* IngenicoConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */; };
+		BF3BEB522B16073200CF882A /* ConnectSDKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BEB512B16073200CF882A /* ConnectSDKTestCase.swift */; };
+		BF3BEB542B16073800CF882A /* ClientApiTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BEB532B16073800CF882A /* ClientApiTestCase.swift */; };
+		BF3BEB562B16074F00CF882A /* StubClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BEB552B16074F00CF882A /* StubClientApi.swift */; };
+		BF3BEB582B16075800CF882A /* StubSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BEB572B16075800CF882A /* StubSession.swift */; };
+		BF8163BC2B303500007FB83E /* ValidationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8163BB2B303500007FB83E /* ValidationRule.swift */; };
+		BF8163BE2B30373F007FB83E /* ValidationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8163BD2B30373F007FB83E /* ValidationType.swift */; };
+		BF9DD4972B0E02B200DFC9F2 /* ApiErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9DD4962B0E02B200DFC9F2 /* ApiErrorResponse.swift */; };
+		BF9DD4992B0E02C800DFC9F2 /* ApiErrorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9DD4982B0E02C800DFC9F2 /* ApiErrorItem.swift */; };
+		BF9FDEED2B10A9DD004BBA7F /* CustomerDetailsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEEC2B10A9DD004BBA7F /* CustomerDetailsTestCase.swift */; };
+		BF9FDEEF2B10C9E3004BBA7F /* ConnectSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEEE2B10C9E3004BBA7F /* ConnectSDK.swift */; };
+		BF9FDEF22B10CC0A004BBA7F /* ClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEF12B10CC0A004BBA7F /* ClientApi.swift */; };
+		BF9FDEF42B10CC17004BBA7F /* ConnectSDKConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEF32B10CC17004BBA7F /* ConnectSDKConfiguration.swift */; };
+		BF9FDEF62B10CC1E004BBA7F /* SessionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEF52B10CC1E004BBA7F /* SessionConfiguration.swift */; };
+		BF9FDEF82B10CC25004BBA7F /* PaymentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEF72B10CC25004BBA7F /* PaymentConfiguration.swift */; };
+		BF9FDEFB2B10D9C3004BBA7F /* ClientApiCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEFA2B10D9C3004BBA7F /* ClientApiCommunicator.swift */; };
+		BFAD73602B14CB9F0011677F /* ConnectSDKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD735F2B14CB9F0011677F /* ConnectSDKError.swift */; };
+		BFBF63EE2B0F82160094E205 /* ConvertedAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBF63ED2B0F82160094E205 /* ConvertedAmount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,10 +271,8 @@
 		73819ECE1DF98F1200B6FC0F /* EncryptorTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EncryptorTestCase.swift; path = IngenicoConnectKitTests/Cryptography/EncryptorTestCase.swift; sourceTree = "<group>"; };
 		73AABACA1F1F804200B76782 /* ThirdPartyStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThirdPartyStatus.swift; path = Models/ThirdPartyStatus/ThirdPartyStatus.swift; sourceTree = "<group>"; };
 		73AABACB1F1F804200B76782 /* ThirdPartyStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThirdPartyStatusResponse.swift; path = Models/ThirdPartyStatus/ThirdPartyStatusResponse.swift; sourceTree = "<group>"; };
-		73AABACE1F1F806B00B76782 /* CustomerDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetails.swift; path = Models/PaymentProducts/CustomerDetails.swift; sourceTree = "<group>"; };
 		73AABACF1F1F806B00B76782 /* DisplayElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElement.swift; path = Models/PaymentProducts/DisplayElement.swift; sourceTree = "<group>"; };
 		73AABAD21F1F80A000B76782 /* DisplayElementType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisplayElementType.swift; path = Enumerations/DisplayElementType.swift; sourceTree = "<group>"; };
-		73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsError.swift; path = Models/PaymentProducts/CustomerDetailsError.swift; sourceTree = "<group>"; };
 		7BC4941029657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumberTestCase.swift; path = IngenicoConnectKitTests/Models/ValidatorResidentIdNumberTestCase.swift; sourceTree = "<group>"; };
 		7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidatorResidentIdNumber.swift; path = Models/PaymentProducts/ValidatorResidentIdNumber.swift; sourceTree = "<group>"; };
 		7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationIndicator.swift; sourceTree = "<group>"; };
@@ -311,6 +324,23 @@
 		B4D77C611DE72EB900F7B1C1 /* IngenicoConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IngenicoConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D77C651DE72EB900F7B1C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D77C6A1DE72EB900F7B1C1 /* IngenicoConnectKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IngenicoConnectKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF3BEB512B16073200CF882A /* ConnectSDKTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectSDKTestCase.swift; path = IngenicoConnectKitTests/ConnectSDKTestCase.swift; sourceTree = "<group>"; };
+		BF3BEB532B16073800CF882A /* ClientApiTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientApiTestCase.swift; path = IngenicoConnectKitTests/ClientApiTestCase.swift; sourceTree = "<group>"; };
+		BF3BEB552B16074F00CF882A /* StubClientApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubClientApi.swift; path = IngenicoConnectKitTests/Stubs/StubClientApi.swift; sourceTree = "<group>"; };
+		BF3BEB572B16075800CF882A /* StubSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StubSession.swift; path = IngenicoConnectKitTests/Stubs/StubSession.swift; sourceTree = "<group>"; };
+		BF8163BB2B303500007FB83E /* ValidationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRule.swift; sourceTree = "<group>"; };
+		BF8163BD2B30373F007FB83E /* ValidationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationType.swift; sourceTree = "<group>"; };
+		BF9DD4962B0E02B200DFC9F2 /* ApiErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrorResponse.swift; sourceTree = "<group>"; };
+		BF9DD4982B0E02C800DFC9F2 /* ApiErrorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrorItem.swift; sourceTree = "<group>"; };
+		BF9FDEEC2B10A9DD004BBA7F /* CustomerDetailsTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerDetailsTestCase.swift; path = IngenicoConnectKitTests/Models/CustomerDetailsTestCase.swift; sourceTree = "<group>"; };
+		BF9FDEEE2B10C9E3004BBA7F /* ConnectSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSDK.swift; sourceTree = "<group>"; };
+		BF9FDEF12B10CC0A004BBA7F /* ClientApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientApi.swift; sourceTree = "<group>"; };
+		BF9FDEF32B10CC17004BBA7F /* ConnectSDKConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSDKConfiguration.swift; sourceTree = "<group>"; };
+		BF9FDEF52B10CC1E004BBA7F /* SessionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
+		BF9FDEF72B10CC25004BBA7F /* PaymentConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfiguration.swift; sourceTree = "<group>"; };
+		BF9FDEFA2B10D9C3004BBA7F /* ClientApiCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientApiCommunicator.swift; sourceTree = "<group>"; };
+		BFAD735F2B14CB9F0011677F /* ConnectSDKError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSDKError.swift; sourceTree = "<group>"; };
+		BFBF63ED2B0F82160094E205 /* ConvertedAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedAmount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +377,7 @@
 		1C1E0BF01E93C27200F9DC5E /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				BF9FDEEC2B10A9DD004BBA7F /* CustomerDetailsTestCase.swift */,
 				6D8BD90C1DFE9E470013B869 /* PaymentRequestTestCase.swift */,
 				6D8BD90A1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift */,
 				6DA4A88B1DF9842C007492C2 /* BasicPaymentProductTestCase.swift */,
@@ -402,17 +433,19 @@
 			children = (
 				6D7822491DF0476400B5A9AB /* Validators.swift */,
 				6D7822471DF0470500B5A9AB /* Validator.swift */,
+				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
+				6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */,
 				6D78225F1DF0635900B5A9AB /* ValidatorExpirationDate.swift */,
 				6D78225D1DF0626500B5A9AB /* ValidatorFixedList.swift */,
+				7307A966202C65E9002124B8 /* ValidatorIBAN.swift */,
 				6D7822591DF0616100B5A9AB /* ValidatorLength.swift */,
 				6D7822571DF05B5A00B5A9AB /* ValidatorLuhn.swift */,
 				6D78224B1DF0520600B5A9AB /* ValidatorRange.swift */,
 				6D78224D1DF053FE00B5A9AB /* ValidatorRegularExpression.swift */,
-				6D7822551DF0586900B5A9AB /* ValidatorEmailAddress.swift */,
-				B431CA811E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift */,
-				732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */,
-				7307A966202C65E9002124B8 /* ValidatorIBAN.swift */,
 				7BC494182965AA3C00F6138A /* ValidatorResidentIdNumber.swift */,
+				732F8664200522BA00A7DE68 /* ValidatorTermsAndConditions.swift */,
+				BF8163BB2B303500007FB83E /* ValidationRule.swift */,
+				BF8163BD2B30373F007FB83E /* ValidationType.swift */,
 			);
 			name = Validators;
 			sourceTree = "<group>";
@@ -426,6 +459,7 @@
 				B4A011DF1DF0573C00FCB738 /* Util.swift */,
 				B4D77C651DE72EB900F7B1C1 /* Info.plist */,
 				B40F4B3F1E02C99F002A3AC8 /* FileManager.swift */,
+				BF9FDEEE2B10C9E3004BBA7F /* ConnectSDK.swift */,
 			);
 			name = Essentials;
 			sourceTree = "<group>";
@@ -481,6 +515,8 @@
 				B461901D1DF57AB400A55FB1 /* StubUtil.swift */,
 				B40575E11E02BF7D0099DDBB /* StubBundle.swift */,
 				B40F4B411E02CA80002A3AC8 /* StubFileManager.swift */,
+				BF3BEB552B16074F00CF882A /* StubClientApi.swift */,
+				BF3BEB572B16075800CF882A /* StubSession.swift */,
 			);
 			name = Stubs;
 			sourceTree = "<group>";
@@ -559,6 +595,9 @@
 		B4D77C631DE72EB900F7B1C1 /* IngenicoConnectKit */ = {
 			isa = PBXGroup;
 			children = (
+				BF9FDEF92B10D9B7004BBA7F /* API communication */,
+				BF9FDEF02B10CBC2004BBA7F /* SDK configuration */,
+				BF9DD4932B0E028500DFC9F2 /* API errors */,
 				B4D77E401DE730EC00F7B1C1 /* Models */,
 				B4D77DDD1DE72FF300F7B1C1 /* Protocols */,
 				B4D77DDC1DE72FEE00F7B1C1 /* Constants */,
@@ -590,6 +629,8 @@
 				6D8BD9101DFEACBD0013B869 /* AssetManagerTestCase.swift */,
 				6DD70EA91E029F5400A585BC /* C2SCommunicatorTestCase.swift */,
 				B473DF361E1A58EF009AC284 /* SessionTestCase.swift */,
+				BF3BEB532B16073800CF882A /* ClientApiTestCase.swift */,
+				BF3BEB512B16073200CF882A /* ConnectSDKTestCase.swift */,
 			);
 			name = IngenicoConnectKitTests;
 			sourceTree = "<group>";
@@ -633,6 +674,7 @@
 				1C0513331E799F2D00D11633 /* SessionError.swift */,
 				B4D349EE1EAA1FC000487866 /* CountryCode.swift */,
 				B4D349F01EAA1FCE00487866 /* CurrencyCode.swift */,
+				BFAD735F2B14CB9F0011677F /* ConnectSDKError.swift */,
 			);
 			name = Enumerations;
 			sourceTree = "<group>";
@@ -658,6 +700,7 @@
 		B4D77E401DE730EC00F7B1C1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BFBF63EC2B0F820B0094E205 /* ConvertedAmount */,
 				73AABAC91F1F801F00B76782 /* ThirdPartyStatus */,
 				B4D77E411DE730F300F7B1C1 /* DirectoryEntries */,
 				B4D77E421DE730FE00F7B1C1 /* C2SPaymentProductContext */,
@@ -727,8 +770,6 @@
 		B4D77E481DE7317E00F7B1C1 /* PaymentProducts */ = {
 			isa = PBXGroup;
 			children = (
-				73AABACE1F1F806B00B76782 /* CustomerDetails.swift */,
-				73CBAE521F9E2CC500FAB37F /* CustomerDetailsError.swift */,
 				7BEEA28829BA2F160085406C /* AuthenticationIndicator.swift */,
 				73AABACF1F1F806B00B76782 /* DisplayElement.swift */,
 				6D7822651DF066C700B5A9AB /* DataRestrictions.swift */,
@@ -754,6 +795,42 @@
 				735404502153C71700771041 /* PaymentProduct863SpecificData.swift */,
 			);
 			name = PaymentProducts;
+			sourceTree = "<group>";
+		};
+		BF9DD4932B0E028500DFC9F2 /* API errors */ = {
+			isa = PBXGroup;
+			children = (
+				BF9DD4962B0E02B200DFC9F2 /* ApiErrorResponse.swift */,
+				BF9DD4982B0E02C800DFC9F2 /* ApiErrorItem.swift */,
+			);
+			name = "API errors";
+			sourceTree = "<group>";
+		};
+		BF9FDEF02B10CBC2004BBA7F /* SDK configuration */ = {
+			isa = PBXGroup;
+			children = (
+				BF9FDEF12B10CC0A004BBA7F /* ClientApi.swift */,
+				BF9FDEF32B10CC17004BBA7F /* ConnectSDKConfiguration.swift */,
+				BF9FDEF52B10CC1E004BBA7F /* SessionConfiguration.swift */,
+				BF9FDEF72B10CC25004BBA7F /* PaymentConfiguration.swift */,
+			);
+			name = "SDK configuration";
+			sourceTree = "<group>";
+		};
+		BF9FDEF92B10D9B7004BBA7F /* API communication */ = {
+			isa = PBXGroup;
+			children = (
+				BF9FDEFA2B10D9C3004BBA7F /* ClientApiCommunicator.swift */,
+			);
+			name = "API communication";
+			sourceTree = "<group>";
+		};
+		BFBF63EC2B0F820B0094E205 /* ConvertedAmount */ = {
+			isa = PBXGroup;
+			children = (
+				BFBF63ED2B0F82160094E205 /* ConvertedAmount.swift */,
+			);
+			name = ConvertedAmount;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -925,6 +1002,7 @@
 				73AABAD31F1F80A000B76782 /* DisplayElementType.swift in Sources */,
 				6D78224A1DF0476400B5A9AB /* Validators.swift in Sources */,
 				B43C1F521DEC334B00E210DF /* StringFormatter.swift in Sources */,
+				BF9DD4972B0E02B200DFC9F2 /* ApiErrorResponse.swift in Sources */,
 				6D7822541DF0580C00B5A9AB /* AccountOnFileDisplayHints.swift in Sources */,
 				1C0513341E799F2D00D11633 /* SessionError.swift in Sources */,
 				6D78225C1DF0620D00B5A9AB /* ValueMappingItem.swift in Sources */,
@@ -934,12 +1012,17 @@
 				B40F4B401E02C99F002A3AC8 /* FileManager.swift in Sources */,
 				6D7822701DF0754600B5A9AB /* PaymentProduct.swift in Sources */,
 				6D78226E1DF0739D00B5A9AB /* PaymentProductFields.swift in Sources */,
+				BF8163BE2B30373F007FB83E /* ValidationType.swift in Sources */,
 				B4679CDD1E0C1C4400E25DFD /* JOSEEncryptor.swift in Sources */,
 				B43C1F591DEC407900E210DF /* Base64+Extensions.swift in Sources */,
+				BF9FDEEF2B10C9E3004BBA7F /* ConnectSDK.swift in Sources */,
 				7307A967202C65E9002124B8 /* ValidatorIBAN.swift in Sources */,
 				6D4E7AA91DF5669500BAE336 /* BasicPaymentProductGroups.swift in Sources */,
+				BF9FDEF22B10CC0A004BBA7F /* ClientApi.swift in Sources */,
 				6D4E7ABB1DF58F6700BAE336 /* PreparedPaymentRequest.swift in Sources */,
 				6D7822271DF039E100B5A9AB /* IINDetailsResponse.swift in Sources */,
+				BF8163BC2B303500007FB83E /* ValidationRule.swift in Sources */,
+				BF9FDEF62B10CC1E004BBA7F /* SessionConfiguration.swift in Sources */,
 				6D7822601DF0635900B5A9AB /* ValidatorExpirationDate.swift in Sources */,
 				73AABACD1F1F804200B76782 /* ThirdPartyStatusResponse.swift in Sources */,
 				7354044F2153C70500771041 /* PaymentProduct320SpecificData.swift in Sources */,
@@ -964,18 +1047,20 @@
 				6D78224E1DF053FE00B5A9AB /* ValidatorRegularExpression.swift in Sources */,
 				6D8BD9131DFEB3080013B869 /* C2SCommunicator.swift in Sources */,
 				6D7822621DF064E400B5A9AB /* BasicPaymentProducts.swift in Sources */,
-				73CBAE531F9E2CC500FAB37F /* CustomerDetailsError.swift in Sources */,
 				6DED71E51DEC3DA00023EFA2 /* Macros.swift in Sources */,
 				73AABACC1F1F804200B76782 /* ThirdPartyStatus.swift in Sources */,
 				B4D349EF1EAA1FC000487866 /* CountryCode.swift in Sources */,
-				73AABAD01F1F806B00B76782 /* CustomerDetails.swift in Sources */,
+				BF9DD4992B0E02C800DFC9F2 /* ApiErrorItem.swift in Sources */,
 				6D4E7AAF1DF5729300BAE336 /* PaymentProductGroup.swift in Sources */,
+				BF9FDEFB2B10D9C3004BBA7F /* ClientApiCommunicator.swift in Sources */,
 				6D7822281DF039E100B5A9AB /* IINDetail.swift in Sources */,
 				B431CA821E69B4CD0064AC16 /* ValidatorBoletoBancarioRequiredness.swift in Sources */,
 				6D7822681DF0673800B5A9AB /* PaymentProductField.swift in Sources */,
 				6D7822061DF022A100B5A9AB /* PaymentAmountOfMoney.swift in Sources */,
+				BFAD73602B14CB9F0011677F /* ConnectSDKError.swift in Sources */,
 				B43C1F6C1DEC59E300E210DF /* IINStatus.swift in Sources */,
 				6D4E7AB91DF57E2900BAE336 /* PaymentRequest.swift in Sources */,
+				BF9FDEF82B10CC25004BBA7F /* PaymentConfiguration.swift in Sources */,
 				6D4443A41E30B1540007070E /* String+Extensions.swift in Sources */,
 				6D78224C1DF0520600B5A9AB /* ValidatorRange.swift in Sources */,
 				6D7822041DF0228F00B5A9AB /* DirectoryEntry.swift in Sources */,
@@ -984,11 +1069,13 @@
 				B43C1F691DEC59B200E210DF /* Environment.swift in Sources */,
 				6D78226A1DF067A900B5A9AB /* ToolTip.swift in Sources */,
 				B4D349F11EAA1FCE00487866 /* CurrencyCode.swift in Sources */,
+				BF9FDEF42B10CC17004BBA7F /* ConnectSDKConfiguration.swift in Sources */,
 				732F8665200522BA00A7DE68 /* ValidatorTermsAndConditions.swift in Sources */,
 				6D7822481DF0470500B5A9AB /* Validator.swift in Sources */,
 				6D4E7AA51DF5611700BAE336 /* BasicPaymentProduct.swift in Sources */,
 				6D7822721DF0781100B5A9AB /* AccountsOnFile.swift in Sources */,
 				B46190271DF5989300A55FB1 /* AccountOnFileAttribute.swift in Sources */,
+				BFBF63EE2B0F82160094E205 /* ConvertedAmount.swift in Sources */,
 				6D7822441DF03C7600B5A9AB /* PaymentProductNetworks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -999,12 +1086,15 @@
 			files = (
 				6D8BD9051DFE965A0013B869 /* ValidatorRangeTestCase.swift in Sources */,
 				6DA4A88E1DF98580007492C2 /* PaymentProductTestCase.swift in Sources */,
+				BF3BEB582B16075800CF882A /* StubSession.swift in Sources */,
 				6D8BD90D1DFE9E470013B869 /* PaymentRequestTestCase.swift in Sources */,
 				1C99FF521E9D142300461C06 /* PaymentAmountOfMoneyTestCase.swift in Sources */,
 				7BC4941129657E5500F6138A /* ValidatorResidentIdNumberTestCase.swift in Sources */,
+				BF3BEB562B16074F00CF882A /* StubClientApi.swift in Sources */,
 				6D8BD9091DFE9A020013B869 /* ValidatorEmailAddressTestCase.swift in Sources */,
 				6D2256381DF95DE9009DB416 /* AccountsOnFileTestCase.swift in Sources */,
 				6DA4A88C1DF9842C007492C2 /* BasicPaymentProductTestCase.swift in Sources */,
+				BF3BEB542B16073800CF882A /* ClientApiTestCase.swift in Sources */,
 				B461901E1DF57AB400A55FB1 /* StubUtil.swift in Sources */,
 				B473DF381E1A5913009AC284 /* SessionTestCase.swift in Sources */,
 				6DD70EAA1E029F5400A585BC /* C2SCommunicatorTestCase.swift in Sources */,
@@ -1022,11 +1112,13 @@
 				1CEBAC181E92725E0091A69C /* PaymentProductGroupTestCase.swift in Sources */,
 				1C1E0BF61E93E57000F9DC5E /* IINDetailsResponseTestCase.swift in Sources */,
 				1C4B7DBB1E9268DB00AB1162 /* BasicPaymentProductGroupsTestCase.swift in Sources */,
+				BF3BEB522B16073200CF882A /* ConnectSDKTestCase.swift in Sources */,
 				1CE7AB061E9641BE00A80648 /* PreparedPaymentRequestTestCase.swift in Sources */,
 				B46190181DF56C8700A55FB1 /* UtilTestCase.swift in Sources */,
 				73819ECF1DF98F1200B6FC0F /* EncryptorTestCase.swift in Sources */,
 				6DA4A8981DF999AD007492C2 /* ValidatorFixedListTestCase.swift in Sources */,
 				6DA4A8961DF997BE007492C2 /* ValidatorExpirationDateTestCase.swift in Sources */,
+				BF9FDEED2B10A9DD004BBA7F /* CustomerDetailsTestCase.swift in Sources */,
 				6D8BD9031DFE95760013B869 /* ValidatorLuhnTestCase.swift in Sources */,
 				6D8BD90B1DFE9CDE0013B869 /* PaymentProductFieldsTestCase.swift in Sources */,
 				6DA4A8901DF98A6B007492C2 /* PaymentProductFieldTestCase.swift in Sources */,
@@ -1261,10 +1353,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1296,8 +1390,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1319,9 +1415,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KeychainEntitlementTestApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KeychainEntitlementTestApp";
 			};
 			name = Debug;
@@ -1344,8 +1442,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ingenicoconnect.IngenicoConnectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF9DD4922B0DFF7800DFC9F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = KeychainEntitlementTestApp;
 			};
 			name = Release;
 		};
@@ -1356,8 +1465,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BFB26E5295456DC00A95841 /* Debug */,
+				BF9DD4922B0DFF7800DFC9F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4D77C5B1DE72EB900F7B1C1 /* Build configuration list for PBXProject "IngenicoConnectKit" */ = {
 			isa = XCConfigurationList;

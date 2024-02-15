@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProductGroups: ResponseObjectSerializable {
+public class BasicPaymentProductGroups: ResponseObjectSerializable, Codable {
 
     public var paymentProductGroups = [BasicPaymentProductGroup]()
 
@@ -41,9 +41,10 @@ public class BasicPaymentProductGroups: ResponseObjectSerializable {
         }
     }
 
-    public init() {
-    }
+    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
+    public init() {}
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     required public init(json: [String: Any]) {
         if let input = json["paymentProductGroups"] as? [[String: Any]] {
             for groupInput in input {
@@ -54,6 +55,17 @@ public class BasicPaymentProductGroups: ResponseObjectSerializable {
 
             sort()
         }
+    }
+
+    enum CodingKeys: CodingKey {
+        case paymentProductGroups
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.paymentProductGroups = (
+            try? container.decodeIfPresent([BasicPaymentProductGroup].self, forKey: .paymentProductGroups)) ??
+                [BasicPaymentProductGroup]()
     }
 
     public func logoPath(forProductGroup identifier: String) -> String? {

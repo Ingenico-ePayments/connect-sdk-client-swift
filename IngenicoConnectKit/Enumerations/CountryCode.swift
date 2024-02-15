@@ -281,3 +281,4 @@ public enum CountryCode: String {
             TV, UG, UA, AE, US, UM, UY, UZ, VU, VE, GB, VN, VG, VI, WF, EH, YE, ZM, ZW
         ]
 }
+// swiftlint:enable identifier_name

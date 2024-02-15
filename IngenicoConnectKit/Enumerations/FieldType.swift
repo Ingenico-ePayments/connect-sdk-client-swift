@@ -6,11 +6,11 @@
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
 
-public enum FieldType {
-    case string
-    case integer
-    case expirationDate
-    case numericString
-    case boolString
-    case dateString
+public enum FieldType: String, Codable {
+    case string = "string"
+    case integer = "integer"
+    case expirationDate = "expirydate"
+    case numericString = "numericstring"
+    case boolString = "boolean"
+    case dateString = "date"
 }

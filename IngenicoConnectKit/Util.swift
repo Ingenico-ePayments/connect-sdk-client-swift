@@ -5,10 +5,17 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import UIKit
 
+@available(
+    *,
+    deprecated,
+    message:
+        """
+        In a future release, this class, its functions and its properties will become internal to the SDK.
+        """
+)
 public class Util {
     static let shared = Util()
     public var metaInfo: [String: String]?
@@ -43,7 +50,7 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v5.12.0",
+            "sdkIdentifier": "SwiftClientSDK/v5.13.0",
             "sdkCreator": "Ingenico",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
@@ -91,6 +98,8 @@ public class Util {
         return base64EncodedString(fromDictionary: metaInfo!)
     }
 
+    // swiftlint:disable identifier_name
+    // swiftlint:disable cyclomatic_complexity
     @available(
         *,
         deprecated,
@@ -141,8 +150,8 @@ public class Util {
                 return "https://par.sandbox.api-ingenico.com/client/v1"
             }
         }
-
     }
+    // swiftlint:enable identifier_name
 
     @available(
         *,
@@ -194,8 +203,8 @@ public class Util {
                 return "https://assets.pay4.sandbox.secured-by-ingenico.com"
             }
         }
-
     }
+    // swiftlint:enable cyclomatic_complexity
 
     public func base64EncodedString(fromDictionary dictionary: [AnyHashable: Any]) -> String? {
         guard let json = try? JSONSerialization.data(withJSONObject: dictionary, options: []) else {

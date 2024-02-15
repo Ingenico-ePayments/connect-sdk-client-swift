@@ -12,16 +12,7 @@ import XCTest
 class ValidatorRegularExpressionTestCase: XCTestCase {
 
     var validator: ValidatorRegularExpression!
-    let request = PaymentRequest(paymentProduct: PaymentProduct(json: [
-        "fields": [[:]],
-        "id": 1,
-        "paymentMethod": "card",
-        "displayHints": [
-            "displayOrder": 20,
-            "label": "Visa",
-            "logo": "/this/is_a_test.png"
-        ]
-    ])!)
+    var request: PaymentRequest!
 
     override func setUp() {
         super.setUp()
@@ -31,10 +22,36 @@ class ValidatorRegularExpressionTestCase: XCTestCase {
         }
 
         validator = ValidatorRegularExpression(regularExpression: regularExpression)
-    }
 
-    override func tearDown() {
-        super.tearDown()
+        let paymentProductJSON = Data("""
+        {
+            "fields": [
+                {
+                    "id": "cardholderName",
+                    "type": "string",
+                    "displayHints": {
+                        "displayOrder": 0,
+                        "formElement": {}
+                    }
+                }
+            ],
+            "id": 1,
+            "paymentMethod": "card",
+            "displayHints": {
+                "displayOrder": 20,
+                "label": "Visa",
+                "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
+
+        guard let paymentProduct = try? JSONDecoder().decode(PaymentProduct.self, from: paymentProductJSON) else {
+            XCTFail("Not a valid PaymentProduct")
+            return
+        }
+
+        request = PaymentRequest(paymentProduct: paymentProduct)
     }
 
     func testValidateCorrect() {

@@ -5,10 +5,17 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable identifier_name
 
 import Foundation
 
+@available(
+    *,
+    deprecated,
+    message:
+        """
+        In a future release, this class, its functions and its properties will become internal to the SDK.
+        """
+)
 public class JOSEEncryptor {
     public var encryptor = Encryptor()
 
@@ -45,7 +52,9 @@ public class JOSEEncryptor {
         guard let additionalAuthenticatedData = encodedProtectedHeader.data(using: String.Encoding.ascii) else {
             return ""
         }
+        // swiftlint:disable identifier_name
         let AL = computeAL(forData: additionalAuthenticatedData)
+        // swiftlint:enable identifier_name
 
         guard let ciphertext =
                 encryptor.encryptAES(
@@ -94,7 +103,9 @@ public class JOSEEncryptor {
         guard let additionalAuthenticatedData = components[0].data(using: String.Encoding.ascii) else {
             return ""
         }
+        // swiftlint:disable identifier_name
         let AL = computeAL(forData: additionalAuthenticatedData)
+        // swiftlint:enable identifier_name
 
         var authenticationData = additionalAuthenticatedData
         authenticationData.append(initializationVector)
@@ -119,8 +130,10 @@ public class JOSEEncryptor {
 
     public func computeAL(forData data: Data) -> Data {
         var lengthInBits = data.count * 8
+        // swiftlint:disable identifier_name
         var AL = Data(bytes: &lengthInBits, count: MemoryLayout<Int>.size)
         AL.reverse()
         return AL
+        // swiftlint:enable identifier_name
     }
 }

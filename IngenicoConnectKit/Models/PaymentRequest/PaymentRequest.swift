@@ -8,9 +8,15 @@
 
 import Foundation
 
-public class PaymentRequest {
+public class PaymentRequest: Decodable {
 
     public var paymentProduct: PaymentProduct?
+    public var errorMessageIds: [ValidationError] = []
+    @available(
+        *,
+        deprecated,
+        message: "In a future release, this property will be removed. Use errorMessageIds instead."
+    )
     public var errors: [ValidationError] = []
     public var tokenize = false
 
@@ -23,6 +29,22 @@ public class PaymentRequest {
         self.paymentProduct = paymentProduct
         self.accountOnFile = accountOnFile
         self.tokenize = tokenize ?? false
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case paymentProduct, errorMessageIds, tokenize, fieldValues, accountOnFile
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.paymentProduct = try container.decodeIfPresent(PaymentProduct.self, forKey: .paymentProduct)
+        self.errorMessageIds = try container.decodeIfPresent([ValidationError].self, forKey: .errorMessageIds) ?? []
+        self.errors = try container.decodeIfPresent([ValidationError].self, forKey: .errorMessageIds) ?? []
+        self.tokenize = try container.decode(Bool.self, forKey: .tokenize)
+        self.fieldValues =
+            try container.decodeIfPresent([String: String].self, forKey: .fieldValues) ?? [String: String]()
+        self.accountOnFile = try? container.decodeIfPresent(AccountOnFile.self, forKey: .accountOnFile)
     }
 
     public func setValue(forField paymentProductFieldId: String, value: String) {
@@ -99,24 +121,54 @@ public class PaymentRequest {
         return mask
     }
 
-    public func validate() {
+    public func validate() -> [ValidationError] {
+        errors.removeAll()
+        errorMessageIds.removeAll()
+
+        guard let paymentProduct = paymentProduct else {
+            errors.append(ValidationErrorInvalidPaymentProduct())
+            errorMessageIds.append(ValidationErrorInvalidPaymentProduct())
+            return errorMessageIds
+        }
+
+        for field in paymentProduct.fields.paymentProductFields {
+            if let fieldValue = unmaskedValue(forField: field.identifier) {
+                if !isPartOfAccountOnFile(field: field.identifier) {
+                    let fieldErrors = field.validateValue(value: fieldValue, for: self)
+                    errors.append(contentsOf: fieldErrors)
+                    errorMessageIds.append(contentsOf: fieldErrors)
+                }
+            } else {
+                let error =
+                    ValidationErrorIsRequired(
+                        errorMessage: "required",
+                        paymentProductFieldId: field.identifier,
+                        rule: nil
+                    )
+                errors.append(error)
+                errorMessageIds.append(error)
+            }
+        }
+        return errorMessageIds
+    }
+
+    public var maskedFieldValues: [String: String]? {
         guard let paymentProduct = paymentProduct else {
             NSException(
                 name: NSExceptionName(rawValue: "Invalid payment product"),
                 reason: "Payment product is invalid"
             ).raise()
-            return
+            return nil
         }
 
-        errors.removeAll()
+        var maskedFieldValues = [String: String]()
 
         for field in paymentProduct.fields.paymentProductFields {
-            if let fieldValue = unmaskedValue(forField: field.identifier),
-               !isPartOfAccountOnFile(field: field.identifier) {
-                field.validateValue(value: fieldValue, for: self)
-                errors.append(contentsOf: field.errors)
-            }
+            let masked = maskedValue(forField: field.identifier)
+            maskedFieldValues[field.identifier] = masked
         }
+
+        return maskedFieldValues
     }
 
     public var unmaskedFieldValues: [String: String]? {
@@ -130,7 +182,7 @@ public class PaymentRequest {
 
         var unmaskedFieldValues = [String: String]()
 
-        for field in paymentProduct.fields.paymentProductFields where !isReadOnly(field: field.identifier) {
+        for field in paymentProduct.fields.paymentProductFields {
             let unmasked = unmaskedValue(forField: field.identifier)
             unmaskedFieldValues[field.identifier] = unmasked
         }

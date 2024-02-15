@@ -20,27 +20,27 @@ class C2SCommunicatorConfigurationTestCase: XCTestCase {
       C2SCommunicatorConfiguration(
         clientSessionId: "",
         customerId: "",
-        region: .EU,
-        environment: .sandbox,
+        baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+        assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
         appIdentifier: "",
-        util: util
+        util: util,
+        loggingEnabled: false
       )
   }
 
-  override func tearDown() {
-    super.tearDown()
-  }
-
   func testBaseURL() {
-    XCTAssertEqual(configuration.baseURL, "c2sbaseurlbyregion", "Unexpected base URL")
+    XCTAssertEqual(configuration.baseURL, "https://ams1.sandbox.api-ingenico.com/client/v1", "Unexpected base URL")
   }
 
   func testAssetsBaseURL() {
-    XCTAssertEqual(configuration.assetsBaseURL, "assetsbaseurlbyregion", "Unexpected assets base URL")
+    XCTAssertEqual(
+        configuration.assetsBaseURL,
+        "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
+        "Unexpected assets base URL"
+    )
   }
 
   func testBase64EncodedClientMetaInfo() {
-    print(configuration.base64EncodedClientMetaInfo ?? "leeg")
     XCTAssertEqual(
         configuration.base64EncodedClientMetaInfo,
         "base64encodedclientmetainfo",

@@ -9,15 +9,6 @@
 @testable import IngenicoConnectKit
 
 class StubUtil: Util {
-
-  override func C2SBaseURL(by region: Region, environment: Environment) -> String {
-    return "c2sbaseurlbyregion"
-  }
-
-  override func assetsBaseURL(by region: Region, environment: Environment) -> String {
-    return "assetsbaseurlbyregion"
-  }
-
   override func base64EncodedClientMetaInfo(withAppIdentifier appIdentifier: String?, ipAddress: String?) -> String? {
     return "base64encodedclientmetainfo"
   }

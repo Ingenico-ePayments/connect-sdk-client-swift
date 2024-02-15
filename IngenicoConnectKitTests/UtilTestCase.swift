@@ -12,14 +12,6 @@ import XCTest
 class UtilTestCase: XCTestCase {
   let util = Util.shared
 
-  override func setUp() {
-    super.setUp()
-  }
-
-  override func tearDown() {
-    super.tearDown()
-  }
-
   func testBase64EncodedClientMetaInfo() {
       if let info = util.base64EncodedClientMetaInfo {
           let decodedInfo = info.decode()
@@ -30,7 +22,10 @@ class UtilTestCase: XCTestCase {
           }
 
           XCTAssertEqual(JSON["deviceBrand"], "Apple", "Incorrect device brand in meta info")
-          XCTAssertEqual(JSON["deviceType"], "x86_64", "Incorrect device type in meta info")
+          XCTAssert(
+              JSON["deviceType"] == "arm64" || JSON["deviceType"] == "x86_64",
+              "Incorrect device type in meta info"
+          )
       }
   }
 

@@ -8,13 +8,14 @@
 
 import Foundation
 
-public class AccountOnFileAttribute {
+public class AccountOnFileAttribute: Codable {
 
     public var key: String
     public var value: String?
     public var status: AccountOnFileAttributeStatus
     public var mustWriteReason: String?
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     required public init?(json: [String: Any]) {
         guard let key = json["key"] as? String else {
             return nil
@@ -35,5 +36,4 @@ public class AccountOnFileAttribute {
             return nil
         }
     }
-
 }

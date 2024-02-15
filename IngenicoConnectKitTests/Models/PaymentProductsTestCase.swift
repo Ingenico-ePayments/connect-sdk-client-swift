@@ -12,58 +12,71 @@ import XCTest
 class PaymentProductsTestCase: XCTestCase {
 
     var products: BasicPaymentProducts!
-    var account: AccountOnFile!
     var product1: BasicPaymentProduct!
 
     override func setUp() {
         super.setUp()
         products = BasicPaymentProducts()
 
-        product1 = BasicPaymentProduct(json: [
-            "fields": [[:]],
+        let product1JSON = Data("""
+        {
+            "fields": [],
             "id": 1,
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 100,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])
+            },
+            "usesRedirectionTo3rdParty": false,
+            "accountsOnFile": [{
+                "id": 1,
+                "paymentProductId": 1
+            }]
+        }
+        """.utf8)
+        product1 = try? JSONDecoder().decode(BasicPaymentProduct.self, from: product1JSON)
 
-        account = AccountOnFile(json: ["id": 1, "paymentProductId": 1])
-        product1?.accountsOnFile.accountsOnFile.append(account)
-
-        let product2 = BasicPaymentProduct(json: [
-            "fields": [[:]],
+        let product2JSON = Data("""
+        {
+            "fields": [],
             "id": 2,
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 10,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
+        let product2 = try? JSONDecoder().decode(BasicPaymentProduct.self, from: product2JSON)
 
-        let product3 = BasicPaymentProduct(json: [
-            "fields": [[:]],
+        let product3JSON = Data("""
+        {
+            "fields": [],
             "id": 3,
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 99,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])
-
-        if let product1 = product1, let product2 = product2, let product3 = product3 {
-            products.paymentProducts.append(product1)
-            products.paymentProducts.append(product2)
-            products.paymentProducts.append(product3)
+            },
+            "usesRedirectionTo3rdParty": false
         }
-    }
+        """.utf8)
+        let product3 = try? JSONDecoder().decode(BasicPaymentProduct.self, from: product3JSON)
 
-    override func tearDown() {
-        super.tearDown()
+        guard let product1,
+              let product2,
+              let product3 else {
+            XCTFail("Not all products are a valid BasicPaymentProduct")
+            return
+        }
+
+        products.paymentProducts.append(product1)
+        products.paymentProducts.append(product2)
+        products.paymentProducts.append(product3)
     }
 
     func testHasAccountsOnFileTrue() {
@@ -78,7 +91,6 @@ class PaymentProductsTestCase: XCTestCase {
     func testAccountsOnFile() {
         let accountsOnFile = products.accountsOnFile
         XCTAssertEqual(accountsOnFile.count, 1, "Unexpected number of accounts on file")
-        XCTAssert(accountsOnFile[0] === account, "Account on file that was added is not returned")
     }
 
     func testPaymentProductWithIdentifierExisting() {

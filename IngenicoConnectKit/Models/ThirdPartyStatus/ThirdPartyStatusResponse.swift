@@ -8,9 +8,10 @@
 
 import UIKit
 
-public class ThirdPartyStatusResponse: ResponseObjectSerializable {
+public class ThirdPartyStatusResponse: ResponseObjectSerializable, Codable {
     public var thirdPartyStatus: ThirdPartyStatus
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     public required init?(json: [String: Any]) {
         if let urlStr = json["thirdPartyStatus"] as? String {
             if let input = ThirdPartyStatus(rawValue: urlStr) {

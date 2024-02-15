@@ -17,93 +17,77 @@ class C2SCommunicatorTestCase: XCTestCase {
     var configuration: C2SCommunicatorConfiguration!
     let context =
         PaymentContext(
-            amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: .EUR),
+            amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
             isRecurring: true,
-            countryCode: .NL
+            countryCode: "NL"
         )
 
     var applePaymentProduct: BasicPaymentProduct!
-    var androidPaymentProduct: BasicPaymentProduct!
 
     override func setUp() {
         super.setUp()
 
-        applePaymentProduct = BasicPaymentProduct(json: [
-            "fields": [[:]],
-            "id": Int(SDKConstants.kApplePayIdentifier)!,
+        let applePaymentProductJSON = Data("""
+        {
+            "fields": [],
+            "id": \(Int(SDKConstants.kApplePayIdentifier)!),
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 20,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])!
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
 
-        androidPaymentProduct = BasicPaymentProduct(json: [
-            "fields": [[:]],
-            "id": Int(SDKConstants.kAndroidPayIdentifier)!,
+        applePaymentProduct = try? JSONDecoder().decode(BasicPaymentProduct.self, from: applePaymentProductJSON)
+
+        let androidPaymentProductJSON = Data("""
+        {
+            "fields": [],
+            "id": \(Int(SDKConstants.kAndroidPayIdentifier)!),
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 20,
                 "label": "Visa",
                 "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])!
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
+
+        _ = try? JSONDecoder().decode(BasicPaymentProduct.self, from: androidPaymentProductJSON)
 
         configuration =
             C2SCommunicatorConfiguration(
                 clientSessionId: "1",
                 customerId: "1",
-                region: Region.EU,
-                environment: Environment.sandbox,
+                baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+                assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
                 appIdentifier: "",
                 ipAddress: ""
             )
         communicator = C2SCommunicator(configuration: configuration)
     }
 
-    override func tearDown() {
-        super.tearDown()
-    }
-
-    func testFilterAndroidPayFromProducts() {
-        var paymentProducts = BasicPaymentProducts()
-        paymentProducts.paymentProducts = [applePaymentProduct, androidPaymentProduct]
-        paymentProducts = communicator.filterAndroidPayFromProducts(paymentProducts: paymentProducts)
-
-        var correct = false
-        if paymentProducts.paymentProducts.count == 1 {
-            if let product = paymentProducts.paymentProducts.first {
-                if product === applePaymentProduct {
-                    correct = true
-                }
-            }
-        }
-
-        XCTAssert(correct, "filterAndroidPayFromProduct did not filter out Android properly")
-    }
-
     func testApplePayAvailabilityWithoutApplePay() {
         let paymentProducts = BasicPaymentProducts()
-
-        let androidProduct = PaymentProduct(json: [
-            "fields": [[:]],
-            "id": Int(SDKConstants.kAndroidPayIdentifier)!,
-            "paymentMethod": "card",
-            "displayHints": [
-                "displayOrder": 20,
-                "label": "Visa",
-                "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            ]
-        ])!
-        paymentProducts.paymentProducts.append(androidProduct)
 
         let expectation = self.expectation(description: "Response provided")
 
         _ = communicator.checkApplePayAvailability(with: paymentProducts, for: context, success: {
             expectation.fulfill()
         }, failure: { (error) in
-            XCTFail("Unexpected failure while testing checkApplePayAvailability: \(error.localizedDescription)")
+            XCTFail(
+                "Unexpected failure while testing applePayAvailabilityWithoutApplePay: \(error.localizedDescription)"
+            )
+        }, apiFailure: { errorResponse in
+            XCTFail(
+                """
+                Unexpected failure while testing applePayAvailabilityWithoutApplePay: \(errorResponse.errors[0].message)
+                """
+            )
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -119,7 +103,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "networks": [ "amex", "discover", "masterCard", "visa" ]
              ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -136,6 +120,8 @@ class C2SCommunicatorTestCase: XCTestCase {
 
         }, failure: { (error) in
             XCTFail("Unexpected failure while testing checkApplePayAvailability: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail("Unexpected failure while testing checkApplePayAvailability: \(errorResponse.errors[0].message)")
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -194,7 +180,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 ]
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -213,6 +199,8 @@ class C2SCommunicatorTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { error in
             XCTFail("Unexpected failure while testing paymentProductForContext: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail("Unexpected failure while testing paymentProductForContext: \(errorResponse.errors[0].message)")
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -235,7 +223,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 ]
             // swiftlint:enable line_length
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -263,6 +251,8 @@ class C2SCommunicatorTestCase: XCTestCase {
             // swiftlint:enable line_length
         }, failure: { (error) in
             XCTFail("Unexpected failure while testing publicKey: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail("Unexpected failure while testing publicKey: \(errorResponse.errors[0].message)")
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -282,12 +272,14 @@ class C2SCommunicatorTestCase: XCTestCase {
                                 "label": "Cards",
                                 "logo": "/templates/master/global/css/img/ppimages/group-card.png"
                             ],
-                            "id": "cards"
+                            "id": "cards",
+                            "deviceFingerprintEnabled": true,
+                            "allowsInstallments": false
                     ]
                 ]
              ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -313,6 +305,12 @@ class C2SCommunicatorTestCase: XCTestCase {
 
         }, failure: { (error) in
             XCTFail("Unexpected failure while testing paymentProductGroupsForContext: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail(
+                """
+                Unexpected failure while testing paymentProductGroupsForContext: \(errorResponse.errors[0].message)
+                """
+            )
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -393,7 +391,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "paymentProductGroup": "cards"
                 ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -471,6 +469,8 @@ class C2SCommunicatorTestCase: XCTestCase {
 
         }, failure: { (error) in
             XCTFail("Unexpected failure while testing paymentProductWithId: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail("Unexpected failure while testing paymentProductWithId: \(errorResponse.errors[0].message)")
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -574,10 +574,12 @@ class C2SCommunicatorTestCase: XCTestCase {
                             "id": "cvv",
                             "type": "numericstring"
                         ]],
-                    "id": "cards"
+                    "id": "cards",
+                    "deviceFingerprintEnabled": true,
+                    "allowsInstallments": false
                 ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -592,6 +594,13 @@ class C2SCommunicatorTestCase: XCTestCase {
         }, failure: { (_) in
             XCTFail("Product group with id failed.")
             expectation.fulfill()
+        }, apiFailure: { errorResponse in
+            XCTFail(
+                """
+                Unexpected failure while testing testPaymentProductNetworksForProductId:
+                \(errorResponse.errors[0].message)
+                """
+            )
         })
         waitForExpectations(timeout: 3) { error in
             if let error = error {
@@ -618,7 +627,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "networks": ["Visa", "MasterCard"]
             ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -635,7 +644,15 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "Unexpected failure while testing testPaymentProductNetworksForProductId: \(error.localizedDescription)"
             )
             expectation.fulfill()
+        }, apiFailure: { errorResponse in
+            XCTFail(
+                """
+                Unexpected failure while testing testPaymentProductNetworksForProductId:
+                \(errorResponse.errors[0].message)
+                """
+            )
         })
+
         waitForExpectations(timeout: 3) { error in
             if let error = error {
                 print("Timeout error: \(error.localizedDescription)")
@@ -656,7 +673,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "paymentProductId": 3
                 ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -671,7 +688,7 @@ class C2SCommunicatorTestCase: XCTestCase {
             success: { (gciinDetailsResponse) in
                 expectation.fulfill()
 
-                XCTAssertEqual(gciinDetailsResponse.countryCode, .RU, "Received countrycode not as expected")
+                XCTAssertEqual(gciinDetailsResponse.countryCodeString, "RU", "Received countrycode not as expected")
                 XCTAssertEqual(gciinDetailsResponse.paymentProductId, "3", "Received paymentProductId not as expected")
             },
             failure: { (error) in
@@ -679,6 +696,14 @@ class C2SCommunicatorTestCase: XCTestCase {
                     """
                     Unexpected failure while testing paymentProductWithIdPartialCreditCard:
                     \(error.localizedDescription)
+                    """
+                )
+            },
+            apiFailure: { errorResponse in
+                XCTFail(
+                    """
+                    Unexpected failure while testing paymentProductWithIdPartialCreditCard:
+                    \(errorResponse.errors[0].message)
                     """
                 )
             }
@@ -697,7 +722,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                 "convertedAmount": 138
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -706,15 +731,24 @@ class C2SCommunicatorTestCase: XCTestCase {
 
         let expectation = self.expectation(description: "Response provided")
 
-        communicator.convert(amountInCents: 3, source: "EUR", target: "USD", success: { (amount) in
-            expectation.fulfill()
+        communicator.convert(
+            amountInCents: 3,
+            source: "EUR",
+            target: "USD",
+            success: { (convertedAmountResponse: ConvertedAmountResponse) in
+                expectation.fulfill()
 
-            XCTAssertEqual(amount, 138, "Received convertedAmount not as expected")
-        }, failure: { (error) in
-            XCTFail(
-                "Unexpected failure while testing convertAmount: \(String(describing: error?.localizedDescription))"
-            )
-        })
+                XCTAssertEqual(convertedAmountResponse.convertedAmount, 138, "Received convertedAmount not as expected")
+            },
+            failure: { (error) in
+                XCTFail(
+                    "Unexpected failure while testing convertAmount: \(String(describing: error?.localizedDescription))"
+                )
+            },
+            apiFailure: { errorResponse in
+                XCTFail("Unexpected failure while testing convertAmount: \(errorResponse.errors[0].message)")
+            }
+        )
 
         waitForExpectations(timeout: 3) { error in
             if let error = error {
@@ -725,16 +759,17 @@ class C2SCommunicatorTestCase: XCTestCase {
 
     func testConvertAmountNotWorking() {
         stub(condition: isHost("ams1.sandbox.api-ingenico.com")) { _ in
-            return OHHTTPStubsResponse(jsonObject: [], statusCode: 200, headers: ["Content-Type": "application/json"])
+            return HTTPStubsResponse(jsonObject: [], statusCode: 200, headers: ["Content-Type": "application/json"])
         }
 
         let expectation = self.expectation(description: "Response provided")
 
-        communicator.convert(amountInCents: 3, source: "EUR", target: "USD", success: { (_) in
+        communicator.convert(amountInCents: 3, source: "EUR", target: "USD", success: { (_: ConvertedAmountResponse) in
             expectation.fulfill()
-
             XCTFail("Unexpected success")
-        }, failure: { (_) in
+        }, failure: { _ in
+            expectation.fulfill()
+        }, apiFailure: { _ in
             expectation.fulfill()
         })
 
@@ -761,7 +796,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                     ] ]
                 ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -794,6 +829,8 @@ class C2SCommunicatorTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { (error) in
             XCTFail("Unexpected failure while testing directoryForPaymentProductId: \(error.localizedDescription)")
+        }, apiFailure: { errorResponse in
+            XCTFail("Unexpected failure while testing directoryForPaymentProductId: \(errorResponse.errors[0].message)")
         })
 
         waitForExpectations(timeout: 3) { error in
@@ -820,7 +857,7 @@ class C2SCommunicatorTestCase: XCTestCase {
                     ] ]
                 ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 403,
                     headers: ["Content-Type": "application/json"]
@@ -835,6 +872,13 @@ class C2SCommunicatorTestCase: XCTestCase {
         }, failure: { (error) in
             XCTAssertEqual(
                 error.localizedDescription,
+                "Response status code was unacceptable: 403.",
+                "Response validation failed expected."
+            )
+            expectation.fulfill()
+        }, apiFailure: { errorResponse in
+            XCTAssertEqual(
+                errorResponse.errors[0].message,
                 "Response status code was unacceptable: 403.",
                 "Response validation failed expected."
             )

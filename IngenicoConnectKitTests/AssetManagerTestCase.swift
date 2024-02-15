@@ -20,38 +20,44 @@ class AssetManagerTestCase: XCTestCase {
         assetManager.fileManager = StubFileManager()
         assetManager.sdkBundle = StubBundle()
 
-        paymentItem = PaymentProduct(json: [
-            "fields": [[:]],
+        let paymentItemJSON = Data("""
+        {
+            "fields": [],
             "id": 1,
             "paymentMethod": "card",
-            "displayHints": [
+            "displayHints": {
                 "displayOrder": 20,
                 "label": "Visa",
                 "logo": "/this/is_a_test.png"
-            ]
-        ])!
+            },
+            "usesRedirectionTo3rdParty": false
+        }
+        """.utf8)
+        paymentItem = try? JSONDecoder().decode(PaymentProduct.self, from: paymentItemJSON)
 
-        paymentItem.fields = PaymentProductFields()
         for index in 0..<5 {
-            let field = PaymentProductField(json: [
-                "displayHints": [
-                    "formElement": [
+            let fieldJSON = Data("""
+            {
+                "displayHints": {
+                    "displayOrder": 0,
+                    "formElement": {
                         "type": "text"
-                    ],
-                    "tooltip": [
+                    },
+                    "tooltip": {
                         "image": "/tooltips/are_here.png"
-                    ]
-                ],
+                    }
+                },
                 "id": "field\(index)",
                 "type": "numericstring"
-            ])!
+            }
+            """.utf8)
+            guard let field = try? JSONDecoder().decode(PaymentProductField.self, from: fieldJSON) else {
+                XCTFail("Not a valid PaymentProductField")
+                return
+            }
 
-          paymentItem.fields.paymentProductFields.append(field)
+            paymentItem.fields.paymentProductFields.append(field)
         }
-    }
-
-    override func tearDown() {
-        super.tearDown()
     }
 
     func testLogoIdentifier() {

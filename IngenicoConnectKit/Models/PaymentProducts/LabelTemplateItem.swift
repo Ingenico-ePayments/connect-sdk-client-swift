@@ -8,11 +8,12 @@
 
 import Foundation
 
-public class LabelTemplateItem: ResponseObjectSerializable {
+public class LabelTemplateItem: ResponseObjectSerializable, Codable {
 
     public var attributeKey: String
     public var mask: String?
 
+    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
     required public init?(json: [String: Any]) {
         guard let attributeKey = json["attributeKey"] as? String else {
             return nil
@@ -21,5 +22,4 @@ public class LabelTemplateItem: ResponseObjectSerializable {
 
         mask = json["mask"] as? String
     }
-
 }

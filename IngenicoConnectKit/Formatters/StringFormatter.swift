@@ -5,8 +5,6 @@
 //  Created for Ingenico ePayments on 15/12/2016.
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
-// swiftlint:disable function_parameter_count
-// swiftlint:disable cyclomatic_complexity
 
 import Foundation
 
@@ -82,6 +80,8 @@ public class StringFormatter {
         return result
     }
 
+    // swiftlint:disable function_parameter_count
+    // swiftlint:disable cyclomatic_complexity
     public func processMatch(
         match: String,
         string: String,
@@ -154,6 +154,8 @@ public class StringFormatter {
 
         return result
     }
+    // swiftlint:enable function_parameter_count
+    // swiftlint:enable cyclomatic_complexity
 
     func parts(ofMask mask: String) -> [String] {
         guard let regex = try? NSRegularExpression(pattern: "\\{\\{|\\}\\}|([^\\{\\}]|\\{(?!\\{)|\\}(?!\\}))*") else {

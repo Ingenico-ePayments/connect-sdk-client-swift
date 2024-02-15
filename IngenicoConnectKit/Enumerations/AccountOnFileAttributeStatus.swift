@@ -6,8 +6,8 @@
 //  Copyright © 2016 Global Collect Services. All rights reserved.
 //
 
-public enum AccountOnFileAttributeStatus {
-    case readOnly
-    case canWrite
-    case mustWrite
+public enum AccountOnFileAttributeStatus: String, Codable {
+    case readOnly = "READ_ONLY"
+    case canWrite = "CAN_WRITE"
+    case mustWrite = "MUST_WRITE"
 }

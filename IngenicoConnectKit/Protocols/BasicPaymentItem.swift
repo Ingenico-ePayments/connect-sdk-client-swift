@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol BasicPaymentItem {
+public protocol BasicPaymentItem: Encodable {
     var identifier: String { get set }
     var displayHints: PaymentItemDisplayHints { get set }
     var accountsOnFile: AccountsOnFile { get set }

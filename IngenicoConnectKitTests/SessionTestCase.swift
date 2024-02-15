@@ -14,31 +14,20 @@ import OHHTTPStubs
 class SessionTestCase: XCTestCase {
     let host = "ams1.sandbox.api-ingenico.com"
 
-    var session =
-        Session(
-            clientSessionId: "client-session-id",
-            customerId: "customer-id",
-            region: .EU,
-            environment: .sandbox,
-            appIdentifier: ""
-        )
+    let session = StubSession(
+        clientSessionId: "client-session-id",
+        customerId: "customer-id",
+        baseURL: "https://ams1.sandbox.api-ingenico.com/client/v1",
+        assetBaseURL: "https://ams1.sandbox.api-ingenico.com/client/v1/assets",
+        appIdentifier: "",
+        loggingEnabled: false
+    )
     let context =
         PaymentContext(
             amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
             isRecurring: true,
             countryCode: "NL"
         )
-
-    override func setUp() {
-        super.setUp()
-
-        session.assetManager.fileManager = StubFileManager()
-        session.assetManager.sdkBundle = StubBundle()
-    }
-
-    override func tearDown() {
-        super.tearDown()
-    }
 
     func testPaymentProductsForContext() {
         stub(condition: isHost(host) && isPath("/client/v1/customer-id/products") && isMethodGET()) { _ in
@@ -50,7 +39,7 @@ class SessionTestCase: XCTestCase {
                         "displayHints": [
                             "displayOrder": 20,
                             "label": "Visa",
-                            "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
+                            "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
                         ],
                         "id": 1,
                         "maxAmount": 1000000,
@@ -64,7 +53,7 @@ class SessionTestCase: XCTestCase {
                         "displayHints": [
                             "displayOrder": 19,
                             "label": "American Express",
-                            "logo": "/templates/master/global/css/img/ppimages/pp_logo_2_v1.png"
+                            "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_2_v1.png"
                         ],
                         "id": 2,
                         "maxAmount": 1000000,
@@ -78,7 +67,7 @@ class SessionTestCase: XCTestCase {
                         "displayHints": [
                             "displayOrder": 18,
                             "label": "MasterCard",
-                            "logo": "/templates/master/global/css/img/ppimages/pp_logo_3_v1.png"
+                            "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_3_v1.png"
                         ],
                         "id": 3,
                         "maxAmount": 1000000,
@@ -89,7 +78,7 @@ class SessionTestCase: XCTestCase {
                 ]
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -117,7 +106,7 @@ class SessionTestCase: XCTestCase {
                 "displayHints": [
                     "displayOrder": 20,
                     "label": "Cards",
-                    "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                    "logo": "https://example.com/templates/master/global/css/img/ppimages/group-card.png"
                 ],
                 "fields": [
                     [
@@ -153,10 +142,12 @@ class SessionTestCase: XCTestCase {
                         "type": "numericstring"
                     ]
                 ],
-                "id": "cards"
+                "id": "cards",
+                "deviceFingerprintEnabled": true,
+                "allowsInstallments": false
             ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -186,7 +177,7 @@ class SessionTestCase: XCTestCase {
                 "networks": ["Visa", "MasterCard"]
             ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -225,7 +216,7 @@ class SessionTestCase: XCTestCase {
                         "displayHints": [
                             "displayOrder": 20,
                             "label": "Cards",
-                            "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                            "logo": "https://example.com/templates/master/global/css/img/ppimages/group-card.png"
                         ],
                         "id": "cards"
                     ]
@@ -235,7 +226,7 @@ class SessionTestCase: XCTestCase {
                 "displayHints": [
                     "displayOrder": 20,
                     "label": "Visa",
-                    "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
+                    "logo": "https://example.com/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
                 ],
                 "fields": [
                     [
@@ -278,7 +269,7 @@ class SessionTestCase: XCTestCase {
                 "paymentProductGroup": "cards"
             ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -299,17 +290,14 @@ class SessionTestCase: XCTestCase {
             self.check(paymentProduct: cachedProduct)
 
             // Check initializeImages
-            XCTAssertEqual(product.displayHints.logoImage?.accessibilityLabel, "logoStubResponse")
+            XCTAssertNotNil(product.displayHints.logoImage, "Logo image was nil")
             for index in 0..<product.fields.paymentProductFields.count {
                 let field = product.fields.paymentProductFields[index]
 
                 // Should analyse why imagePath is never set in JSON conversion.
                 // And add test that tests the behavior when it is set.
                 if field.displayHints.tooltip?.imagePath != nil {
-                    XCTAssertEqual(
-                        field.displayHints.tooltip?.image?.accessibilityLabel,
-                        "tooltipStubResponse-field\(index)"
-                    )
+                    XCTAssertNotNil(field.displayHints.tooltip?.image, "Tooltip image was nil")
                 }
             }
             expectation.fulfill()
@@ -330,7 +318,7 @@ class SessionTestCase: XCTestCase {
         XCTAssertEqual(product.displayHints.displayOrder, 20, "Received product displayOrder not as expected")
         XCTAssertEqual(
             product.displayHints.logoPath,
-            "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png",
+            "https://example.com/templates/master/global/css/img/ppimages/pp_logo_1_v1.png",
             "Received product logoPath not as expected"
         )
 
@@ -400,7 +388,7 @@ class SessionTestCase: XCTestCase {
                 "networks": [ "amex", "discover", "masterCard", "visa" ]
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -429,7 +417,7 @@ class SessionTestCase: XCTestCase {
             isPath("/client/v1/customer-id/products/\(productID)/networks") &&
             isMethodGET()
         ) { _ in
-            return OHHTTPStubsResponse(jsonObject: [], statusCode: 200, headers: ["Content-Type": "application/json"])
+            return HTTPStubsResponse(jsonObject: [], statusCode: 200, headers: ["Content-Type": "application/json"])
         }
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductNetworks(forProductId: productID, context: context, success: { (_) in
@@ -456,7 +444,7 @@ class SessionTestCase: XCTestCase {
                 "isAllowedInContext": true
                 ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -482,7 +470,7 @@ class SessionTestCase: XCTestCase {
         expectation = self.expectation(description: "Response provided")
         session.iinDetails(forPartialCreditCardNumber: "012345", context: context, success: { iinDetailsResponse in
             XCTAssertEqual(iinDetailsResponse.status.hashValue, IINStatus.supported.hashValue)
-            XCTAssertEqual(iinDetailsResponse.countryCode, .RU)
+            XCTAssertEqual(iinDetailsResponse.countryCodeString, "RU")
             XCTAssertEqual(iinDetailsResponse.paymentProductId, "3")
             expectation.fulfill()
         }, failure: { _ in
@@ -518,7 +506,7 @@ class SessionTestCase: XCTestCase {
                 "convertedAmount": 138
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -527,13 +515,21 @@ class SessionTestCase: XCTestCase {
 
         let expectation = self.expectation(description: "Response provided")
 
-        session.convert(amountInCents: 3, source: "EUR", target: "USD", success: { (amount) in
-            expectation.fulfill()
-            XCTAssertEqual(amount, 138, "Received convertedAmount not as expected")
+        session.convert(
+            amountInCents: 3,
+            source: "EUR",
+            target: "USD",
+            success: { (convertedAmountResponse: ConvertedAmountResponse) in
+                expectation.fulfill()
+                XCTAssertEqual(convertedAmountResponse.convertedAmount, 138, "Received convertedAmount not as expected")
 
-        }, failure: { (error) in
-            XCTFail("Unexpected failure while testing convertAmount: \(String(describing: error.localizedDescription))")
-        })
+            },
+            failure: { (error) in
+                XCTFail(
+                    "Unexpected failure while testing convertAmount: \(String(describing: error.localizedDescription))"
+                )
+            }
+        )
 
         waitForExpectations(timeout: 3) { error in
             if let error = error {
@@ -558,7 +554,7 @@ class SessionTestCase: XCTestCase {
                     ] ]
                 ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -636,18 +632,6 @@ class SessionTestCase: XCTestCase {
         XCTAssertEqual(session.clientSessionId, "client-session-id")
     }
 
-    func testIsEnvironmentTypeProduction() {
-        XCTAssertEqual(session.isEnvironmentTypeProduction, false)
-        let productionSession =
-            Session(clientSessionId: "client-session-id",
-                    customerId: "customer-id",
-                    region: .EU,
-                    environment: .production,
-                    appIdentifier: ""
-            )
-        XCTAssertEqual(productionSession.isEnvironmentTypeProduction, true)
-    }
-
     func testPaymentProductGroups() {
         stub(condition: isHost(host) && isPath("/client/v1/customer-id/productgroups") && isMethodGET()) { _ in
             let response = [
@@ -656,14 +640,16 @@ class SessionTestCase: XCTestCase {
                         "displayHints": [
                             "displayOrder": 20,
                             "label": "Cards",
-                            "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                            "logo": "https://example.com/templates/master/global/css/img/ppimages/group-card.png"
                         ],
-                        "id": "cards"
+                        "id": "cards",
+                        "deviceFingerprintEnabled": true,
+                        "allowsInstallments": false
                     ]
                 ]
             ]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -673,6 +659,7 @@ class SessionTestCase: XCTestCase {
         let expectation = self.expectation(description: "Response provided")
         session.paymentProductGroups(for: context, success: { (groups) in
             XCTAssertTrue(groups.paymentProductGroups.count == 1, "Expected one group.")
+            XCTAssertNotNil(groups.paymentProductGroups[0].displayHints.logoImage, "Logo image was nil.")
             expectation.fulfill()
         }, failure: { (_) in
             XCTFail("Product groups failed.")
@@ -691,7 +678,7 @@ class SessionTestCase: XCTestCase {
                     "displayHints": [
                         "displayOrder": 20,
                         "label": "Cards",
-                        "logo": "/templates/master/global/css/img/ppimages/group-card.png"
+                        "logo": "https://example.com/templates/master/global/css/img/ppimages/group-card.png"
                     ],
                     "fields": [[
                         "dataRestrictions": [
@@ -779,10 +766,12 @@ class SessionTestCase: XCTestCase {
                             "id": "cvv",
                             "type": "numericstring"
                         ]],
-                    "id": "cards"
+                    "id": "cards",
+                    "deviceFingerprintEnabled": true,
+                    "allowsInstallments": false
                 ] as [String: Any]
             return
-                OHHTTPStubsResponse(
+                HTTPStubsResponse(
                     jsonObject: response,
                     statusCode: 200,
                     headers: ["Content-Type": "application/json"]
@@ -790,7 +779,8 @@ class SessionTestCase: XCTestCase {
         }
 
         let expectation = self.expectation(description: "Response provided")
-        session.paymentProductGroup(withId: "1", context: context, success: { (_) in
+        session.paymentProductGroup(withId: "1", context: context, success: { paymentProductGroup in
+            XCTAssertNotNil(paymentProductGroup.displayHints.logoImage, "Logo image was nil.")
             expectation.fulfill()
         }, failure: { (_) in
             XCTFail("Product groups failed.")
